@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-build_vsix.py — 把 plugins/<name>/ 打包成可安装的 .vsix
+build_vsix.py — 把本仓库打包成可安装的 .vsix
+
+本仓库专门维护一个插件，仓库根目录就是插件根目录，因此打包器只做一件事：
+把根目录下**属于插件的那部分**塞进 VSIX 的 `extension/`，仓库级目录一律排除。
+
+    extension/  ←  package.json / extension.js / assets/ / dist/ / translations/ / README.md / LICENSE
 
 用法:
-    python tools/build_vsix.py                 # 打包 plugins/zh-hans
-    python tools/build_vsix.py --plugin zh-hans
-    python tools/build_vsix.py --all           # 打包 plugins/ 下所有插件
-    python tools/build_vsix.py --out dist      # 指定产物目录（默认 dist/）
+    python tools/build_vsix.py                  # 输出到 build/
+    python tools/build_vsix.py --out somedir
+    python tools/build_vsix.py --dry-run        # 只列出会打包哪些文件
 
 VSIX 就是一个 zip：
     [Content_Types].xml
     extension.vsixmanifest
-    extension/**        (扩展本体 = plugins/<name>/ 的内容)
+    extension/**
 关键 manifest 属性：
     Microsoft.VisualStudio.Code.Engine             = 引擎版本范围
     Microsoft.VisualStudio.Code.LocalizedLanguages = zh-cn   ← 语言包标识
@@ -20,9 +24,17 @@ import argparse, json, os, sys, zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-PLUGINS = os.path.join(ROOT, "plugins")
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+# 仓库级目录 / 文件：不属于插件，不进 VSIX
+EXCLUDE_DIRS = {
+    ".git", ".github", ".vscode", "tools", "docs", "build",
+    "node_modules", "__pycache__", ".venv",
+}
+EXCLUDE_FILES = {
+    ".gitignore", ".gitattributes", ".editorconfig", "CHANGELOG.md",
+}
 
 MANIFEST = '''<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
@@ -40,7 +52,7 @@ MANIFEST = '''<?xml version="1.0" encoding="utf-8"?>
       <Property Id="Microsoft.VisualStudio.Code.ExtensionSettings" Value="" />
       <Property Id="Microsoft.VisualStudio.Code.LocalizedLanguages" Value="{languages}" />
     </Properties>
-    <License>extension/LICENSE.txt</License>
+    <License>extension/LICENSE</License>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Code"/>
@@ -49,7 +61,7 @@ MANIFEST = '''<?xml version="1.0" encoding="utf-8"?>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true" />
     <Asset Type="Microsoft.VisualStudio.Services.Content.Details" Path="extension/README.md" Addressable="true" />
-    <Asset Type="Microsoft.VisualStudio.Services.Content.License" Path="extension/LICENSE.txt" Addressable="true" />
+    <Asset Type="Microsoft.VisualStudio.Services.Content.License" Path="extension/LICENSE" Addressable="true" />
   </Assets>
 </PackageManifest>
 '''
@@ -66,31 +78,37 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="utf-8"?>
 </Types>
 '''
 
-# 打包时排除的开发期文件
-EXCLUDE_DIRS = {".git", "node_modules", "__pycache__", ".vscode"}
-EXCLUDE_FILES = {"CHANGELOG.md"}
-
 
 def localized_languages(pkg):
-    langs = []
-    for loc in (pkg.get("contributes", {}) or {}).get("localizations", []) or []:
-        if loc.get("languageId"):
-            langs.append(loc["languageId"])
-    return ",".join(langs)
+    return ",".join(loc.get("languageId", "")
+                    for loc in (pkg.get("contributes", {}) or {}).get("localizations", []) or []
+                    if loc.get("languageId"))
 
 
-def pack(plugin_dir, out_dir):
-    pkg_path = os.path.join(plugin_dir, "package.json")
+def collect():
+    """返回 (相对路径列表, package.json 对象)"""
+    pkg_path = os.path.join(ROOT, "package.json")
     if not os.path.exists(pkg_path):
-        print("✗ 没有 package.json: %s" % plugin_dir)
-        return None
+        raise SystemExit("✗ 根目录没有 package.json")
     with open(pkg_path, "r", encoding="utf-8") as f:
         pkg = json.load(f)
     for req in ("name", "version", "publisher", "displayName", "description", "engines"):
         if req not in pkg:
-            print("✗ package.json 缺少字段 %s (%s)" % (req, plugin_dir))
-            return None
+            raise SystemExit("✗ package.json 缺少字段: %s" % req)
 
+    files = []
+    for dirpath, dirs, names in os.walk(ROOT):
+        dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
+        for fn in names:
+            if fn in EXCLUDE_FILES:
+                continue
+            p = os.path.join(dirpath, fn)
+            files.append(os.path.relpath(p, ROOT).replace("\\", "/"))
+    return sorted(files), pkg
+
+
+def pack(out_dir):
+    files, pkg = collect()
     manifest = MANIFEST.format(
         name=pkg["name"], version=pkg["version"], publisher=pkg["publisher"],
         displayName=pkg["displayName"], description=pkg["description"],
@@ -101,46 +119,35 @@ def pack(plugin_dir, out_dir):
     )
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "%s-%s.vsix" % (pkg["name"], pkg["version"]))
-    n = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         z.writestr("[Content_Types].xml", CONTENT_TYPES)
         z.writestr("extension.vsixmanifest", manifest)
-        for root, dirs, files in os.walk(plugin_dir):
-            dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
-            for fn in files:
-                if fn in EXCLUDE_FILES:
-                    continue
-                p = os.path.join(root, fn)
-                rel = os.path.relpath(p, plugin_dir).replace("\\", "/")
-                z.write(p, "extension/" + rel)
-                n += 1
-    print("✓ %-14s -> %s" % (pkg["name"], out))
+        for rel in files:
+            z.write(os.path.join(ROOT, rel), "extension/" + rel)
+    print("✓ %s" % out)
     print("    %d 个文件, %.2f MB, ID = %s.%s @ %s"
-          % (n, os.path.getsize(out) / 1048576, pkg["publisher"], pkg["name"], pkg["version"]))
+          % (len(files), os.path.getsize(out) / 1048576,
+             pkg["publisher"], pkg["name"], pkg["version"]))
     return out
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--plugin", default=None, help="插件目录名（plugins/ 下）")
-    ap.add_argument("--all", action="store_true", help="打包全部插件")
-    ap.add_argument("--out", default=os.path.join(ROOT, "dist"), help="产物目录")
+    ap.add_argument("--out", default=os.path.join(ROOT, "build"), help="产物目录（默认 build/）")
+    ap.add_argument("--dry-run", action="store_true", help="只列出会打包哪些文件")
     args = ap.parse_args()
 
-    if args.all:
-        names = sorted(d for d in os.listdir(PLUGINS)
-                       if os.path.isdir(os.path.join(PLUGINS, d))
-                       and os.path.exists(os.path.join(PLUGINS, d, "package.json")))
-    else:
-        names = [args.plugin or "zh-hans"]
+    if args.dry_run:
+        files, pkg = collect()
+        print("会打包 %d 个文件到 extension/：\n" % len(files))
+        for f in files:
+            print("   %-46s %9d B" % (f, os.path.getsize(os.path.join(ROOT, f))))
+        print("\n排除的仓库级目录: %s" % ", ".join(sorted(EXCLUDE_DIRS)))
+        print("排除的文件:       %s" % ", ".join(sorted(EXCLUDE_FILES)))
+        return 0
 
-    made = []
-    for name in names:
-        r = pack(os.path.join(PLUGINS, name), args.out)
-        if r:
-            made.append(r)
-    print("\n共生成 %d 个 VSIX" % len(made))
-    return 0 if made else 1
+    pack(args.out)
+    return 0
 
 
 if __name__ == "__main__":

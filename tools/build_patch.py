@@ -7,7 +7,7 @@ build_patch.py — 由词表生成插件产物
   zh/g1..g4.json         这些条目的 en -> 中文
   zh/g5.json             windsurf 扩展贡献点的 id -> 中文
 
-输出 (plugins/<name>/):
+输出 (仓库根):
   translations/main.i18n.json               官方译文 + 本插件补充的合并版语言包
   translations/extensions/windsurf.i18n.json
   assets/ui-dict.json                       DOM 翻译器词典

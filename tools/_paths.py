@@ -2,21 +2,30 @@
 """
 _paths.py — 仓库内所有工具的公共路径解析
 
-不写死任何用户目录：Devin 安装位置按常规顺序探测，也可用环境变量覆盖：
+本仓库专门维护一个插件，**仓库根目录就是插件根目录**
+（package.json / extension.js / assets / translations 都在根上）。
+所以这里的「插件」与「仓库」是同一个东西。
+
+Devin 安装位置按常规顺序探测，可用环境变量覆盖：
     DEVIN_INSTALL   例如 D:\Apps\Devin
-    DEVIN_HOME      例如 ~/.devin
-    DEVIN_PLUGIN    指定 plugins/ 下的插件目录名（默认 zh-hans）
+    DEVIN_HOME      例如 %USERPROFILE%\.devin
 """
 import os
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+HERE = os.path.dirname(os.path.abspath(__file__))     # <repo>/tools
+ROOT = os.path.dirname(HERE)                          # <repo>
 
-PLUGIN_NAME = os.environ.get("DEVIN_PLUGIN", "zh-hans")
-PLUGIN = os.path.join(ROOT, "plugins", PLUGIN_NAME)
-SHARED = os.path.join(ROOT, "shared", "dict")
-DATA = os.path.join(HERE, "data")
-OUT = os.path.join(ROOT, "dist")
+PLUGIN = ROOT                                         # 插件根 = 仓库根
+ASSETS = os.path.join(ROOT, "assets")                 # 运行时资源（词典等）
+TRANS = os.path.join(ROOT, "translations")            # 语言包
+DIST = os.path.join(ROOT, "dist")                     # 插件自带的运行时产物（需提交）
+BUILD = os.path.join(ROOT, "build")                   # VSIX 打包输出（被 git 忽略）
+DATA = os.path.join(HERE, "data")                     # 中间数据
+DICT = os.path.join(HERE, "dict")                     # 人工维护的词表
+OUT = BUILD                                           # 兼容旧脚本里的 OUT
+
+# 兼容旧脚本里的别名
+SHARED = DICT
 
 _LOCALAPPDATA = os.environ.get("LOCALAPPDATA") or os.path.expanduser("~/AppData/Local")
 DEVIN_HOME = os.environ.get("DEVIN_HOME") or os.path.join(os.path.expanduser("~"), ".devin")
