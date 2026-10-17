@@ -5,6 +5,7 @@ Devin 桌面版 (Windsurf/Codeium 换皮 VS Code fork) 本地化可行性实证�
 """
 import json, os, re, collections, io
 
+import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (  # noqa: E402
     DEVIN_APP as _APP, LANGPACK as _LP, DATA as _DATA,

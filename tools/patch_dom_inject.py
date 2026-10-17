@@ -163,7 +163,7 @@ def main():
         if not os.path.exists(path):
             print("   ✗ 不存在"); continue
         shutil.copy2(path, os.path.join(bak, os.path.basename(path)))
-        with open(jsp, "w", encoding="utf-8") as f:
+        with open(jsp, "w", encoding="utf-8", newline="\n") as f:
             f.write(js)
         print("   ✓ 写入 %s (%.2f MB)" % (os.path.basename(jsp), len(js) / 1048576))
 
@@ -182,7 +182,7 @@ def main():
         prod["checksums"][ck] = sha256_b64(path)
         print("   ✓ checksums 已同步")
 
-    with open(PRODUCT, "w", encoding="utf-8") as f:
+    with open(PRODUCT, "w", encoding="utf-8", newline="\n") as f:
         json.dump(prod, f, ensure_ascii=False, indent='\t')
     print("\n完成。重启 Devin 生效。")
     return 0

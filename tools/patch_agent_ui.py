@@ -112,7 +112,7 @@ def patch_one(label, path, ck_key, zh, dry, bak):
         return True
     old_h = prod["checksums"].get(ck_key)
     prod["checksums"][ck_key] = sha256_b64(path)
-    with open(PRODUCT, "w", encoding="utf-8") as f:
+    with open(PRODUCT, "w", encoding="utf-8", newline="\n") as f:
         json.dump(prod, f, ensure_ascii=False, indent='\t')
     print("   checksums[%s]: %s -> %s" % (ck_key.split('/')[-1],
           (old_h or "")[:12] + "...", prod["checksums"][ck_key][:12] + "..."))

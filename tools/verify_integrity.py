@@ -7,6 +7,7 @@ verify_integrity.py — 证明补丁「零完整性告警」的核心声明
 """
 import hashlib, base64, json, os, io, re
 
+import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (  # noqa: E402
     DEVIN_APP as _APP, LANGPACK as _LP, DATA as _DATA,

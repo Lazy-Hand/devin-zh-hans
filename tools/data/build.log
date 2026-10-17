@@ -3,16 +3,23 @@ Devin 安装目录      : C:\Users\27837\AppData\Local\Programs\Devin
 中文语言包          : C:\Users\27837\.devin\extensions\ms-ceintl.vscode-language-pack-zh-hans-1.126.0-universal
 NLS 译文条数        : 589
 windsurf 译文条数   : 66
-windsurf 字段数     : 176 (来源 C:\Users\27837\AppData\Local\Programs\Devin\resources\app\extensions\windsurf\package.json)
+windsurf 字段数     : 112 (来源 C:\Users\27837\AppData\Local\Programs\Devin\resources\app\extensions\windsurf\package.json)
 
 [1] NLS 补充表: 667 条 / 148 个源文件
-[2] main.i18n.json 合并: 新增 667 条, 总 22,003 条
-    输出: C:\Users\27837\.dsh\profiles\desktop\data\session-manager\workspaces\00e8ebaf-4547-41ce-8e8e-bef828560b96\dist\dict\main.i18n.patched.json (1.65 MB)
-[3] React UI 通用词典: 19,480 条 (1.41 MB)
-windsurf 去重后译文  : 66 条 unique 英文
+[2] main.i18n.json 合并: 新增 0 条, 总 22,003 条
+    输出: C:\Users\27837\.dsh\profiles\desktop\data\session-manager\workspaces\00e8ebaf-4547-41ce-8e8e-bef828560b96\devin-plugin\plugins\zh-hans\translations\main.i18n.json (1.65 MB)
+[3] React UI 通用词典: 19,480 条 (1.39 MB)
+windsurf 去重后译文  : 32 条 unique 英文
 
-[4] windsurf 扩展: 映射 176 个字段, 生成 176 条中文译文, 缺译文 0 个
-    值替换表: 66 条 -> windsurf.en2key.json
+[4] windsurf 扩展: 映射 112 个字段, 生成 112 条中文译文, 缺译文 0 个
+
+    ⚠ 注意：安装目录的 windsurf/package.json 已被本地化（含 %key%），
+      本次提取的字段不完整，将与已有产物合并以保持完整。
+    + 与已有 windsurf.en2key.json 合并，补回 66 条（安装目录已被本地化，提取不全）
+    + 与已有 windsurf.package.nls.json 合并，补回 64 条（安装目录已被本地化，提取不全）
+    + 与已有 windsurf.i18n.json 合并，补回 64 条
+    值替换表: 98 条 -> windsurf.en2key.json
+    windsurf 产物: nls 176 条 / 译文 176 条
 
 {
  "devinDir": "C:\\Users\\27837\\AppData\\Local\\Programs\\Devin",
@@ -20,6 +27,6 @@ windsurf 去重后译文  : 66 条 unique 英文
  "langpackVersion": "1.126.0",
  "nlsPairs": 667,
  "nlsFiles": 148,
- "windsurfFields": 176,
+ "windsurfFields": 112,
  "uiDict": 19480
 }

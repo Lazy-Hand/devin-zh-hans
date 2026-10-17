@@ -75,7 +75,7 @@ def main():
         if ck:
             prod = json.loads(rd(PRODUCT))
             prod["checksums"][ck] = sha256_b64(path)
-            with open(PRODUCT, "w", encoding="utf-8") as f:
+            with open(PRODUCT, "w", encoding="utf-8", newline="\n") as f:
                 json.dump(prod, f, ensure_ascii=False, indent='\t')
             print("   checksums 已同步")
         else:
