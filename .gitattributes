@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.vsix binary
+*.i18n.json linguist-generated=true
+plugins/*/assets/ui-dict.json linguist-generated=true
+plugins/*/dist/devin-zh-dom.js linguist-generated=true

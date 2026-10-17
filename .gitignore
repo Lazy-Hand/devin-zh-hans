@@ -1,4 +1,4 @@
-# 构建产物：只忽略仓库根的 dist/，plugins/<name>/dist 属于插件内容，必须提交
+# 构建产物：只忽略仓库根的 dist/，plugins/<name>/dist 属于插件内容必须提交
 /dist/
 *.vsix
 
