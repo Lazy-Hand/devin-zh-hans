@@ -1,0 +1,5326 @@
+{
+ "unique": [
+  [
+   "Devin",
+   21
+  ],
+  [
+   "Cancel",
+   6
+  ],
+  [
+   "Agent Manager",
+   4
+  ],
+  [
+   "Devin Settings",
+   4
+  ],
+  [
+   "DeepWiki",
+   4
+  ],
+  [
+   "Secondary Activity Bar Position",
+   3
+  ],
+  [
+   "Go Back",
+   3
+  ],
+  [
+   "Go Forward",
+   3
+  ],
+  [
+   "{0} files changed",
+   3
+  ],
+  [
+   "Codemaps",
+   3
+  ],
+  [
+   "Copy URL",
+   2
+  ],
+  [
+   "Yes",
+   2
+  ],
+  [
+   "Close",
+   2
+  ],
+  [
+   "Devin logo icon",
+   2
+  ],
+  [
+   "Copy Session URL",
+   2
+  ],
+  [
+   "Download",
+   2
+  ],
+  [
+   "Open Session on Web",
+   2
+  ],
+  [
+   "New Agent Window",
+   2
+  ],
+  [
+   "Settings",
+   2
+  ],
+  [
+   "{0} ({1})",
+   2
+  ],
+  [
+   "Agent",
+   2
+  ],
+  [
+   "Editor",
+   2
+  ],
+  [
+   "Install Update",
+   2
+  ],
+  [
+   "Restart to Update",
+   2
+  ],
+  [
+   "When enabled, the agent inbox welcome view is shown in place of the default editor welcome. Automatically activated when switching to the Devin Agent Window mode.",
+   2
+  ],
+  [
+   "When enabled, the agent space window manager tracks, saves, and restores editor state for each space. When disabled, only ensures the active session is open.",
+   2
+  ],
+  [
+   "When enabled, the first message sent into a space automatically includes a summary of all other sessions in that space as context for the agent.",
+   2
+  ],
+  [
+   "Show Devin VM files",
+   2
+  ],
+  [
+   "{0} for the Web",
+   2
+  ],
+  [
+   "Dismiss",
+   2
+  ],
+  [
+   "{0} file changed",
+   2
+  ],
+  [
+   "No bugs found",
+   2
+  ],
+  [
+   "Hide Command Hint",
+   2
+  ],
+  [
+   "Sign in to Devin",
+   2
+  ],
+  [
+   "Finish IDE Setup",
+   2
+  ],
+  [
+   "Open Documentation",
+   2
+  ],
+  [
+   "Trigger Command",
+   2
+  ],
+  [
+   "Cascade Migration Wizard",
+   2
+  ],
+  [
+   "Toggle Agent Window",
+   2
+  ],
+  [
+   "Snippet",
+   2
+  ],
+  [
+   "Load Cloud session by ID (dev)",
+   2
+  ],
+  [
+   "Space Diff",
+   2
+  ],
+  [
+   "Devin MCP Registry",
+   2
+  ],
+  [
+   "Devin Desktop",
+   2
+  ],
+  [
+   "Premier AI-powered IDE, built by Codeium.",
+   1
+  ],
+  [
+   "Whether the editor has a multiline selection",
+   1
+  ],
+  [
+   "Explain and Fix Problem",
+   1
+  ],
+  [
+   "Explain and Fix",
+   1
+  ],
+  [
+   "Whether debounce should be disabled for inline suggestions",
+   1
+  ],
+  [
+   "Whether a custom windsurf rich ghost text is currently shown",
+   1
+  ],
+  [
+   "Whether a custom windsurf side hint is currently shown",
+   1
+  ],
+  [
+   "Whether a custom windsurf tab action is currently shown",
+   1
+  ],
+  [
+   "unknown ({0})",
+   1
+  ],
+  [
+   "True when focus is in the debug console, false otherwise.",
+   1
+  ],
+  [
+   "Accept suggestion",
+   1
+  ],
+  [
+   "A file already exists at {0}. Maybe it's already installed?",
+   1
+  ],
+  [
+   "Unable to find the Devin CLI binary. It may not be bundled with this version of {0}.",
+   1
+  ],
+  [
+   "Unable to replace the existing Devin CLI at {0}. Close any running `{1}` processes and try again.",
+   1
+  ],
+  [
+   "Unable to install the shell command '{0}'.",
+   1
+  ],
+  [
+   "Unable to uninstall the shell command '{0}'.",
+   1
+  ],
+  [
+   "Unable to find shell script at '{0}'",
+   1
+  ],
+  [
+   "To manage how {0} stores code snippet telemetry, visit your [Devin Profile Settings]({1}).\n",
+   1
+  ],
+  [
+   "Background color for deleted text in Devin inline completions.",
+   1
+  ],
+  [
+   "A subtler version of list.hoverBackground, a theme-aware hover color that often has a bit more color than a neutral translucent gray.",
+   1
+  ],
+  [
+   "The background color used in stark buttons.",
+   1
+  ],
+  [
+   "The foreground color used in stark buttons.",
+   1
+  ],
+  [
+   "The background color used in stark buttons when hovered.",
+   1
+  ],
+  [
+   "Devin black color used for custom UI elements.",
+   1
+  ],
+  [
+   "Devin sea color used for custom UI elements.",
+   1
+  ],
+  [
+   "Devin sea shade color used for custom UI elements.",
+   1
+  ],
+  [
+   "Devin sea tint color used for custom UI elements.",
+   1
+  ],
+  [
+   "Blue session status color.",
+   1
+  ],
+  [
+   "Green session status color.",
+   1
+  ],
+  [
+   "Orange session status color.",
+   1
+  ],
+  [
+   "Purple session status color.",
+   1
+  ],
+  [
+   "Red session status color.",
+   1
+  ],
+  [
+   "Background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations.",
+   1
+  ],
+  [
+   "Fallback background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations.",
+   1
+  ],
+  [
+   "Background color for text that got removed. The color must not be opaque so as not to hide underlying decorations.",
+   1
+  ],
+  [
+   "Fallback background color for text that got removed. The color must not be opaque so as not to hide underlying decorations.",
+   1
+  ],
+  [
+   "A new version of Devin is available ({0}).\n\nIf you originally installed Devin via your system's package manager (eg. apt), you can get the new version through your standard system update process.\n\nIf you originally installed Devin with the tarball, you can manually download the new tarball from the instructions below.",
+   1
+  ],
+  [
+   "Update is available",
+   1
+  ],
+  [
+   "Instructions to update...",
+   1
+  ],
+  [
+   "Copy Image URL",
+   1
+  ],
+  [
+   "Copy Link",
+   1
+  ],
+  [
+   "Open Link in External Browser",
+   1
+  ],
+  [
+   "The logs were exported. {0}",
+   1
+  ],
+  [
+   "&&Export logs...",
+   1
+  ],
+  [
+   "Export",
+   1
+  ],
+  [
+   "Unable to export logs",
+   1
+  ],
+  [
+   "Export crash logs",
+   1
+  ],
+  [
+   "&&OK",
+   1
+  ],
+  [
+   "ZIP archive",
+   1
+  ],
+  [
+   "Devin Account",
+   1
+  ],
+  [
+   "Devin Usage",
+   1
+  ],
+  [
+   "This chat client preview requires a different Desktop API. Use a compatible full Desktop build instead.",
+   1
+  ],
+  [
+   "Invalid chat client preview ID.",
+   1
+  ],
+  [
+   "Invalid chat client preview link.",
+   1
+  ],
+  [
+   "Invalid chat client preview manifest.",
+   1
+  ],
+  [
+   "The chat client preview bundle checksum or length is incorrect.",
+   1
+  ],
+  [
+   "The chat client preview download is incomplete.",
+   1
+  ],
+  [
+   "The chat client preview manifest checksum does not match its ID.",
+   1
+  ],
+  [
+   "The chat client preview manifest is not valid UTF-8 JSON.",
+   1
+  ],
+  [
+   "The chat client preview download timed out.",
+   1
+  ],
+  [
+   "The chat client preview download exceeds its size limit.",
+   1
+  ],
+  [
+   "The preview server returned an invalid response. Redirects are not allowed.",
+   1
+  ],
+  [
+   "At most eight windows can run chat client previews. Return another window to normal first.",
+   1
+  ],
+  [
+   "The target window is no longer available.",
+   1
+  ],
+  [
+   "Could not load the chat client preview.",
+   1
+  ],
+  [
+   "The preview link does not match the requested resource.",
+   1
+  ],
+  [
+   "Open a Desktop workbench window before loading a chat client preview.",
+   1
+  ],
+  [
+   "OK",
+   1
+  ],
+  [
+   "Chat client previews are only available in unrestricted Devin Desktop Insiders.",
+   1
+  ],
+  [
+   "The target window changed while loading the preview.",
+   1
+  ],
+  [
+   "Load this chat client preview?",
+   1
+  ],
+  [
+   "{0}\nRepository: {1}\nPR: #{2}\nCommit: {3}\nCreated: {4}\nBundle ID: {5}\n\nThis runs preview code with your chat client's privileges and authenticated Desktop access. Only load code you trust. This window and its floating windows will reload. Other windows are unchanged.\n\nTo return to normal, fully quit Desktop and reopen it.",
+   1
+  ],
+  [
+   "Load preview",
+   1
+  ],
+  [
+   "ACP agent icon",
+   1
+  ],
+  [
+   "ACP agent icon for {0}",
+   1
+  ],
+  [
+   "DeepWiki icon",
+   1
+  ],
+  [
+   "Slack icon",
+   1
+  ],
+  [
+   "Contribute views containers to Secondary Activity Bar",
+   1
+  ],
+  [
+   "Secondary Activity Bar",
+   1
+  ],
+  [
+   "Show Primary Side Bar",
+   1
+  ],
+  [
+   "Move Secondary Side Bar Left",
+   1
+  ],
+  [
+   "Move Secondary Side Bar Right",
+   1
+  ],
+  [
+   "Quick Open Sessions",
+   1
+  ],
+  [
+   "Devin cloud files",
+   1
+  ],
+  [
+   "Devin cloud files ({0})",
+   1
+  ],
+  [
+   "{0} (Workspace)",
+   1
+  ],
+  [
+   "Bottom",
+   1
+  ],
+  [
+   "Default",
+   1
+  ],
+  [
+   "Hidden",
+   1
+  ],
+  [
+   "Hide Secondary Activity Bar",
+   1
+  ],
+  [
+   "Hide Menu",
+   1
+  ],
+  [
+   "Menu",
+   1
+  ],
+  [
+   "&&Bottom",
+   1
+  ],
+  [
+   "&&Default",
+   1
+  ],
+  [
+   "&&Hidden",
+   1
+  ],
+  [
+   "&&Top",
+   1
+  ],
+  [
+   "Move Secondary Activity Bar to Bottom",
+   1
+  ],
+  [
+   "Move Secondary Activity Bar to Side",
+   1
+  ],
+  [
+   "Move Secondary Activity Bar to Top",
+   1
+  ],
+  [
+   "Top",
+   1
+  ],
+  [
+   "Hide Agent Sidebar",
+   1
+  ],
+  [
+   "Show Agent Sidebar",
+   1
+  ],
+  [
+   "Toggle Secondary Activity Bar Visibility",
+   1
+  ],
+  [
+   "Browse...",
+   1
+  ],
+  [
+   "Select a directory",
+   1
+  ],
+  [
+   "Folders that cannot be opened in this agent window were skipped.",
+   1
+  ],
+  [
+   "Select Folder",
+   1
+  ],
+  [
+   "Plans",
+   1
+  ],
+  [
+   "Open Cascade Conversation",
+   1
+  ],
+  [
+   "Open Worktree in Integrated Terminal",
+   1
+  ],
+  [
+   "Open Worktree in New Window",
+   1
+  ],
+  [
+   "Copy Session ID",
+   1
+  ],
+  [
+   "Put Devin to sleep",
+   1
+  ],
+  [
+   "Rename Session…",
+   1
+  ],
+  [
+   "Search for a file to add to this space",
+   1
+  ],
+  [
+   "Hold __{0}__ to drop into agent",
+   1
+  ],
+  [
+   "Logged out",
+   1
+  ],
+  [
+   "Add to .gitignore",
+   1
+  ],
+  [
+   "Failed to add file to .gitignore: {0}",
+   1
+  ],
+  [
+   "File is already in .gitignore",
+   1
+  ],
+  [
+   "Cannot read .gitignore",
+   1
+  ],
+  [
+   "No .gitignore file exists in the workspace",
+   1
+  ],
+  [
+   "Empty editor group actions",
+   1
+  ],
+  [
+   "You are not signed in to any accounts",
+   1
+  ],
+  [
+   "Sign In",
+   1
+  ],
+  [
+   "Toggle Agent Sidebar",
+   1
+  ],
+  [
+   "Toggle Primary Side Bar",
+   1
+  ],
+  [
+   "reset views",
+   1
+  ],
+  [
+   "Focus the editor window",
+   1
+  ],
+  [
+   "Open the agent window",
+   1
+  ],
+  [
+   "Switch to Agent",
+   1
+  ],
+  [
+   "Switch to Editor",
+   1
+  ],
+  [
+   "Search agents",
+   1
+  ],
+  [
+   "Search agents ({0})",
+   1
+  ],
+  [
+   "Search sessions...",
+   1
+  ],
+  [
+   "Downloading Update",
+   1
+  ],
+  [
+   "Title activity actions",
+   1
+  ],
+  [
+   "Update Available",
+   1
+  ],
+  [
+   "Installing Update",
+   1
+  ],
+  [
+   "Quick Open",
+   1
+  ],
+  [
+   "Save",
+   1
+  ],
+  [
+   "Controls the location of the Secondary Activity Bar relative to the Secondary Side Bar.",
+   1
+  ],
+  [
+   "Where the Agent Command Center opens.",
+   1
+  ],
+  [
+   "The current window switches between the Agent Command Center and the editor.",
+   1
+  ],
+  [
+   "The Agent Command Center gets a window of its own, and switching moves focus between the two windows.",
+   1
+  ],
+  [
+   "Render the Devin Agent Window as the mounted Devin webapp. On by default for accounts where the feature is enabled; has no effect otherwise. Editor mode is unaffected. Turn it off to use the stock Agent Window layout. Requires a window reload.",
+   1
+  ],
+  [
+   "Deprecated: Use 'devin.editor.agentInboxVisible' instead.",
+   1
+  ],
+  [
+   "Deprecated: Use 'devin.editor.managedSpaces' instead.",
+   1
+  ],
+  [
+   "Deprecated: Use 'devin.spaces.shareContext' instead.",
+   1
+  ],
+  [
+   "Show the Secondary Activity Bar at the bottom of the Secondary Side Bar.",
+   1
+  ],
+  [
+   "Show the Secondary Activity Bar on the side of the Secondary Side Bar.",
+   1
+  ],
+  [
+   "Hide the Secondary Activity Bar in the Secondary Side Bar.",
+   1
+  ],
+  [
+   "Show the Secondary Activity Bar on top of the Secondary Side Bar.",
+   1
+  ],
+  [
+   "Whether the active editor is a cascade editor whose session has an external session URL",
+   1
+  ],
+  [
+   "Whether the active editor group is permanently auto-locked",
+   1
+  ],
+  [
+   "Whether the agent inbox (all sessions view) is currently visible.",
+   1
+  ],
+  [
+   "Whether this window is currently converting onto a synthetic agent workspace.",
+   1
+  ],
+  [
+   "Whether the cascade editor tab session can be renamed",
+   1
+  ],
+  [
+   "Whether the cascade editor tab has an external session URL",
+   1
+  ],
+  [
+   "Whether the cascade editor tab has a resolvable session ID",
+   1
+  ],
+  [
+   "Whether the cascade editor tab is for a Devin Cloud session that is currently awake (has an external URL and is not sleeping)",
+   1
+  ],
+  [
+   "Whether the current workspace is the agent sessions workspace.",
+   1
+  ],
+  [
+   "Whether the left-side part (sidebar or auxiliary bar) is visible",
+   1
+  ],
+  [
+   "Whether the editor tab is an integrated pull request tab",
+   1
+  ],
+  [
+   "The current workbench mode.",
+   1
+  ],
+  [
+   "Color of the shadow the side bar, panel and secondary side bar cast onto the edges of the editor area. Set to transparent for a flat layout.",
+   1
+  ],
+  [
+   "Announcement: {0}",
+   1
+  ],
+  [
+   "View Changelog",
+   1
+  ],
+  [
+   "Architecture Mismatch",
+   1
+  ],
+  [
+   "Wrong architecture — download the native ARM64 build",
+   1
+  ],
+  [
+   "You are running an emulated x64 version of {0}. Download the native ARM64 version for better performance.",
+   1
+  ],
+  [
+   "You are running an emulated version of {0}. Performance may be degraded. Click to download the native ARM64 build.",
+   1
+  ],
+  [
+   "Execute {0} to launch Devin. Start typing to dismiss.",
+   1
+  ],
+  [
+   "[[{0}]] to launch Devin. Start typing to dismiss.",
+   1
+  ],
+  [
+   "Attach DeepWiki as Context",
+   1
+  ],
+  [
+   "More actions",
+   1
+  ],
+  [
+   "Navigate to the previous article in history",
+   1
+  ],
+  [
+   "Navigate to the next article in history",
+   1
+  ],
+  [
+   "See Wiki",
+   1
+  ],
+  [
+   "Open Symbol in DeepWiki",
+   1
+  ],
+  [
+   "Reset DeepWiki Seen States",
+   1
+  ],
+  [
+   "Deep&&Wiki",
+   1
+  ],
+  [
+   "New DeepWiki feature available",
+   1
+  ],
+  [
+   "Summary is empty",
+   1
+  ],
+  [
+   "Loading DeepWiki summary...",
+   1
+  ],
+  [
+   "No summary available",
+   1
+  ],
+  [
+   "Read More",
+   1
+  ],
+  [
+   "Error loading summary",
+   1
+  ],
+  [
+   "Show local files",
+   1
+  ],
+  [
+   "The session machine is asleep, so the explorer shows your local folders.",
+   1
+  ],
+  [
+   "The explorer shows your local folders until the files of the session machine arrive.",
+   1
+  ],
+  [
+   "The files of the session machine are not available, so the explorer shows your local folders.",
+   1
+  ],
+  [
+   "You chose to show your local folders instead of the files on your Devin VM.",
+   1
+  ],
+  [
+   "The session machine starts. The explorer shows your local folders until its files arrive.",
+   1
+  ],
+  [
+   "Devin Cloud Files",
+   1
+  ],
+  [
+   "Changes the base URL for marketplace search results.",
+   1
+  ],
+  [
+   "Changes the base URL on each extension page.",
+   1
+  ],
+  [
+   "dismiss",
+   1
+  ],
+  [
+   "Dismiss this import suggestion",
+   1
+  ],
+  [
+   "Failed to import extensions: {0}",
+   1
+  ],
+  [
+   "Successfully imported {0} extensions from {1}",
+   1
+  ],
+  [
+   "Import 1 extension from {0}",
+   1
+  ],
+  [
+   "Import {0} extensions from {1}",
+   1
+  ],
+  [
+   "Click to import extensions from {0}",
+   1
+  ],
+  [
+   "preview",
+   1
+  ],
+  [
+   "Preview extensions",
+   1
+  ],
+  [
+   "This extension is not compatible with Devin.",
+   1
+  ],
+  [
+   "New Session",
+   1
+  ],
+  [
+   "Devin handles feedback outside of Github.",
+   1
+  ],
+  [
+   "Thanks you for helping us improve Devin! To open the issue/feedback reporter for Devin, click the button below.",
+   1
+  ],
+  [
+   "Open Devin Issue Reporter",
+   1
+  ],
+  [
+   "Lifeguard (Beta)",
+   1
+  ],
+  [
+   "Lifeguard icon",
+   1
+  ],
+  [
+   "&&Lifeguard",
+   1
+  ],
+  [
+   "History",
+   1
+  ],
+  [
+   "Rules",
+   1
+  ],
+  [
+   "Accept Fix",
+   1
+  ],
+  [
+   "Accepted",
+   1
+  ],
+  [
+   "Fix with Cascade",
+   1
+  ],
+  [
+   "Why should this bug be ignored? (optional)",
+   1
+  ],
+  [
+   "e.g., This is intentional behavior",
+   1
+  ],
+  [
+   "I'll fix it",
+   1
+  ],
+  [
+   "Not a bug",
+   1
+  ],
+  [
+   "Don't suggest again",
+   1
+  ],
+  [
+   "Dismissed",
+   1
+  ],
+  [
+   "Untitled Bug",
+   1
+  ],
+  [
+   "{0} bugs found",
+   1
+  ],
+  [
+   "Lifeguard: {0} issues found",
+   1
+  ],
+  [
+   "View",
+   1
+  ],
+  [
+   "Auto (follow editor)",
+   1
+  ],
+  [
+   "Cancel the currently running check",
+   1
+  ],
+  [
+   "Check Last Commit",
+   1
+  ],
+  [
+   "Check Changes Against Ref...",
+   1
+  ],
+  [
+   "(current)",
+   1
+  ],
+  [
+   "Analyzed ",
+   1
+  ],
+  [
+   "Analyzed uncommitted changes on top of ",
+   1
+  ],
+  [
+   " vs ref ",
+   1
+  ],
+  [
+   "Lifeguard is not enabled for your account. Please upgrade your plan or contact your administrator.",
+   1
+  ],
+  [
+   "Lifeguard is not available",
+   1
+  ],
+  [
+   "Press {0} or click \"Check Changes\" above to check for bugs.",
+   1
+  ],
+  [
+   "Catch bugs before you push",
+   1
+  ],
+  [
+   "Enter base ref to compare against",
+   1
+  ],
+  [
+   "Something went wrong. Please reload the window to try again.",
+   1
+  ],
+  [
+   "Reload Window",
+   1
+  ],
+  [
+   "Failed to initialize Lifeguard",
+   1
+  ],
+  [
+   "Run {0}",
+   1
+  ],
+  [
+   "{0} deletion(-)",
+   1
+  ],
+  [
+   "{0} deletions(-)",
+   1
+  ],
+  [
+   "{0} insertion(+)",
+   1
+  ],
+  [
+   "{0} insertions(+)",
+   1
+  ],
+  [
+   "Initializing Lifeguard...",
+   1
+  ],
+  [
+   "Checking commit: {0}",
+   1
+  ],
+  [
+   "Checking commit...",
+   1
+  ],
+  [
+   "Checking current changes...",
+   1
+  ],
+  [
+   "Checking for bugs...",
+   1
+  ],
+  [
+   "Checking changes vs {0}...",
+   1
+  ],
+  [
+   "Checking changes...",
+   1
+  ],
+  [
+   "Agent mode - uses AI agent for deeper analysis.\nChange in Devin Settings.",
+   1
+  ],
+  [
+   "Analysis mode.\nChange in Devin Settings.",
+   1
+  ],
+  [
+   "Fast mode - quick analysis.\nChange in Devin Settings.",
+   1
+  ],
+  [
+   "Smart mode - thorough analysis.\nChange in Devin Settings.",
+   1
+  ],
+  [
+   "(no changes)",
+   1
+  ],
+  [
+   "No tracked changes in {0}",
+   1
+  ],
+  [
+   "No repository",
+   1
+  ],
+  [
+   "No git repositories found in workspace",
+   1
+  ],
+  [
+   "Open a folder containing a git repository to use Lifeguard.",
+   1
+  ],
+  [
+   "No git repositories found",
+   1
+  ],
+  [
+   "Open Repository",
+   1
+  ],
+  [
+   "A Git repository was found but is not opened by VS Code.",
+   1
+  ],
+  [
+   "Git repository found in parent folder",
+   1
+  ],
+  [
+   "e.g., main, origin/main",
+   1
+  ],
+  [
+   "Repositories",
+   1
+  ],
+  [
+   "Check Changes",
+   1
+  ],
+  [
+   "Check tracked changes in {0}",
+   1
+  ],
+  [
+   "Select repository",
+   1
+  ],
+  [
+   "All resolved ({0})",
+   1
+  ],
+  [
+   "Lifeguard: Check failed",
+   1
+  ],
+  [
+   "Compare with Ref",
+   1
+  ],
+  [
+   "Current Changes",
+   1
+  ],
+  [
+   "Lifeguard: Daily limit reached. Try again tomorrow.",
+   1
+  ],
+  [
+   "just now",
+   1
+  ],
+  [
+   "Last Commit",
+   1
+  ],
+  [
+   "Lifeguard: No changes to check",
+   1
+  ],
+  [
+   "No check history available",
+   1
+  ],
+  [
+   "Lifeguard: Too many requests. Please wait a moment.",
+   1
+  ],
+  [
+   "{0}/{1} resolved",
+   1
+  ],
+  [
+   "Select a check from history",
+   1
+  ],
+  [
+   "Lifeguard: Analysis timed out. The diff may be too large or complex.",
+   1
+  ],
+  [
+   "Dismiss Lifeguard Bug: {0}",
+   1
+  ],
+  [
+   "Resolve Lifeguard Bug: {0}",
+   1
+  ],
+  [
+   "{0} issue found",
+   1
+  ],
+  [
+   "{0} issues found",
+   1
+  ],
+  [
+   "Whether the Lifeguard feature is enabled for this build",
+   1
+  ],
+  [
+   "Whether there are git repositories available for Lifeguard",
+   1
+  ],
+  [
+   "Whether there is Lifeguard check history available",
+   1
+  ],
+  [
+   "Download Devin Logs File",
+   1
+  ],
+  [
+   "Diff Decorations",
+   1
+  ],
+  [
+   "{0}, Use {1} to open Source Control Accessibility Help.",
+   1
+  ],
+  [
+   "{0}, Run the Open Accessibility Help command for more information.",
+   1
+  ],
+  [
+   "More Actions...",
+   1
+  ],
+  [
+   "Copy Selection (No Warning)",
+   1
+  ],
+  [
+   "Send Terminal to Chat",
+   1
+  ],
+  [
+   "Send to Chat",
+   1
+  ],
+  [
+   "Controls whether to show the command generation hint at the bottom of the terminal.",
+   1
+  ],
+  [
+   "Whether a terminal managed by Cascade is focused.",
+   1
+  ],
+  [
+   "Whether a terminal in the Cascade panel is focused.",
+   1
+  ],
+  [
+   "This read-only terminal is managed by Cascade",
+   1
+  ],
+  [
+   "{0} to generate a command. ",
+   1
+  ],
+  [
+   "Show Command Hint",
+   1
+  ],
+  [
+   "A local agent is still working. Restarting to update will stop it.",
+   1
+  ],
+  [
+   "{0} local agents are still working. Restarting to update will stop them.",
+   1
+  ],
+  [
+   "&&Restart anyway",
+   1
+  ],
+  [
+   "Untitled session",
+   1
+  ],
+  [
+   "Download Update",
+   1
+  ],
+  [
+   "Later",
+   1
+  ],
+  [
+   "Learn More",
+   1
+  ],
+  [
+   "There is an available update.",
+   1
+  ],
+  [
+   "Update Service",
+   1
+  ],
+  [
+   "Updates are disabled because you are running the user-scope installation of {0} as Administrator.",
+   1
+  ],
+  [
+   "There's an update available: {0} {1}",
+   1
+  ],
+  [
+   "Restart {0} to apply the latest update.",
+   1
+  ],
+  [
+   "Update Now",
+   1
+  ],
+  [
+   "[Dev] Apply update from URL...",
+   1
+  ],
+  [
+   "Please enter a valid URL",
+   1
+  ],
+  [
+   "Enter the URL to the update package (.zip for macOS, .exe for Windows, .tar.gz for Linux)",
+   1
+  ],
+  [
+   "URL is required",
+   1
+  ],
+  [
+   "More...",
+   1
+  ],
+  [
+   "Show More...",
+   1
+  ],
+  [
+   "Onboarding",
+   1
+  ],
+  [
+   "Shortcuts",
+   1
+  ],
+  [
+   "Tab to accept an Autocomplete",
+   1
+  ],
+  [
+   "Accept an Autocomplete",
+   1
+  ],
+  [
+   "ACP Dev",
+   1
+  ],
+  [
+   "Add New SSH Host...",
+   1
+  ],
+  [
+   "Add New SSH Host for Remote Agents...",
+   1
+  ],
+  [
+   "Configure SSH Hosts...",
+   1
+  ],
+  [
+   "Configure SSH Hosts for Remote Agents...",
+   1
+  ],
+  [
+   "Open SSH configuration file",
+   1
+  ],
+  [
+   "Connect to Remote Agent Host...",
+   1
+  ],
+  [
+   "Select a configured SSH host or enter user@host",
+   1
+  ],
+  [
+   "Connect to remote agent host",
+   1
+  ],
+  [
+   "Disconnect Remote Agent Host",
+   1
+  ],
+  [
+   "Enter an SSH host alias or user@host.",
+   1
+  ],
+  [
+   "saved",
+   1
+  ],
+  [
+   "Remove Remote Agent Host",
+   1
+  ],
+  [
+   "Failed to create the SSH config file: {0}",
+   1
+  ],
+  [
+   "Failed to list SSH config files: {0}",
+   1
+  ],
+  [
+   "Closed pull request",
+   1
+  ],
+  [
+   "Draft pull request",
+   1
+  ],
+  [
+   "Merged pull request",
+   1
+  ],
+  [
+   "Open pull request",
+   1
+  ],
+  [
+   "Slack",
+   1
+  ],
+  [
+   "No matching sessions",
+   1
+  ],
+  [
+   "The Devin CLI agent is not connected. Make sure it is enabled and connected, then try again.",
+   1
+  ],
+  [
+   "No compatible workspace folder open. Open a folder containing your Cascade customizations first.",
+   1
+  ],
+  [
+   "Open Cascade Migration Wizard",
+   1
+  ],
+  [
+   "Search Sessions",
+   1
+  ],
+  [
+   "Search sessions by name...",
+   1
+  ],
+  [
+   "Clear ACP Metadata Cache",
+   1
+  ],
+  [
+   "Saving agent session cache",
+   1
+  ],
+  [
+   "Agent Spaces",
+   1
+  ],
+  [
+   "Whether the agent window can navigate back to a previously viewed session or the inbox.",
+   1
+  ],
+  [
+   "Whether the agent window can navigate forward to a session or the inbox it navigated back from.",
+   1
+  ],
+  [
+   "Could not open a terminal on Devin's machine: the Devin Cloud session is not ready yet. Try again in a moment.",
+   1
+  ],
+  [
+   "Select a Devin Cloud session to open a terminal for",
+   1
+  ],
+  [
+   "Open terminal on Devin's machine",
+   1
+  ],
+  [
+   "Open Devin's computer",
+   1
+  ],
+  [
+   "New file",
+   1
+  ],
+  [
+   "New session",
+   1
+  ],
+  [
+   "New session options",
+   1
+  ],
+  [
+   "Open customizations",
+   1
+  ],
+  [
+   "Open file",
+   1
+  ],
+  [
+   "View shell history",
+   1
+  ],
+  [
+   "View diffs",
+   1
+  ],
+  [
+   "Go to All Sessions",
+   1
+  ],
+  [
+   "Open Agent Kanban View",
+   1
+  ],
+  [
+   "Open Agent List View",
+   1
+  ],
+  [
+   "Switch to Editor Mode",
+   1
+  ],
+  [
+   "Select a workspace to open",
+   1
+  ],
+  [
+   "Switch This Window to Devin Agent Mode",
+   1
+  ],
+  [
+   "Switch to Devin Agent Window",
+   1
+  ],
+  [
+   "Reveal Active Session in Sidebar",
+   1
+  ],
+  [
+   "Search Sessions in Sidebar",
+   1
+  ],
+  [
+   "Controls the UI font family of the agent window. Defaults to Inter when empty.",
+   1
+  ],
+  [
+   "Reveal Agent Window",
+   1
+  ],
+  [
+   "Reveal Editor Window",
+   1
+  ],
+  [
+   "Cleaning up the prepared agent workspace",
+   1
+  ],
+  [
+   "Convert Window to Agent Workspace",
+   1
+  ],
+  [
+   "Migrate Memories",
+   1
+  ],
+  [
+   "Agents",
+   1
+  ],
+  [
+   "Cascade",
+   1
+  ],
+  [
+   "Cascade Editor",
+   1
+  ],
+  [
+   "Chat",
+   1
+  ],
+  [
+   "Downloaded '{0}'",
+   1
+  ],
+  [
+   "Failed to download '{0}': {1}",
+   1
+  ],
+  [
+   "Open containing folder",
+   1
+  ],
+  [
+   "Session name cannot be empty",
+   1
+  ],
+  [
+   "Rename Session",
+   1
+  ],
+  [
+   "Show in File Explorer",
+   1
+  ],
+  [
+   "Show in Finder",
+   1
+  ],
+  [
+   "Dissolve all spaces into single sessions",
+   1
+  ],
+  [
+   "Dissolve",
+   1
+  ],
+  [
+   "Dissolve all spaces into single sessions?",
+   1
+  ],
+  [
+   "Every space with multiple sessions is split so each session lives in its own space. Attached files are removed from those spaces (each session keeps its own worktree); manual space titles stay with the first session only. This cannot be undone.",
+   1
+  ],
+  [
+   "Dissolved {0} space(s) into single sessions.",
+   1
+  ],
+  [
+   "Failed to load Cloud session: {0}",
+   1
+  ],
+  [
+   "Enter a Devin Cloud session id to load",
+   1
+  ],
+  [
+   "Devin Cloud Resource",
+   1
+  ],
+  [
+   "The chat client preview \"{0}\" failed to load and was discarded. This window is using the shipped chat client. {1}",
+   1
+  ],
+  [
+   "Downloading chat client preview \"{0}\"",
+   1
+  ],
+  [
+   "Chat client preview: {0}",
+   1
+  ],
+  [
+   "Preview: {0}",
+   1
+  ],
+  [
+   "Chat client preview: {0} ({1})",
+   1
+  ],
+  [
+   "Copy Artifact ID",
+   1
+  ],
+  [
+   "Reload With Chat Client Fixture Module",
+   1
+  ],
+  [
+   "Reload With Shipped Chat Client Module",
+   1
+  ],
+  [
+   "Return to Normal Chat Client",
+   1
+  ],
+  [
+   "Show Chat Client Module",
+   1
+  ],
+  [
+   "View Source Pull Request",
+   1
+  ],
+  [
+   "Click to add bookmark",
+   1
+  ],
+  [
+   "Share Codemap",
+   1
+  ],
+  [
+   "Add Codemap to Cascade",
+   1
+  ],
+  [
+   "Home",
+   1
+  ],
+  [
+   "Codemap Editor",
+   1
+  ],
+  [
+   "Generate Codemap",
+   1
+  ],
+  [
+   "Generate Codemap from Cascade",
+   1
+  ],
+  [
+   "Generate Codemap from Navigation History",
+   1
+  ],
+  [
+   "{0} codemap generating",
+   1
+  ],
+  [
+   "{0} codemaps generating",
+   1
+  ],
+  [
+   "Check if Codemaps is Enabled",
+   1
+  ],
+  [
+   "Load Codemap",
+   1
+  ],
+  [
+   "&&Codemaps",
+   1
+  ],
+  [
+   "Open Codemap by ID",
+   1
+  ],
+  [
+   "Open Codemap Chat",
+   1
+  ],
+  [
+   "Open Codemaps",
+   1
+  ],
+  [
+   "Open Trajectory Dashboard",
+   1
+  ],
+  [
+   "Customize App Icon (beta)",
+   1
+  ],
+  [
+   "Customizations",
+   1
+  ],
+  [
+   "Devin Plugin",
+   1
+  ],
+  [
+   "Devin Customizations",
+   1
+  ],
+  [
+   "Plugin: {0}",
+   1
+  ],
+  [
+   "Datadog session link copied.",
+   1
+  ],
+  [
+   "Copy Datadog session link",
+   1
+  ],
+  [
+   "No Datadog session found in this window.",
+   1
+  ],
+  [
+   "Design Token Editor",
+   1
+  ],
+  [
+   "Open Design Token Editor",
+   1
+  ],
+  [
+   "Open Devin Surface",
+   1
+  ],
+  [
+   "Refresh Page",
+   1
+  ],
+  [
+   "Couldn't open this Devin session in Devin Desktop.",
+   1
+  ],
+  [
+   "Open in browser",
+   1
+  ],
+  [
+   "Whether the Devin webapp agent window is available",
+   1
+  ],
+  [
+   "Unable to load the Devin webapp. Reload the window to try again.",
+   1
+  ],
+  [
+   "Toggle Devin Webapp (Agent Window)",
+   1
+  ],
+  [
+   "Check for Updates",
+   1
+  ],
+  [
+   "Download Devin Diagnostics",
+   1
+  ],
+  [
+   "Save Language Server CPU Profile",
+   1
+  ],
+  [
+   "Save Language Server Memory Profile",
+   1
+  ],
+  [
+   "Desktop Viewer",
+   1
+  ],
+  [
+   "Desktop Viewer Editor",
+   1
+  ],
+  [
+   "Changes",
+   1
+  ],
+  [
+   "Space Diff Editor",
+   1
+  ],
+  [
+   "1 file changed",
+   1
+  ],
+  [
+   "Changelog",
+   1
+  ],
+  [
+   "Download Diagnostics",
+   1
+  ],
+  [
+   "Join the Community",
+   1
+  ],
+  [
+   "Docs",
+   1
+  ],
+  [
+   "Report a bug",
+   1
+  ],
+  [
+   "Report a bug.",
+   1
+  ],
+  [
+   "Provide Feedback",
+   1
+  ],
+  [
+   "Devin MCP Registry Plugin",
+   1
+  ],
+  [
+   "Open Devin MCP Output Channel",
+   1
+  ],
+  [
+   "Show the MCP output channel logs.",
+   1
+  ],
+  [
+   "Open the Devin CLI MCP registry.",
+   1
+  ],
+  [
+   "Devin MCP Plugin Page",
+   1
+  ],
+  [
+   "Open the Devin CLI MCP registry plugin page for a specific server.",
+   1
+  ],
+  [
+   "Open Devin for Terminal MCP Config File",
+   1
+  ],
+  [
+   "Open the Devin for Terminal MCP configuration file.",
+   1
+  ],
+  [
+   "&&Reset and restart",
+   1
+  ],
+  [
+   "This deletes your current Devin Desktop settings, extensions, and editor state, then restarts and re-runs the first-launch migration from Windsurf. Your Windsurf data is not affected.",
+   1
+  ],
+  [
+   "Reset migration from Windsurf and restart?",
+   1
+  ],
+  [
+   "Resetting the Windsurf migration is only available in installed builds.",
+   1
+  ],
+  [
+   "Resetting the Windsurf migration is not available in this build.",
+   1
+  ],
+  [
+   "Reset migration from Windsurf",
+   1
+  ],
+  [
+   "Get started",
+   1
+  ],
+  [
+   "Welcome to Devin Desktop! Manage fleets of local and cloud agents from one surface. Plan, delegate, review, and ship without leaving your editor.",
+   1
+  ],
+  [
+   "Manage fleets of local and cloud agents from one surface. Plan, delegate, review, and ship without leaving your editor.",
+   1
+  ],
+  [
+   "Welcome to Devin Desktop",
+   1
+  ],
+  [
+   "Reset Onboarding",
+   1
+  ],
+  [
+   "Log out of the current account and start onboarding again.",
+   1
+  ],
+  [
+   "Implement Plan",
+   1
+  ],
+  [
+   "Plan Editor",
+   1
+  ],
+  [
+   "Plan Viewer",
+   1
+  ],
+  [
+   "Open Pull Request",
+   1
+  ],
+  [
+   "Find Next in Devin Review",
+   1
+  ],
+  [
+   "Find Previous in Devin Review",
+   1
+  ],
+  [
+   "Stop Find in Devin Review",
+   1
+  ],
+  [
+   "Refresh Devin Review",
+   1
+  ],
+  [
+   "Find in Devin Review",
+   1
+  ],
+  [
+   "Toggle Developer Tools (Devin Review)",
+   1
+  ],
+  [
+   "Open in Devin Review",
+   1
+  ],
+  [
+   "Open in GitHub",
+   1
+  ],
+  [
+   "Devin Review",
+   1
+  ],
+  [
+   "Render Devin Review in an embedded webview iframe instead of a native browser view. Intended for local development; in production this is controlled by a feature rollout.",
+   1
+  ],
+  [
+   "Pull Request",
+   1
+  ],
+  [
+   "Enter the pull request URL",
+   1
+  ],
+  [
+   "Devin Settings Page",
+   1
+  ],
+  [
+   "Icon of the Devin settings editor label.",
+   1
+  ],
+  [
+   "Delete Global Rules",
+   1
+  ],
+  [
+   "Delete Workspace File",
+   1
+  ],
+  [
+   "Devin Local Customizations Tab",
+   1
+  ],
+  [
+   "Open the Devin Local customizations tab.",
+   1
+  ],
+  [
+   "Open Folder in New Window",
+   1
+  ],
+  [
+   "Open Folders in New Window",
+   1
+  ],
+  [
+   "Open Global Rules",
+   1
+  ],
+  [
+   "Open Devin User Settings",
+   1
+  ],
+  [
+   "Open Devin Settings Page With Setting ID",
+   1
+  ],
+  [
+   "Open Devin Settings",
+   1
+  ],
+  [
+   "Shell Viewer",
+   1
+  ],
+  [
+   "Shell Viewer Editor",
+   1
+  ],
+  [
+   "View all Devin shortcuts",
+   1
+  ],
+  [
+   "Hide Quick Settings Panel",
+   1
+  ],
+  [
+   "Hide the Devin quick settings panel.",
+   1
+  ],
+  [
+   "Check if Quick Settings Panel is Visible",
+   1
+  ],
+  [
+   "Report a Bug",
+   1
+  ],
+  [
+   "Open the bug report panel to submit feedback.",
+   1
+  ],
+  [
+   "Quick Settings Panel",
+   1
+  ],
+  [
+   "Open the Devin quick settings panel.",
+   1
+  ],
+  [
+   "Test Recording Viewer",
+   1
+  ],
+  [
+   "Please contact your Devin team administrator to enable installing Devin CLI via Devin Desktop",
+   1
+  ],
+  [
+   "Failed to install Devin CLI: {0}",
+   1
+  ],
+  [
+   "Devin CLI successfully installed. Run `{0}` in a new terminal to use it.",
+   1
+  ],
+  [
+   "Devin CLI successfully installed. Run `{0}` in a new terminal to use it. You must quit and re-open (not just reload) Devin to use it in the integrated terminal.",
+   1
+  ],
+  [
+   "Unable to retrieve team settings. Please try again later.",
+   1
+  ],
+  [
+   "Please sign in to Devin before installing Devin CLI.",
+   1
+  ],
+  [
+   "Install Devin CLI",
+   1
+  ],
+  [
+   "This file is on your Devin VM, and the machine is asleep.",
+   1
+  ],
+  [
+   "The connection to the session machine opens. The file opens when its files arrive.",
+   1
+  ],
+  [
+   "The files of the session machine are not available.",
+   1
+  ],
+  [
+   "This file is on your Devin VM. The explorer shows your local files.",
+   1
+  ],
+  [
+   "This file is on a Devin VM. The connection to the session machine is not open yet.",
+   1
+  ],
+  [
+   "This file is on the machine of another Devin session. Select that session to open the file.",
+   1
+  ],
+  [
+   "The session machine starts. The file opens when its files arrive.",
+   1
+  ],
+  [
+   "Try again",
+   1
+  ],
+  [
+   "Wake up machine",
+   1
+  ],
+  [
+   "Settings dropdown icon.",
+   1
+  ]
+ ],
+ "by_file": {
+  "vs/base/common/constants/appMetadata": [
+   {
+    "key": "app.description",
+    "en": "Premier AI-powered IDE, built by Codeium."
+   },
+   {
+    "key": "app.name",
+    "en": "Devin"
+   }
+  ],
+  "vs/editor/common/editorContextKeys": [
+   {
+    "key": "editorHasMultilineSelection",
+    "en": "Whether the editor has a multiline selection"
+   }
+  ],
+  "vs/editor/contrib/gotoError/browser/gotoError": [
+   {
+    "key": "windsurfExplainProblem.label",
+    "en": "Explain and Fix Problem"
+   }
+  ],
+  "vs/editor/contrib/hover/browser/markerHoverParticipant": [
+   {
+    "key": "windsurf explain and fix problem",
+    "en": "Explain and Fix"
+   }
+  ],
+  "vs/editor/contrib/inlineCompletions/browser/controller/inlineCompletionContextKeys": [
+   {
+    "key": "disableDebounce",
+    "en": "Whether debounce should be disabled for inline suggestions"
+   },
+   {
+    "key": "windsurf.richGhostTextShown",
+    "en": "Whether a custom windsurf rich ghost text is currently shown"
+   },
+   {
+    "key": "windsurf.sideHintShown",
+    "en": "Whether a custom windsurf side hint is currently shown"
+   },
+   {
+    "key": "windsurf.tabActionShown",
+    "en": "Whether a custom windsurf tab action is currently shown"
+   }
+  ],
+  "vs/editor/contrib/quickAccess/browser/gotoSymbolQuickAccess": [
+   {
+    "key": "unknown",
+    "en": "unknown ({0})"
+   }
+  ],
+  "vs/editor/contrib/suggest/browser/suggestController": [
+   {
+    "key": "inDebugRepl",
+    "en": "True when focus is in the debug console, false otherwise."
+   }
+  ],
+  "vs/editor/contrib/suggest/browser/suggestWidgetRenderer": [
+   {
+    "key": "acceptSuggestion",
+    "en": "Accept suggestion"
+   }
+  ],
+  "vs/platform/browserView/electron-main/browserViewMainService": [
+   {
+    "key": "browser.contextMenu.copyLinkUrl",
+    "en": "Copy URL"
+   }
+  ],
+  "vs/platform/menubar/electron-main/menubar": [
+   {
+    "key": "confirmRestartUpdate.cancel",
+    "en": "Cancel"
+   },
+   {
+    "key": "confirmRestartUpdate.yes",
+    "en": "Yes"
+   }
+  ],
+  "vs/platform/native/electron-main/nativeHostMainService": [
+   {
+    "key": "devinCliExists",
+    "en": "A file already exists at {0}. Maybe it's already installed?"
+   },
+   {
+    "key": "devinCliMissing",
+    "en": "Unable to find the Devin CLI binary. It may not be bundled with this version of {0}."
+   },
+   {
+    "key": "devinCliRemoveLegacyFailed",
+    "en": "Unable to replace the existing Devin CLI at {0}. Close any running `{1}` processes and try again."
+   },
+   {
+    "key": "noSymlinksCreated",
+    "en": "Unable to install the shell command '{0}'."
+   },
+   {
+    "key": "noSymlinksUninstalled",
+    "en": "Unable to uninstall the shell command '{0}'."
+   },
+   {
+    "key": "targetMissing",
+    "en": "Unable to find shell script at '{0}'"
+   }
+  ],
+  "vs/platform/telemetry/common/telemetryService": [
+   {
+    "key": "telemetry.windsurfCodeSnippet",
+    "en": "To manage how {0} stores code snippet telemetry, visit your [Devin Profile Settings]({1}).\n"
+   }
+  ],
+  "vs/platform/theme/common/colors/editorColors": [
+   {
+    "key": "diffEditor.windsurfRemovedTextBackground",
+    "en": "Background color for deleted text in Devin inline completions."
+   }
+  ],
+  "vs/platform/theme/common/colors/windsurfCustomColors": [
+   {
+    "key": "listHoverBackgroundSubtle",
+    "en": "A subtler version of list.hoverBackground, a theme-aware hover color that often has a bit more color than a neutral translucent gray."
+   },
+   {
+    "key": "starkButtonBackground",
+    "en": "The background color used in stark buttons."
+   },
+   {
+    "key": "starkButtonForeground",
+    "en": "The foreground color used in stark buttons."
+   },
+   {
+    "key": "starkButtonHoverBackground",
+    "en": "The background color used in stark buttons when hovered."
+   },
+   {
+    "key": "windsurfBlack",
+    "en": "Devin black color used for custom UI elements."
+   },
+   {
+    "key": "windsurfSea",
+    "en": "Devin sea color used for custom UI elements."
+   },
+   {
+    "key": "windsurfSeaShade",
+    "en": "Devin sea shade color used for custom UI elements."
+   },
+   {
+    "key": "windsurfSeaTint",
+    "en": "Devin sea tint color used for custom UI elements."
+   },
+   {
+    "key": "windsurfSessionStatusBlue",
+    "en": "Blue session status color."
+   },
+   {
+    "key": "windsurfSessionStatusGreen",
+    "en": "Green session status color."
+   },
+   {
+    "key": "windsurfSessionStatusOrange",
+    "en": "Orange session status color."
+   },
+   {
+    "key": "windsurfSessionStatusPurple",
+    "en": "Purple session status color."
+   },
+   {
+    "key": "windsurfSessionStatusRed",
+    "en": "Red session status color."
+   }
+  ],
+  "vs/platform/theme/common/colors/windsurfDiffColors": [
+   {
+    "key": "diffEditorInsertedCustom",
+    "en": "Background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations."
+   },
+   {
+    "key": "diffEditorInsertedFallback",
+    "en": "Fallback background color for text that got inserted. The color must not be opaque so as not to hide underlying decorations."
+   },
+   {
+    "key": "diffEditorRemovedCustom",
+    "en": "Background color for text that got removed. The color must not be opaque so as not to hide underlying decorations."
+   },
+   {
+    "key": "diffEditorRemovedFallback",
+    "en": "Fallback background color for text that got removed. The color must not be opaque so as not to hide underlying decorations."
+   }
+  ],
+  "vs/platform/update/electron-main/updateService.linux": [
+   {
+    "key": "close",
+    "en": "Close"
+   },
+   {
+    "key": "linux_update_available_detail",
+    "en": "A new version of Devin is available ({0}).\n\nIf you originally installed Devin via your system's package manager (eg. apt), you can get the new version through your standard system update process.\n\nIf you originally installed Devin with the tarball, you can manually download the new tarball from the instructions below."
+   },
+   {
+    "key": "linux_update_available_message",
+    "en": "Update is available"
+   },
+   {
+    "key": "update_instructions",
+    "en": "Instructions to update..."
+   }
+  ],
+  "vs/platform/webview/common/embeddedWebappContextMenu": [
+   {
+    "key": "embeddedWebapp.contextMenu.copyImageUrl",
+    "en": "Copy Image URL"
+   },
+   {
+    "key": "embeddedWebapp.contextMenu.copyLink",
+    "en": "Copy Link"
+   },
+   {
+    "key": "embeddedWebapp.contextMenu.copyLinkUrl",
+    "en": "Copy URL"
+   },
+   {
+    "key": "embeddedWebapp.contextMenu.openLinkInExternalBrowser",
+    "en": "Open Link in External Browser"
+   }
+  ],
+  "vs/platform/windows/electron-main/windowImpl": [
+   {
+    "key": "appGoneDetailLogsExported",
+    "en": "The logs were exported. {0}"
+   },
+   {
+    "key": "exportCrashLogs",
+    "en": "&&Export logs..."
+   },
+   {
+    "key": "exportCrashLogsButton",
+    "en": "Export"
+   },
+   {
+    "key": "exportCrashLogsError",
+    "en": "Unable to export logs"
+   },
+   {
+    "key": "exportCrashLogsTitle",
+    "en": "Export crash logs"
+   },
+   {
+    "key": "ok",
+    "en": "&&OK"
+   },
+   {
+    "key": "zipArchive",
+    "en": "ZIP archive"
+   }
+  ],
+  "vs/platform/windsurfAuth/common/windsurfAuth": [
+   {
+    "key": "windsurfAccount",
+    "en": "Devin Account"
+   },
+   {
+    "key": "windsurfUsage",
+    "en": "Devin Usage"
+   }
+  ],
+  "vs/platform/windsurfChatClient/common/chatClientPreview": [
+   {
+    "key": "incompatibleChatClientPreview",
+    "en": "This chat client preview requires a different Desktop API. Use a compatible full Desktop build instead."
+   },
+   {
+    "key": "invalidChatClientPreviewId",
+    "en": "Invalid chat client preview ID."
+   },
+   {
+    "key": "invalidChatClientPreviewLink",
+    "en": "Invalid chat client preview link."
+   },
+   {
+    "key": "invalidChatClientPreviewManifest",
+    "en": "Invalid chat client preview manifest."
+   }
+  ],
+  "vs/platform/windsurfChatClient/electron-main/chatClientPreviewDownload": [
+   {
+    "key": "chatClientPreviewBundleHash",
+    "en": "The chat client preview bundle checksum or length is incorrect."
+   },
+   {
+    "key": "chatClientPreviewIncomplete",
+    "en": "The chat client preview download is incomplete."
+   },
+   {
+    "key": "chatClientPreviewManifestHash",
+    "en": "The chat client preview manifest checksum does not match its ID."
+   },
+   {
+    "key": "chatClientPreviewManifestJson",
+    "en": "The chat client preview manifest is not valid UTF-8 JSON."
+   },
+   {
+    "key": "chatClientPreviewTimeout",
+    "en": "The chat client preview download timed out."
+   },
+   {
+    "key": "chatClientPreviewTooLarge",
+    "en": "The chat client preview download exceeds its size limit."
+   },
+   {
+    "key": "invalidChatClientPreviewResponse",
+    "en": "The preview server returned an invalid response. Redirects are not allowed."
+   }
+  ],
+  "vs/platform/windsurfChatClient/electron-main/chatClientPreviewMainService": [
+   {
+    "key": "cancelChatClientPreview",
+    "en": "Cancel"
+   },
+   {
+    "key": "chatClientPreviewCacheFull",
+    "en": "At most eight windows can run chat client previews. Return another window to normal first."
+   },
+   {
+    "key": "chatClientPreviewClosedWindow",
+    "en": "The target window is no longer available."
+   },
+   {
+    "key": "chatClientPreviewFailed",
+    "en": "Could not load the chat client preview."
+   },
+   {
+    "key": "chatClientPreviewLinkMismatch",
+    "en": "The preview link does not match the requested resource."
+   },
+   {
+    "key": "chatClientPreviewNoWindow",
+    "en": "Open a Desktop workbench window before loading a chat client preview."
+   },
+   {
+    "key": "chatClientPreviewOk",
+    "en": "OK"
+   },
+   {
+    "key": "chatClientPreviewUnavailable",
+    "en": "Chat client previews are only available in unrestricted Devin Desktop Insiders."
+   },
+   {
+    "key": "chatClientPreviewWindowChanged",
+    "en": "The target window changed while loading the preview."
+   },
+   {
+    "key": "confirmChatClientPreview",
+    "en": "Load this chat client preview?"
+   },
+   {
+    "key": "confirmChatClientPreviewDetail",
+    "en": "{0}\nRepository: {1}\nPR: #{2}\nCommit: {3}\nCreated: {4}\nBundle ID: {5}\n\nThis runs preview code with your chat client's privileges and authenticated Desktop access. Only load code you trust. This window and its floating windows will reload. Other windows are unchanged.\n\nTo return to normal, fully quit Desktop and reopen it."
+   },
+   {
+    "key": "loadChatClientPreview",
+    "en": "Load preview"
+   }
+  ],
+  "vs/platform/windsurfSvg/browser/windsurfCodicons": [
+   {
+    "key": "acpAgentIcon",
+    "en": "ACP agent icon"
+   },
+   {
+    "key": "acpConnectorIcon",
+    "en": "ACP agent icon for {0}"
+   },
+   {
+    "key": "deepwikiIcon",
+    "en": "DeepWiki icon"
+   },
+   {
+    "key": "devinLogoIcon",
+    "en": "Devin logo icon"
+   },
+   {
+    "key": "windsurfLogoIcon",
+    "en": "Devin logo icon"
+   },
+   {
+    "key": "windsurfSlackIcon",
+    "en": "Slack icon"
+   }
+  ],
+  "vs/workbench/api/browser/viewsExtensionPoint": [
+   {
+    "key": "views.container.auxiliaryactivitybar",
+    "en": "Contribute views containers to Secondary Activity Bar"
+   }
+  ],
+  "vs/workbench/browser/actions/layoutActions": [
+   {
+    "key": "auxiliaryActivityBar",
+    "en": "Secondary Activity Bar"
+   },
+   {
+    "key": "compositePart.showSideBarLabel",
+    "en": "Show Primary Side Bar"
+   },
+   {
+    "key": "moveSecondSidebarLeft",
+    "en": "Move Secondary Side Bar Left"
+   },
+   {
+    "key": "moveSecondSidebarRight",
+    "en": "Move Secondary Side Bar Right"
+   }
+  ],
+  "vs/workbench/browser/actions/quickAccessActions": [
+   {
+    "key": "quickOpenSessions",
+    "en": "Quick Open Sessions"
+   },
+   {
+    "key": "windsurf.agentManager",
+    "en": "Agent Manager"
+   }
+  ],
+  "vs/workbench/browser/agentWindowLabels": [
+   {
+    "key": "agentWindowDevinCloudWorkspace",
+    "en": "Devin cloud files"
+   },
+   {
+    "key": "agentWindowDevinCloudWorkspaceNamed",
+    "en": "Devin cloud files ({0})"
+   },
+   {
+    "key": "agentWindowMultiRootWorkspace",
+    "en": "{0} (Workspace)"
+   }
+  ],
+  "vs/workbench/browser/parts/auxiliaryactivitybar/auxiliaryactivitybarPart": [
+   {
+    "key": "auxiliary activity bar position",
+    "en": "Secondary Activity Bar Position"
+   },
+   {
+    "key": "bottom",
+    "en": "Bottom"
+   },
+   {
+    "key": "default",
+    "en": "Default"
+   },
+   {
+    "key": "hide",
+    "en": "Hidden"
+   },
+   {
+    "key": "hideAuxiliaryActivityBar",
+    "en": "Hide Secondary Activity Bar"
+   },
+   {
+    "key": "hideMenu",
+    "en": "Hide Menu"
+   },
+   {
+    "key": "menu",
+    "en": "Menu"
+   },
+   {
+    "key": "miBottomAuxiliaryActivityBar",
+    "en": "&&Bottom"
+   },
+   {
+    "key": "miDefaultAuxiliaryActivityBar",
+    "en": "&&Default"
+   },
+   {
+    "key": "miHideAuxiliaryActivityBar",
+    "en": "&&Hidden"
+   },
+   {
+    "key": "miTopAuxiliaryActivityBar",
+    "en": "&&Top"
+   },
+   {
+    "key": "positionAuxiliaryActivituBar",
+    "en": "Secondary Activity Bar Position"
+   },
+   {
+    "key": "positionAuxiliaryActivityBarBottom",
+    "en": "Move Secondary Activity Bar to Bottom"
+   },
+   {
+    "key": "positionAuxiliaryActivityBarDefault",
+    "en": "Move Secondary Activity Bar to Side"
+   },
+   {
+    "key": "positionAuxiliaryActivityBarTop",
+    "en": "Move Secondary Activity Bar to Top"
+   },
+   {
+    "key": "top",
+    "en": "Top"
+   }
+  ],
+  "vs/workbench/browser/parts/auxiliarybar/auxiliaryBarActions": [
+   {
+    "key": "hide second side bar",
+    "en": "Hide Agent Sidebar"
+   },
+   {
+    "key": "show second side bar",
+    "en": "Show Agent Sidebar"
+   }
+  ],
+  "vs/workbench/browser/parts/auxiliarybar/auxiliaryBarPart": [
+   {
+    "key": "auxiliary activity bar position",
+    "en": "Secondary Activity Bar Position"
+   },
+   {
+    "key": "toggleAuxiliaryActivityBar",
+    "en": "Toggle Secondary Activity Bar Visibility"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/agentWindowDirectoryPicker": [
+   {
+    "key": "windsurfWelcome.browseFolder2",
+    "en": "Browse..."
+   },
+   {
+    "key": "windsurfWelcome.pickDirectory",
+    "en": "Select a directory"
+   },
+   {
+    "key": "windsurfWelcome.remoteFoldersSkipped",
+    "en": "Folders that cannot be opened in this agent window were skipped."
+   },
+   {
+    "key": "windsurfWelcome.selectFolder",
+    "en": "Select Folder"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/breadcrumbsControl": [
+   {
+    "key": "plans",
+    "en": "Plans"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/breadcrumbsPicker": [
+   {
+    "key": "openCascadeConversation",
+    "en": "Open Cascade Conversation"
+   },
+   {
+    "key": "openTerminalInWorktree",
+    "en": "Open Worktree in Integrated Terminal"
+   },
+   {
+    "key": "openWorktreeNewWindow",
+    "en": "Open Worktree in New Window"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/editor.contribution": [
+   {
+    "key": "copySessionId",
+    "en": "Copy Session ID"
+   },
+   {
+    "key": "copySessionUrl",
+    "en": "Copy Session URL"
+   },
+   {
+    "key": "downloadDevinResource",
+    "en": "Download"
+   },
+   {
+    "key": "openSessionOnWeb",
+    "en": "Open Session on Web"
+   },
+   {
+    "key": "putDevinToSleep",
+    "en": "Put Devin to sleep"
+   },
+   {
+    "key": "renameSession",
+    "en": "Rename Session…"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/editorActions": [
+   {
+    "key": "openWindsurfAgentWindow",
+    "en": "New Agent Window"
+   },
+   {
+    "key": "windsurf.agentManager",
+    "en": "Agent Manager"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/editorCommands": [
+   {
+    "key": "addFileToSpace",
+    "en": "Search for a file to add to this space"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/editorDropTarget": [
+   {
+    "key": "dropIntoAgentPrompt",
+    "en": "Hold __{0}__ to drop into agent"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/editorGroupWindsurfWelcome": [
+   {
+    "key": "windsurfWelcome.loggedOut",
+    "en": "Logged out"
+   },
+   {
+    "key": "windsurfWelcome.settings",
+    "en": "Settings"
+   },
+   {
+    "key": "windsurfWelcome.windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/editorStatus": [
+   {
+    "key": "addToGitignore",
+    "en": "Add to .gitignore"
+   },
+   {
+    "key": "addToGitignoreError",
+    "en": "Failed to add file to .gitignore: {0}"
+   },
+   {
+    "key": "alreadyInGitignore",
+    "en": "File is already in .gitignore"
+   },
+   {
+    "key": "cannotReadGitignore",
+    "en": "Cannot read .gitignore"
+   },
+   {
+    "key": "noGitignoreFile",
+    "en": "No .gitignore file exists in the workspace"
+   }
+  ],
+  "vs/workbench/browser/parts/editor/workbenchEditorGroupChrome": [
+   {
+    "key": "ariaLabelGroupActions",
+    "en": "Empty editor group actions"
+   }
+  ],
+  "vs/workbench/browser/parts/globalCompositeBar": [
+   {
+    "key": "noAccounts",
+    "en": "You are not signed in to any accounts"
+   },
+   {
+    "key": "signIn",
+    "en": "Sign In"
+   },
+   {
+    "key": "windsurf settings",
+    "en": "Devin Settings"
+   }
+  ],
+  "vs/workbench/browser/parts/leftHeader/leftHeaderPart": [
+   {
+    "key": "toggleBarWithKb",
+    "en": "{0} ({1})"
+   },
+   {
+    "key": "toggleSecondarySideBar",
+    "en": "Toggle Agent Sidebar"
+   },
+   {
+    "key": "toggleSideBar",
+    "en": "Toggle Primary Side Bar"
+   }
+  ],
+  "vs/workbench/browser/parts/paneCompositePart": [
+   {
+    "key": "pane.resetLink",
+    "en": "reset views"
+   }
+  ],
+  "vs/workbench/browser/parts/titlebar/agentEditorSwitch": [
+   {
+    "key": "agentEditorSwitchTooltipWithKeybinding",
+    "en": "{0} ({1})"
+   },
+   {
+    "key": "agentSegment",
+    "en": "Agent"
+   },
+   {
+    "key": "editorSegment",
+    "en": "Editor"
+   },
+   {
+    "key": "focusEditorWindow",
+    "en": "Editor"
+   },
+   {
+    "key": "focusEditorWindowTooltip",
+    "en": "Focus the editor window"
+   },
+   {
+    "key": "openAgentWindow",
+    "en": "Agent"
+   },
+   {
+    "key": "openAgentWindowTooltip",
+    "en": "Open the agent window"
+   },
+   {
+    "key": "switchToAgent",
+    "en": "Switch to Agent"
+   },
+   {
+    "key": "switchToEditor",
+    "en": "Switch to Editor"
+   }
+  ],
+  "vs/workbench/browser/parts/titlebar/agentSearchButton": [
+   {
+    "key": "searchAgents",
+    "en": "Search agents"
+   },
+   {
+    "key": "searchAgentsWithKb",
+    "en": "Search agents ({0})"
+   }
+  ],
+  "vs/workbench/browser/parts/titlebar/commandCenterControl": [
+   {
+    "key": "label.agentMode",
+    "en": "Search sessions..."
+   }
+  ],
+  "vs/workbench/browser/parts/titlebar/titlebarPart": [
+   {
+    "key": "DownloadingUpdate",
+    "en": "Downloading Update"
+   },
+   {
+    "key": "ariaLabelTitleActivityActions",
+    "en": "Title activity actions"
+   },
+   {
+    "key": "download update_1",
+    "en": "Update Available"
+   },
+   {
+    "key": "installUpdate...",
+    "en": "Install Update"
+   },
+   {
+    "key": "installingUpdate",
+    "en": "Installing Update"
+   },
+   {
+    "key": "navigateBack",
+    "en": "Go Back"
+   },
+   {
+    "key": "navigateForward",
+    "en": "Go Forward"
+   },
+   {
+    "key": "quickOpen",
+    "en": "Quick Open"
+   },
+   {
+    "key": "restartToUpdate",
+    "en": "Restart to Update"
+   }
+  ],
+  "vs/workbench/browser/windsurfSaveFile": [
+   {
+    "key": "windsurfSaveFileTitle",
+    "en": "Save"
+   }
+  ],
+  "vs/workbench/browser/workbench.contribution": [
+   {
+    "key": "auxiliaryActivityBarLocation",
+    "en": "Controls the location of the Secondary Activity Bar relative to the Secondary Side Bar."
+   },
+   {
+    "key": "devin.agentWindow.location",
+    "en": "Where the Agent Command Center opens."
+   },
+   {
+    "key": "devin.agentWindow.location.currentWindow",
+    "en": "The current window switches between the Agent Command Center and the editor."
+   },
+   {
+    "key": "devin.agentWindow.location.separateWindow",
+    "en": "The Agent Command Center gets a window of its own, and switching moves focus between the two windows."
+   },
+   {
+    "key": "devin.desktopShell.enabled",
+    "en": "Render the Devin Agent Window as the mounted Devin webapp. On by default for accounts where the feature is enabled; has no effect otherwise. Editor mode is unaffected. Turn it off to use the stock Agent Window layout. Requires a window reload."
+   },
+   {
+    "key": "devin.editor.agentInboxVisible",
+    "en": "When enabled, the agent inbox welcome view is shown in place of the default editor welcome. Automatically activated when switching to the Devin Agent Window mode."
+   },
+   {
+    "key": "devin.editor.managedSpaces",
+    "en": "When enabled, the agent space window manager tracks, saves, and restores editor state for each space. When disabled, only ensures the active session is open."
+   },
+   {
+    "key": "devin.spaces.shareContext",
+    "en": "When enabled, the first message sent into a space automatically includes a summary of all other sessions in that space as context for the agent."
+   },
+   {
+    "key": "windsurf.editor.agentInboxVisible",
+    "en": "When enabled, the agent inbox welcome view is shown in place of the default editor welcome. Automatically activated when switching to the Devin Agent Window mode."
+   },
+   {
+    "key": "windsurf.editor.agentInboxVisible.deprecated",
+    "en": "Deprecated: Use 'devin.editor.agentInboxVisible' instead."
+   },
+   {
+    "key": "windsurf.editor.managedSpaces",
+    "en": "When enabled, the agent space window manager tracks, saves, and restores editor state for each space. When disabled, only ensures the active session is open."
+   },
+   {
+    "key": "windsurf.editor.managedSpaces.deprecated",
+    "en": "Deprecated: Use 'devin.editor.managedSpaces' instead."
+   },
+   {
+    "key": "windsurf.spaces.shareContext",
+    "en": "When enabled, the first message sent into a space automatically includes a summary of all other sessions in that space as context for the agent."
+   },
+   {
+    "key": "windsurf.spaces.shareContext.deprecated",
+    "en": "Deprecated: Use 'devin.spaces.shareContext' instead."
+   },
+   {
+    "key": "workbench.auxiliaryActivityBar.location.bottom",
+    "en": "Show the Secondary Activity Bar at the bottom of the Secondary Side Bar."
+   },
+   {
+    "key": "workbench.auxiliaryActivityBar.location.default",
+    "en": "Show the Secondary Activity Bar on the side of the Secondary Side Bar."
+   },
+   {
+    "key": "workbench.auxiliaryActivityBar.location.hide",
+    "en": "Hide the Secondary Activity Bar in the Secondary Side Bar."
+   },
+   {
+    "key": "workbench.auxiliaryActivityBar.location.top",
+    "en": "Show the Secondary Activity Bar on top of the Secondary Side Bar."
+   }
+  ],
+  "vs/workbench/common/contextkeys": [
+   {
+    "key": "activeCascadeEditorHasExternalUrl",
+    "en": "Whether the active editor is a cascade editor whose session has an external session URL"
+   },
+   {
+    "key": "activeEditorGroupAutoLocked",
+    "en": "Whether the active editor group is permanently auto-locked"
+   },
+   {
+    "key": "agentInboxVisible",
+    "en": "Whether the agent inbox (all sessions view) is currently visible."
+   },
+   {
+    "key": "agentWorkspaceConversionInFlight",
+    "en": "Whether this window is currently converting onto a synthetic agent workspace."
+   },
+   {
+    "key": "cascadeEditorCanRenameSession",
+    "en": "Whether the cascade editor tab session can be renamed"
+   },
+   {
+    "key": "cascadeEditorHasExternalUrl",
+    "en": "Whether the cascade editor tab has an external session URL"
+   },
+   {
+    "key": "cascadeEditorHasSessionId",
+    "en": "Whether the cascade editor tab has a resolvable session ID"
+   },
+   {
+    "key": "cascadeEditorIsDevinCloudAndAwake",
+    "en": "Whether the cascade editor tab is for a Devin Cloud session that is currently awake (has an external URL and is not sleeping)"
+   },
+   {
+    "key": "isAgentSessionsWorkspace",
+    "en": "Whether the current workspace is the agent sessions workspace."
+   },
+   {
+    "key": "leftSidePartVisible",
+    "en": "Whether the left-side part (sidebar or auxiliary bar) is visible"
+   },
+   {
+    "key": "pullRequestEditorTab",
+    "en": "Whether the editor tab is an integrated pull request tab"
+   },
+   {
+    "key": "workbenchMode",
+    "en": "The current workbench mode."
+   }
+  ],
+  "vs/workbench/common/theme": [
+   {
+    "key": "editorGroupDepthShadow",
+    "en": "Color of the shadow the side bar, panel and secondary side bar cast onto the edges of the editor area. Set to transparent for a flat layout."
+   }
+  ],
+  "vs/workbench/contrib/announcements/browser/announcements.contribution": [
+   {
+    "key": "announcement.ariaLabel",
+    "en": "Announcement: {0}"
+   },
+   {
+    "key": "announcement.seeChangelog",
+    "en": "View Changelog"
+   }
+  ],
+  "vs/workbench/contrib/architectureWarning/electron-browser/architectureWarning.contribution": [
+   {
+    "key": "architectureMismatchWarning",
+    "en": "Architecture Mismatch"
+   },
+   {
+    "key": "wrongArchitecture",
+    "en": "Wrong architecture — download the native ARM64 build"
+   },
+   {
+    "key": "wrongArchitectureAria",
+    "en": "You are running an emulated x64 version of {0}. Download the native ARM64 version for better performance."
+   },
+   {
+    "key": "wrongArchitectureTooltip",
+    "en": "You are running an emulated version of {0}. Performance may be degraded. Click to download the native ARM64 build."
+   }
+  ],
+  "vs/workbench/contrib/codeEditor/browser/emptyTextEditorHint/emptyTextEditorHint": [
+   {
+    "key": "defaultHintAriaLabelWindsurf",
+    "en": "Execute {0} to launch Devin. Start typing to dismiss."
+   },
+   {
+    "key": "emptyTextEditorHintWindsurf",
+    "en": "[[{0}]] to launch Devin. Start typing to dismiss."
+   }
+  ],
+  "vs/workbench/contrib/deepwiki/browser/deepwiki.contribution": [
+   {
+    "key": "deepwiki",
+    "en": "DeepWiki"
+   },
+   {
+    "key": "deepwiki view",
+    "en": "DeepWiki"
+   },
+   {
+    "key": "deepwiki-category",
+    "en": "DeepWiki"
+   },
+   {
+    "key": "deepwiki.attachContext.title",
+    "en": "Attach DeepWiki as Context"
+   },
+   {
+    "key": "deepwiki.moreActions",
+    "en": "More actions"
+   },
+   {
+    "key": "deepwiki.navigateBackward",
+    "en": "Navigate to the previous article in history"
+   },
+   {
+    "key": "deepwiki.navigateForward",
+    "en": "Navigate to the next article in history"
+   },
+   {
+    "key": "deepwiki.openSymbol",
+    "en": "See Wiki"
+   },
+   {
+    "key": "deepwiki.openSymbol.title",
+    "en": "Open Symbol in DeepWiki"
+   },
+   {
+    "key": "deepwiki.resetSeenStates.title",
+    "en": "Reset DeepWiki Seen States"
+   },
+   {
+    "key": "deepwikiMain",
+    "en": "DeepWiki"
+   },
+   {
+    "key": "miViewDeepwiki",
+    "en": "Deep&&Wiki"
+   }
+  ],
+  "vs/workbench/contrib/deepwiki/browser/deepwikiActivity": [
+   {
+    "key": "deepwikiNewBadge",
+    "en": "New DeepWiki feature available"
+   }
+  ],
+  "vs/workbench/contrib/deepwiki/browser/deepwikiHoverParticipant": [
+   {
+    "key": "deepwiki.emptySummary",
+    "en": "Summary is empty"
+   },
+   {
+    "key": "deepwiki.loadingSummary",
+    "en": "Loading DeepWiki summary..."
+   },
+   {
+    "key": "deepwiki.noSummary",
+    "en": "No summary available"
+   },
+   {
+    "key": "deepwiki.seeWiki",
+    "en": "Read More"
+   },
+   {
+    "key": "deepwiki.summaryError",
+    "en": "Error loading summary"
+   }
+  ],
+  "vs/workbench/contrib/devinCloudFiles/browser/devinCloudFiles.contribution": [
+   {
+    "key": "devinCloudFiles.category",
+    "en": "Devin"
+   },
+   {
+    "key": "devinCloudFiles.showDevinVmFiles",
+    "en": "Show Devin VM files"
+   },
+   {
+    "key": "devinCloudFiles.showLocalFiles",
+    "en": "Show local files"
+   }
+  ],
+  "vs/workbench/contrib/devinCloudFiles/browser/devinCloudFilesStatusView": [
+   {
+    "key": "devinCloudFiles.asleep",
+    "en": "The session machine is asleep, so the explorer shows your local folders."
+   },
+   {
+    "key": "devinCloudFiles.connecting",
+    "en": "The explorer shows your local folders until the files of the session machine arrive."
+   },
+   {
+    "key": "devinCloudFiles.failed",
+    "en": "The files of the session machine are not available, so the explorer shows your local folders."
+   },
+   {
+    "key": "devinCloudFiles.localPreferred",
+    "en": "You chose to show your local folders instead of the files on your Devin VM."
+   },
+   {
+    "key": "devinCloudFiles.waking",
+    "en": "The session machine starts. The explorer shows your local folders until its files arrive."
+   },
+   {
+    "key": "devinCloudFilesStatusView",
+    "en": "Devin Cloud Files"
+   }
+  ],
+  "vs/workbench/contrib/extensions/browser/extensions.contribution": [
+   {
+    "key": "windsurf.marketplaceExtensionGalleryServiceURL",
+    "en": "Changes the base URL for marketplace search results."
+   },
+   {
+    "key": "windsurf.marketplaceGalleryItemURL",
+    "en": "Changes the base URL on each extension page."
+   }
+  ],
+  "vs/workbench/contrib/extensions/browser/extensionsActions": [
+   {
+    "key": "Devin for Web",
+    "en": "{0} for the Web"
+   }
+  ],
+  "vs/workbench/contrib/extensions/browser/extensionsViewlet": [
+   {
+    "key": "dismissButton",
+    "en": "dismiss"
+   },
+   {
+    "key": "dismissImport",
+    "en": "Dismiss this import suggestion"
+   },
+   {
+    "key": "extensionImportError",
+    "en": "Failed to import extensions: {0}"
+   },
+   {
+    "key": "extensionsImportedFromSource",
+    "en": "Successfully imported {0} extensions from {1}"
+   },
+   {
+    "key": "importExtensionFromSource",
+    "en": "Import 1 extension from {0}"
+   },
+   {
+    "key": "importExtensionsFromSource",
+    "en": "Import {0} extensions from {1}"
+   },
+   {
+    "key": "importExtensionsFromSourceTitle",
+    "en": "Click to import extensions from {0}"
+   },
+   {
+    "key": "preview",
+    "en": "preview"
+   },
+   {
+    "key": "previewExtensions",
+    "en": "Preview extensions"
+   }
+  ],
+  "vs/workbench/contrib/extensions/browser/extensionsWorkbenchService": [
+   {
+    "key": "not compatible",
+    "en": "This extension is not compatible with Devin."
+   }
+  ],
+  "vs/workbench/contrib/files/browser/fileActions.contribution": [
+   {
+    "key": "newAgentSessionEditor",
+    "en": "New Session"
+   }
+  ],
+  "vs/workbench/contrib/issue/browser/baseIssueReporterService": [
+   {
+    "key": "windsurfHandlesIssues",
+    "en": "Devin handles feedback outside of Github."
+   },
+   {
+    "key": "windsurfHandlesIssuesDescription",
+    "en": "Thanks you for helping us improve Devin! To open the issue/feedback reporter for Devin, click the button below."
+   },
+   {
+    "key": "windsurfOpenIssueReporter",
+    "en": "Open Devin Issue Reporter"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/browser/lifeguard.contribution": [
+   {
+    "key": "lifeguard.beta",
+    "en": "Lifeguard (Beta)"
+   },
+   {
+    "key": "lifeguardIcon",
+    "en": "Lifeguard icon"
+   },
+   {
+    "key": "miViewLifeguard",
+    "en": "&&Lifeguard"
+   },
+   {
+    "key": "openLifeguardHistory",
+    "en": "History"
+   },
+   {
+    "key": "openLifeguardRules",
+    "en": "Rules"
+   },
+   {
+    "key": "openLifeguardSettings",
+    "en": "Settings"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/browser/lifeguardBugCard": [
+   {
+    "key": "lifeguard.acceptFix",
+    "en": "Accept Fix"
+   },
+   {
+    "key": "lifeguard.accepted",
+    "en": "Accepted"
+   },
+   {
+    "key": "lifeguard.cascadeFix",
+    "en": "Fix with Cascade"
+   },
+   {
+    "key": "lifeguard.dismiss",
+    "en": "Dismiss"
+   },
+   {
+    "key": "lifeguard.dismissFeedback",
+    "en": "Why should this bug be ignored? (optional)"
+   },
+   {
+    "key": "lifeguard.dismissFeedbackPlaceholder",
+    "en": "e.g., This is intentional behavior"
+   },
+   {
+    "key": "lifeguard.dismissFooter.fixMyself",
+    "en": "I'll fix it"
+   },
+   {
+    "key": "lifeguard.dismissFooter.notABug",
+    "en": "Not a bug"
+   },
+   {
+    "key": "lifeguard.dismissFooter.remember",
+    "en": "Don't suggest again"
+   },
+   {
+    "key": "lifeguard.dismissed",
+    "en": "Dismissed"
+   },
+   {
+    "key": "lifeguard.untitledBug",
+    "en": "Untitled Bug"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/browser/lifeguardIcon": [
+   {
+    "key": "lifeguard.bugsFound",
+    "en": "{0} bugs found"
+   },
+   {
+    "key": "lifeguard.notification.issuesFound",
+    "en": "Lifeguard: {0} issues found"
+   },
+   {
+    "key": "lifeguard.notification.view",
+    "en": "View"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/browser/lifeguardPane": [
+   {
+    "key": "lifeguard.autoSelectRepo",
+    "en": "Auto (follow editor)"
+   },
+   {
+    "key": "lifeguard.cancel",
+    "en": "Cancel"
+   },
+   {
+    "key": "lifeguard.cancel.tooltip",
+    "en": "Cancel the currently running check"
+   },
+   {
+    "key": "lifeguard.checkLastCommit",
+    "en": "Check Last Commit"
+   },
+   {
+    "key": "lifeguard.compareWithRefAction",
+    "en": "Check Changes Against Ref..."
+   },
+   {
+    "key": "lifeguard.current",
+    "en": "(current)"
+   },
+   {
+    "key": "lifeguard.detail.analyzed",
+    "en": "Analyzed "
+   },
+   {
+    "key": "lifeguard.detail.analyzedChangesOnTopOf",
+    "en": "Analyzed uncommitted changes on top of "
+   },
+   {
+    "key": "lifeguard.detail.vsRef",
+    "en": " vs ref "
+   },
+   {
+    "key": "lifeguard.disabled.message",
+    "en": "Lifeguard is not enabled for your account. Please upgrade your plan or contact your administrator."
+   },
+   {
+    "key": "lifeguard.disabled.title",
+    "en": "Lifeguard is not available"
+   },
+   {
+    "key": "lifeguard.emptyText",
+    "en": "Press {0} or click \"Check Changes\" above to check for bugs."
+   },
+   {
+    "key": "lifeguard.emptyTitle",
+    "en": "Catch bugs before you push"
+   },
+   {
+    "key": "lifeguard.enterBaseRef",
+    "en": "Enter base ref to compare against"
+   },
+   {
+    "key": "lifeguard.error.message",
+    "en": "Something went wrong. Please reload the window to try again."
+   },
+   {
+    "key": "lifeguard.error.reload",
+    "en": "Reload Window"
+   },
+   {
+    "key": "lifeguard.error.title",
+    "en": "Failed to initialize Lifeguard"
+   },
+   {
+    "key": "lifeguard.header.fileChanged",
+    "en": "{0} file changed"
+   },
+   {
+    "key": "lifeguard.header.filesChanged",
+    "en": "{0} files changed"
+   },
+   {
+    "key": "lifeguard.header.runTime",
+    "en": "Run {0}"
+   },
+   {
+    "key": "lifeguard.hover.deletion",
+    "en": "{0} deletion(-)"
+   },
+   {
+    "key": "lifeguard.hover.deletions",
+    "en": "{0} deletions(-)"
+   },
+   {
+    "key": "lifeguard.hover.fileChanged",
+    "en": "{0} file changed"
+   },
+   {
+    "key": "lifeguard.hover.filesChanged",
+    "en": "{0} files changed"
+   },
+   {
+    "key": "lifeguard.hover.insertion",
+    "en": "{0} insertion(+)"
+   },
+   {
+    "key": "lifeguard.hover.insertions",
+    "en": "{0} insertions(+)"
+   },
+   {
+    "key": "lifeguard.initializing",
+    "en": "Initializing Lifeguard..."
+   },
+   {
+    "key": "lifeguard.loading.commit",
+    "en": "Checking commit: {0}"
+   },
+   {
+    "key": "lifeguard.loading.commitGeneric",
+    "en": "Checking commit..."
+   },
+   {
+    "key": "lifeguard.loading.current",
+    "en": "Checking current changes..."
+   },
+   {
+    "key": "lifeguard.loading.default",
+    "en": "Checking for bugs..."
+   },
+   {
+    "key": "lifeguard.loading.ref",
+    "en": "Checking changes vs {0}..."
+   },
+   {
+    "key": "lifeguard.loading.refGeneric",
+    "en": "Checking changes..."
+   },
+   {
+    "key": "lifeguard.mode.agent",
+    "en": "Agent mode - uses AI agent for deeper analysis.\nChange in Devin Settings."
+   },
+   {
+    "key": "lifeguard.mode.default",
+    "en": "Analysis mode.\nChange in Devin Settings."
+   },
+   {
+    "key": "lifeguard.mode.fast",
+    "en": "Fast mode - quick analysis.\nChange in Devin Settings."
+   },
+   {
+    "key": "lifeguard.mode.smart",
+    "en": "Smart mode - thorough analysis.\nChange in Devin Settings."
+   },
+   {
+    "key": "lifeguard.noBugsFound",
+    "en": "No bugs found"
+   },
+   {
+    "key": "lifeguard.noChanges",
+    "en": "(no changes)"
+   },
+   {
+    "key": "lifeguard.noChanges.tooltip",
+    "en": "No tracked changes in {0}"
+   },
+   {
+    "key": "lifeguard.noRepo",
+    "en": "No repository"
+   },
+   {
+    "key": "lifeguard.noRepos.tooltip",
+    "en": "No git repositories found in workspace"
+   },
+   {
+    "key": "lifeguard.noReposText",
+    "en": "Open a folder containing a git repository to use Lifeguard."
+   },
+   {
+    "key": "lifeguard.noReposTitle",
+    "en": "No git repositories found"
+   },
+   {
+    "key": "lifeguard.openRepository",
+    "en": "Open Repository"
+   },
+   {
+    "key": "lifeguard.parentRepoText",
+    "en": "A Git repository was found but is not opened by VS Code."
+   },
+   {
+    "key": "lifeguard.parentRepoTitle",
+    "en": "Git repository found in parent folder"
+   },
+   {
+    "key": "lifeguard.refPlaceholder",
+    "en": "e.g., main, origin/main"
+   },
+   {
+    "key": "lifeguard.repositories",
+    "en": "Repositories"
+   },
+   {
+    "key": "lifeguard.runCheck",
+    "en": "Check Changes"
+   },
+   {
+    "key": "lifeguard.runCheck.repoTooltip",
+    "en": "Check tracked changes in {0}"
+   },
+   {
+    "key": "lifeguard.selectRepo",
+    "en": "Select repository"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/browser/lifeguardService": [
+   {
+    "key": "lifeguard.allResolved",
+    "en": "All resolved ({0})"
+   },
+   {
+    "key": "lifeguard.checkFailed",
+    "en": "Lifeguard: Check failed"
+   },
+   {
+    "key": "lifeguard.compareWithRef",
+    "en": "Compare with Ref"
+   },
+   {
+    "key": "lifeguard.currentChanges",
+    "en": "Current Changes"
+   },
+   {
+    "key": "lifeguard.dailyRateLimitExceeded",
+    "en": "Lifeguard: Daily limit reached. Try again tomorrow."
+   },
+   {
+    "key": "lifeguard.justNow",
+    "en": "just now"
+   },
+   {
+    "key": "lifeguard.lastCommit",
+    "en": "Last Commit"
+   },
+   {
+    "key": "lifeguard.noBugs",
+    "en": "No bugs found"
+   },
+   {
+    "key": "lifeguard.noChanges",
+    "en": "Lifeguard: No changes to check"
+   },
+   {
+    "key": "lifeguard.noHistory",
+    "en": "No check history available"
+   },
+   {
+    "key": "lifeguard.rateLimitExceeded",
+    "en": "Lifeguard: Too many requests. Please wait a moment."
+   },
+   {
+    "key": "lifeguard.resolved",
+    "en": "{0}/{1} resolved"
+   },
+   {
+    "key": "lifeguard.selectCheck",
+    "en": "Select a check from history"
+   },
+   {
+    "key": "lifeguard.timedOut",
+    "en": "Lifeguard: Analysis timed out. The diff may be too large or complex."
+   },
+   {
+    "key": "lifeguard.undo.dismiss",
+    "en": "Dismiss Lifeguard Bug: {0}"
+   },
+   {
+    "key": "lifeguard.undo.resolve",
+    "en": "Resolve Lifeguard Bug: {0}"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/browser/lifeguardToast": [
+   {
+    "key": "lifeguard.issueFound",
+    "en": "{0} issue found"
+   },
+   {
+    "key": "lifeguard.issuesFound",
+    "en": "{0} issues found"
+   }
+  ],
+  "vs/workbench/contrib/lifeguard/common/lifeguard": [
+   {
+    "key": "lifeguardEnabled",
+    "en": "Whether the Lifeguard feature is enabled for this build"
+   },
+   {
+    "key": "lifeguardHasRepos",
+    "en": "Whether there are git repositories available for Lifeguard"
+   },
+   {
+    "key": "lifeguardHistoryAvailable",
+    "en": "Whether there is Lifeguard check history available"
+   }
+  ],
+  "vs/workbench/contrib/logs/electron-browser/logsActions": [
+   {
+    "key": "openWindsurfLogsFile",
+    "en": "Download Devin Logs File"
+   }
+  ],
+  "vs/workbench/contrib/preferences/browser/preferencesWidgets": [
+   {
+    "key": "windsurfSettings",
+    "en": "Devin Settings"
+   }
+  ],
+  "vs/workbench/contrib/preferences/browser/settingsLayout": [
+   {
+    "key": "devin",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/scm/browser/scm.contribution": [
+   {
+    "key": "quickDiffDecoration",
+    "en": "Diff Decorations"
+   }
+  ],
+  "vs/workbench/contrib/scm/browser/scmViewPane": [
+   {
+    "key": "label.close",
+    "en": "Close"
+   },
+   {
+    "key": "scmInput.accessibilityHelp",
+    "en": "{0}, Use {1} to open Source Control Accessibility Help."
+   },
+   {
+    "key": "scmInput.accessibilityHelpNoKb",
+    "en": "{0}, Run the Open Accessibility Help command for more information."
+   },
+   {
+    "key": "scmInputCancelAction",
+    "en": "Cancel"
+   },
+   {
+    "key": "scmInputMoreActions",
+    "en": "More Actions..."
+   }
+  ],
+  "vs/workbench/contrib/terminal/browser/terminalActions": [
+   {
+    "key": "workbench.action.terminal.maybeCopySelection",
+    "en": "Copy Selection (No Warning)"
+   }
+  ],
+  "vs/workbench/contrib/terminal/browser/terminalMenus": [
+   {
+    "key": "sendTerminalToChat",
+    "en": "Send Terminal to Chat"
+   }
+  ],
+  "vs/workbench/contrib/terminal/browser/terminalTabsList": [
+   {
+    "key": "sendToChat",
+    "en": "Send to Chat"
+   }
+  ],
+  "vs/workbench/contrib/terminal/common/terminalConfiguration": [
+   {
+    "key": "terminal.integrated.showCommandHint",
+    "en": "Controls whether to show the command generation hint at the bottom of the terminal."
+   }
+  ],
+  "vs/workbench/contrib/terminal/common/terminalContextKey": [
+   {
+    "key": "terminalCascadeManagedTerminalFocusContextKey",
+    "en": "Whether a terminal managed by Cascade is focused."
+   },
+   {
+    "key": "terminalCascadeTerminalFocusContextKey",
+    "en": "Whether a terminal in the Cascade panel is focused."
+   }
+  ],
+  "vs/workbench/contrib/terminalContrib/cascadeManagedFooter/browser/terminal.cascadeManagedFooter.contribution": [
+   {
+    "key": "cascadeManagedTerminal",
+    "en": "This read-only terminal is managed by Cascade"
+   }
+  ],
+  "vs/workbench/contrib/terminalContrib/terminalCommandPopup/browser/terminal.terminalCommandPopupHint.contribution": [
+   {
+    "key": "dismissHint",
+    "en": "Dismiss"
+   },
+   {
+    "key": "emptyHintText",
+    "en": "{0} to generate a command. "
+   },
+   {
+    "key": "workbench.action.terminal.hideCommandHint",
+    "en": "Hide Command Hint"
+   },
+   {
+    "key": "workbench.action.terminal.showCommandHint",
+    "en": "Show Command Hint"
+   },
+   {
+    "key": "workbench.action.terminal.toggleCommandHint",
+    "en": "Hide Command Hint"
+   }
+  ],
+  "vs/workbench/contrib/update/browser/update": [
+   {
+    "key": "confirmRestartUpdate.cancel",
+    "en": "Cancel"
+   },
+   {
+    "key": "confirmRestartUpdate.cancelRestart",
+    "en": "Cancel"
+   },
+   {
+    "key": "confirmRestartUpdate.localAgentRunning",
+    "en": "A local agent is still working. Restarting to update will stop it."
+   },
+   {
+    "key": "confirmRestartUpdate.localAgentsRunning",
+    "en": "{0} local agents are still working. Restarting to update will stop them."
+   },
+   {
+    "key": "confirmRestartUpdate.restartAnyway",
+    "en": "&&Restart anyway"
+   },
+   {
+    "key": "confirmRestartUpdate.untitledSession",
+    "en": "Untitled session"
+   },
+   {
+    "key": "confirmRestartUpdate.yes",
+    "en": "Yes"
+   },
+   {
+    "key": "download update",
+    "en": "Download Update"
+   },
+   {
+    "key": "installUpdate",
+    "en": "Install Update"
+   },
+   {
+    "key": "later",
+    "en": "Later"
+   },
+   {
+    "key": "learn more",
+    "en": "Learn More"
+   },
+   {
+    "key": "thereIsUpdateAvailable",
+    "en": "There is an available update."
+   },
+   {
+    "key": "update service",
+    "en": "Update Service"
+   },
+   {
+    "key": "update service disabled",
+    "en": "Updates are disabled because you are running the user-scope installation of {0} as Administrator."
+   },
+   {
+    "key": "updateAvailable",
+    "en": "There's an update available: {0} {1}"
+   },
+   {
+    "key": "updateAvailableAfterRestart",
+    "en": "Restart {0} to apply the latest update."
+   },
+   {
+    "key": "updateNow",
+    "en": "Update Now"
+   }
+  ],
+  "vs/workbench/contrib/update/browser/update.contribution": [
+   {
+    "key": "devApplyUpdateFromUrl",
+    "en": "[Dev] Apply update from URL..."
+   },
+   {
+    "key": "devUpdateUrlInvalid",
+    "en": "Please enter a valid URL"
+   },
+   {
+    "key": "devUpdateUrlPrompt",
+    "en": "Enter the URL to the update package (.zip for macOS, .exe for Windows, .tar.gz for Linux)"
+   },
+   {
+    "key": "devUpdateUrlRequired",
+    "en": "URL is required"
+   }
+  ],
+  "vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted": [
+   {
+    "key": "showMore",
+    "en": "More..."
+   },
+   {
+    "key": "showMoreWindsurfShortcuts",
+    "en": "Show More..."
+   },
+   {
+    "key": "windsurfOnboarding",
+    "en": "Onboarding"
+   },
+   {
+    "key": "windsurfStart",
+    "en": "Shortcuts"
+   }
+  ],
+  "vs/workbench/contrib/welcomeGettingStarted/common/gettingStartedContent": [
+   {
+    "key": "windsurfStart.SignInToWindsurf.description",
+    "en": "Sign in to Devin"
+   },
+   {
+    "key": "windsurfStart.acceptCompletion.description",
+    "en": "Tab to accept an Autocomplete"
+   },
+   {
+    "key": "windsurfStart.acceptCompletion.title",
+    "en": "Accept an Autocomplete"
+   },
+   {
+    "key": "windsurfStart.finishIDESetup.description",
+    "en": "Finish IDE Setup"
+   },
+   {
+    "key": "windsurfStart.finishIDESetup.title",
+    "en": "Finish IDE Setup"
+   },
+   {
+    "key": "windsurfStart.openDocumentation.description",
+    "en": "Open Documentation"
+   },
+   {
+    "key": "windsurfStart.openDocumentation.title",
+    "en": "Open Documentation"
+   },
+   {
+    "key": "windsurfStart.openWindsurfCommand.description",
+    "en": "Trigger Command"
+   },
+   {
+    "key": "windsurfStart.openWindsurfCommand.title",
+    "en": "Trigger Command"
+   },
+   {
+    "key": "windsurfStart.signInToWindsurf.title",
+    "en": "Sign in to Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpDev/browser/acpDev.contribution": [
+   {
+    "key": "windsurfAcpDev",
+    "en": "ACP Dev"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions": [
+   {
+    "key": "acpAddNewSSHHost",
+    "en": "Add New SSH Host..."
+   },
+   {
+    "key": "acpAddNewSSHHostAction",
+    "en": "Add New SSH Host for Remote Agents..."
+   },
+   {
+    "key": "acpConfigureSSHHosts",
+    "en": "Configure SSH Hosts..."
+   },
+   {
+    "key": "acpConfigureSSHHostsAction",
+    "en": "Configure SSH Hosts for Remote Agents..."
+   },
+   {
+    "key": "acpConfigureSSHHostsTitle",
+    "en": "Open SSH configuration file"
+   },
+   {
+    "key": "acpConnectRemoteHost",
+    "en": "Connect to Remote Agent Host..."
+   },
+   {
+    "key": "acpConnectRemoteHostPlaceholder",
+    "en": "Select a configured SSH host or enter user@host"
+   },
+   {
+    "key": "acpConnectRemoteHostTitle",
+    "en": "Connect to remote agent host"
+   },
+   {
+    "key": "acpDisconnectRemoteHost",
+    "en": "Disconnect Remote Agent Host"
+   },
+   {
+    "key": "acpRemoteHostInvalid",
+    "en": "Enter an SSH host alias or user@host."
+   },
+   {
+    "key": "acpRemoteHostSaved",
+    "en": "saved"
+   },
+   {
+    "key": "acpRemoveRemoteHost",
+    "en": "Remove Remote Agent Host"
+   },
+   {
+    "key": "acpSshConfigCreateFailed",
+    "en": "Failed to create the SSH config file: {0}"
+   },
+   {
+    "key": "acpSshConfigListFailed",
+    "en": "Failed to list SSH config files: {0}"
+   },
+   {
+    "key": "devin",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpService/browser/acpSessionsQuickAccess": [
+   {
+    "key": "acpSessionClosedPullRequest",
+    "en": "Closed pull request"
+   },
+   {
+    "key": "acpSessionDraftPullRequest",
+    "en": "Draft pull request"
+   },
+   {
+    "key": "acpSessionMergedPullRequest",
+    "en": "Merged pull request"
+   },
+   {
+    "key": "acpSessionOpenPullRequest",
+    "en": "Open pull request"
+   },
+   {
+    "key": "acpSessionSlack",
+    "en": "Slack"
+   },
+   {
+    "key": "noAcpSessionResults",
+    "en": "No matching sessions"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpService/browser/cascadeMigrationWizard.contribution": [
+   {
+    "key": "cascadeMigrationWizardEditor",
+    "en": "Cascade Migration Wizard"
+   },
+   {
+    "key": "cascadeMigrationWizardNoConnector",
+    "en": "The Devin CLI agent is not connected. Make sure it is enabled and connected, then try again."
+   },
+   {
+    "key": "cascadeMigrationWizardNoWorkspace",
+    "en": "No compatible workspace folder open. Open a folder containing your Cascade customizations first."
+   },
+   {
+    "key": "devin",
+    "en": "Devin"
+   },
+   {
+    "key": "migrateOffCascade",
+    "en": "Open Cascade Migration Wizard"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpService/browser/cascadeMigrationWizardEditor": [
+   {
+    "key": "cascadeMigrationWizardEditorName",
+    "en": "Cascade Migration Wizard"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpService/browser/windsurfAcp.contribution": [
+   {
+    "key": "acpSessionsQuickAccess",
+    "en": "Search Sessions"
+   },
+   {
+    "key": "acpSessionsQuickAccessPlaceholder",
+    "en": "Search sessions by name..."
+   },
+   {
+    "key": "clearAcpMetadataCache",
+    "en": "Clear ACP Metadata Cache"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAcpService/browser/windsurfAcpService": [
+   {
+    "key": "acpMessageCache.shutdown",
+    "en": "Saving agent session cache"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentSidebar/browser/windsurfAgentSidebar.contribution": [
+   {
+    "key": "windsurfAgentSidebar",
+    "en": "Agent Spaces"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/browser/agentSpaceNavHistory": [
+   {
+    "key": "agentSpaceCanGoBack",
+    "en": "Whether the agent window can navigate back to a previously viewed session or the inbox."
+   },
+   {
+    "key": "agentSpaceCanGoForward",
+    "en": "Whether the agent window can navigate forward to a session or the inbox it navigated back from."
+   },
+   {
+    "key": "agentSpaceNavigateBack",
+    "en": "Go Back"
+   },
+   {
+    "key": "agentSpaceNavigateForward",
+    "en": "Go Forward"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/browser/devinCloudTerminal": [
+   {
+    "key": "devinCloudTerminalNoSession",
+    "en": "Could not open a terminal on Devin's machine: the Devin Cloud session is not ready yet. Try again in a moment."
+   },
+   {
+    "key": "devinCloudTerminalPick",
+    "en": "Select a Devin Cloud session to open a terminal for"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/browser/newSessionTabButton": [
+   {
+    "key": "windsurfCloudTerminal",
+    "en": "Open terminal on Devin's machine"
+   },
+   {
+    "key": "windsurfDesktop",
+    "en": "Open Devin's computer"
+   },
+   {
+    "key": "windsurfNewFile",
+    "en": "New file"
+   },
+   {
+    "key": "windsurfNewSession",
+    "en": "New session"
+   },
+   {
+    "key": "windsurfNewSessionOptions",
+    "en": "New session options"
+   },
+   {
+    "key": "windsurfOpenCustomizations",
+    "en": "Open customizations"
+   },
+   {
+    "key": "windsurfOpenFile",
+    "en": "Open file"
+   },
+   {
+    "key": "windsurfShell",
+    "en": "View shell history"
+   },
+   {
+    "key": "windsurfViewDiffs",
+    "en": "View diffs"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/browser/windsurfAgentWindowActions": [
+   {
+    "key": "commandCenter.goToAllSessions",
+    "en": "Go to All Sessions"
+   },
+   {
+    "key": "openAgentKanbanView",
+    "en": "Open Agent Kanban View"
+   },
+   {
+    "key": "openAgentListView",
+    "en": "Open Agent List View"
+   },
+   {
+    "key": "switchFromWindsurfAgentWindowToNormalMode",
+    "en": "Switch to Editor Mode"
+   },
+   {
+    "key": "switchFromWindsurfAgentWindowToNormalMode.pickWorkspace",
+    "en": "Select a workspace to open"
+   },
+   {
+    "key": "switchToWindsurfAgentModeInPlace",
+    "en": "Switch This Window to Devin Agent Mode"
+   },
+   {
+    "key": "switchToWindsurfAgentWindowMode",
+    "en": "Switch to Devin Agent Window"
+   },
+   {
+    "key": "toggleWindsurfAgentWindow",
+    "en": "Toggle Agent Window"
+   },
+   {
+    "key": "windsurf.agentManager",
+    "en": "Agent Manager"
+   },
+   {
+    "key": "windsurfAgentWindow.revealActiveSessionInSidebar",
+    "en": "Reveal Active Session in Sidebar"
+   },
+   {
+    "key": "windsurfAgentWindow.searchSessionsInSidebar",
+    "en": "Search Sessions in Sidebar"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/browser/windsurfAgentWindowFont": [
+   {
+    "key": "devin.agentWindow.fontFamily",
+    "en": "Controls the UI font family of the agent window. Defaults to Inter when empty."
+   },
+   {
+    "key": "devinConfigurationTitle",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/electron-browser/agentWindowReveal": [
+   {
+    "key": "revealAgentWindow",
+    "en": "Reveal Agent Window"
+   },
+   {
+    "key": "revealEditorWindow",
+    "en": "Reveal Editor Window"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/electron-browser/agentWorkspacePrewarm": [
+   {
+    "key": "join.agentWorkspacePrewarm",
+    "en": "Cleaning up the prepared agent workspace"
+   }
+  ],
+  "vs/workbench/contrib/windsurfAgentWindow/electron-browser/windsurfAgentWindowActions": [
+   {
+    "key": "convertToAgentWorkspace",
+    "en": "Convert Window to Agent Workspace"
+   },
+   {
+    "key": "newAgentWindow",
+    "en": "New Agent Window"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascade/browser/windsurfCascade.contribution": [
+   {
+    "key": "migrateMemories",
+    "en": "Migrate Memories"
+   },
+   {
+    "key": "openCascade",
+    "en": "Agents"
+   },
+   {
+    "key": "windsurf",
+    "en": "Cascade"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascade/browser/windsurfCascadeMainThreadCommands": [
+   {
+    "key": "windsurf.agentManager",
+    "en": "Agent Manager"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascadeView/browser/cascadeView.contribution": [
+   {
+    "key": "cascadeEditor",
+    "en": "Cascade Editor"
+   },
+   {
+    "key": "chatView",
+    "en": "Chat"
+   },
+   {
+    "key": "copySessionUrl",
+    "en": "Copy Session URL"
+   },
+   {
+    "key": "downloadDevinResourceComplete",
+    "en": "Downloaded '{0}'"
+   },
+   {
+    "key": "downloadDevinResourceFailed",
+    "en": "Failed to download '{0}': {1}"
+   },
+   {
+    "key": "downloadDevinResourceTitle",
+    "en": "Download"
+   },
+   {
+    "key": "openContainingFolder",
+    "en": "Open containing folder"
+   },
+   {
+    "key": "openSessionOnWeb",
+    "en": "Open Session on Web"
+   },
+   {
+    "key": "renameCascadeSessionEmpty",
+    "en": "Session name cannot be empty"
+   },
+   {
+    "key": "renameCascadeSessionTitle",
+    "en": "Rename Session"
+   },
+   {
+    "key": "showInFileExplorer",
+    "en": "Show in File Explorer"
+   },
+   {
+    "key": "showInFinder",
+    "en": "Show in Finder"
+   },
+   {
+    "key": "snippetEditor",
+    "en": "Snippet"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascadeView/browser/dissolveAllSpacesDev.contribution": [
+   {
+    "key": "dissolveAllSpaces",
+    "en": "Dissolve all spaces into single sessions"
+   },
+   {
+    "key": "dissolveAllSpaces.button",
+    "en": "Dissolve"
+   },
+   {
+    "key": "dissolveAllSpaces.confirm",
+    "en": "Dissolve all spaces into single sessions?"
+   },
+   {
+    "key": "dissolveAllSpaces.detail",
+    "en": "Every space with multiple sessions is split so each session lives in its own space. Attached files are removed from those spaces (each session keeps its own worktree); manual space titles stay with the first session only. This cannot be undone."
+   },
+   {
+    "key": "dissolveAllSpaces.done",
+    "en": "Dissolved {0} space(s) into single sessions."
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascadeView/browser/loadCloudSessionByIdDev.contribution": [
+   {
+    "key": "loadCloudSessionById",
+    "en": "Load Cloud session by ID (dev)"
+   },
+   {
+    "key": "loadCloudSessionById.failed",
+    "en": "Failed to load Cloud session: {0}"
+   },
+   {
+    "key": "loadCloudSessionById.prompt",
+    "en": "Enter a Devin Cloud session id to load"
+   },
+   {
+    "key": "loadCloudSessionById.title",
+    "en": "Load Cloud session by ID (dev)"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascadeView/browser/readOnlyDiffContentProvider": [
+   {
+    "key": "devinCloudResource",
+    "en": "Devin Cloud Resource"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCascadeView/browser/snippetEditorPane": [
+   {
+    "key": "snippetEditor",
+    "en": "Snippet"
+   }
+  ],
+  "vs/workbench/contrib/windsurfChatClient/electron-browser/chatClientModuleSelection.contribution": [
+   {
+    "key": "chatClientModuleLoadFailed",
+    "en": "The chat client preview \"{0}\" failed to load and was discarded. This window is using the shipped chat client. {1}"
+   },
+   {
+    "key": "chatClientPreviewDownloading",
+    "en": "Downloading chat client preview \"{0}\""
+   },
+   {
+    "key": "chatClientPreviewFixtureTitle",
+    "en": "Chat client preview: {0}"
+   },
+   {
+    "key": "chatClientPreviewLabel",
+    "en": "Preview: {0}"
+   },
+   {
+    "key": "chatClientPreviewTitle",
+    "en": "Chat client preview: {0} ({1})"
+   },
+   {
+    "key": "copyChatClientPreviewArtifact",
+    "en": "Copy Artifact ID"
+   },
+   {
+    "key": "reloadWithChatClientFixtureModule",
+    "en": "Reload With Chat Client Fixture Module"
+   },
+   {
+    "key": "reloadWithShippedChatClientModule",
+    "en": "Reload With Shipped Chat Client Module"
+   },
+   {
+    "key": "returnToNormalChatClient",
+    "en": "Return to Normal Chat Client"
+   },
+   {
+    "key": "showChatClientModule",
+    "en": "Show Chat Client Module"
+   },
+   {
+    "key": "viewChatClientPreviewSource",
+    "en": "View Source Pull Request"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCodeMapViewer/browser/codeMapBookmarkDecorationService": [
+   {
+    "key": "addBookmarkHelper",
+    "en": "Click to add bookmark"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCodeMapViewer/browser/codeMapExportAction": [
+   {
+    "key": "exportCodeMap",
+    "en": "Share Codemap"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCodeMapViewer/browser/codeMapHomeEditorInput": [
+   {
+    "key": "codemaps",
+    "en": "Codemaps"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCodeMapViewer/browser/codeMapViewer.contribution": [
+   {
+    "key": "addCodeMapToCascade",
+    "en": "Add Codemap to Cascade"
+   },
+   {
+    "key": "closeCodeMap",
+    "en": "Home"
+   },
+   {
+    "key": "codeMapEditor",
+    "en": "Codemap Editor"
+   },
+   {
+    "key": "codeMapHomeEditor",
+    "en": "Codemaps"
+   },
+   {
+    "key": "codemaps",
+    "en": "Codemaps"
+   },
+   {
+    "key": "generateCodeMap",
+    "en": "Generate Codemap"
+   },
+   {
+    "key": "generateCodeMapFromCascade",
+    "en": "Generate Codemap from Cascade"
+   },
+   {
+    "key": "generateCodeMapFromNavigationHistory",
+    "en": "Generate Codemap from Navigation History"
+   },
+   {
+    "key": "generatingCodeMap",
+    "en": "{0} codemap generating"
+   },
+   {
+    "key": "generatingCodeMaps",
+    "en": "{0} codemaps generating"
+   },
+   {
+    "key": "isCodemapsEnabled",
+    "en": "Check if Codemaps is Enabled"
+   },
+   {
+    "key": "loadCodeMap",
+    "en": "Load Codemap"
+   },
+   {
+    "key": "miViewCodemaps",
+    "en": "&&Codemaps"
+   },
+   {
+    "key": "openCodeMapById",
+    "en": "Open Codemap by ID"
+   },
+   {
+    "key": "openCodeMapChat",
+    "en": "Open Codemap Chat"
+   },
+   {
+    "key": "openCodeMapView",
+    "en": "Open Codemaps"
+   },
+   {
+    "key": "openInPlayground",
+    "en": "Open Trajectory Dashboard"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCustomAppIcon/browser/windsurfAppIconCustomization.contribution": [
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   },
+   {
+    "key": "windsurf.customAppIcon",
+    "en": "Customize App Icon (beta)"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCustomizationsEditor/browser/customizationsEditor.contribution": [
+   {
+    "key": "windsurfCustomizationsEditor",
+    "en": "Customizations"
+   },
+   {
+    "key": "windsurfDevinLocalPluginEditor",
+    "en": "Devin Plugin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCustomizationsEditor/browser/customizationsEditorInput": [
+   {
+    "key": "windsurfDevinCustomizationsEditorInputName",
+    "en": "Devin Customizations"
+   }
+  ],
+  "vs/workbench/contrib/windsurfCustomizationsEditor/browser/devinLocalPluginEditorInput": [
+   {
+    "key": "windsurfDevinLocalPluginEditorInputName",
+    "en": "Plugin: {0}"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDatadogRum/browser/datadogRum.contribution": [
+   {
+    "key": "datadogRum.category",
+    "en": "Devin"
+   },
+   {
+    "key": "datadogRum.copied",
+    "en": "Datadog session link copied."
+   },
+   {
+    "key": "datadogRum.copySessionLink",
+    "en": "Copy Datadog session link"
+   },
+   {
+    "key": "datadogRum.noSession",
+    "en": "No Datadog session found in this window."
+   }
+  ],
+  "vs/workbench/contrib/windsurfDesignTokenEditor/browser/designTokenEditor.contribution": [
+   {
+    "key": "designTokenEditor",
+    "en": "Design Token Editor"
+   },
+   {
+    "key": "openDesignTokenEditor",
+    "en": "Open Design Token Editor"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDesktopBridge/browser/desktopNav.contribution": [
+   {
+    "key": "desktopNav.navigateBack",
+    "en": "Go Back"
+   },
+   {
+    "key": "desktopNav.navigateForward",
+    "en": "Go Forward"
+   },
+   {
+    "key": "desktopNav.openSurface",
+    "en": "Open Devin Surface"
+   },
+   {
+    "key": "desktopNav.refreshSurface",
+    "en": "Refresh Page"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDesktopBridge/browser/openCloudSession": [
+   {
+    "key": "desktopNav.openSessionFailed",
+    "en": "Couldn't open this Devin session in Devin Desktop."
+   },
+   {
+    "key": "desktopNav.openSessionInBrowser",
+    "en": "Open in browser"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShell.contribution": [
+   {
+    "key": "desktopShell.availableContext",
+    "en": "Whether the Devin webapp agent window is available"
+   },
+   {
+    "key": "desktopShell.category",
+    "en": "Devin"
+   },
+   {
+    "key": "desktopShell.mountFailed",
+    "en": "Unable to load the Devin webapp. Reload the window to try again."
+   },
+   {
+    "key": "desktopShell.toggle",
+    "en": "Toggle Devin Webapp (Agent Window)"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands": [
+   {
+    "key": "devin.webapp.checkForUpdates",
+    "en": "Check for Updates"
+   },
+   {
+    "key": "devin.webapp.downloadDiagnostics",
+    "en": "Download Devin Diagnostics"
+   },
+   {
+    "key": "devin.webapp.restartToUpdate",
+    "en": "Restart to Update"
+   },
+   {
+    "key": "devin.webapp.saveLanguageServerCpuProfile",
+    "en": "Save Language Server CPU Profile"
+   },
+   {
+    "key": "devin.webapp.saveLanguageServerMemoryProfile",
+    "en": "Save Language Server Memory Profile"
+   },
+   {
+    "key": "devin.webapp.toggleAgentWindow",
+    "en": "Toggle Agent Window"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDesktopViewer/browser/desktopViewer.contribution": [
+   {
+    "key": "desktopViewerEditor",
+    "en": "Desktop Viewer"
+   },
+   {
+    "key": "desktopViewerEditor.label",
+    "en": "Desktop Viewer Editor"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDiffViewer/browser/spaceDiff.contribution": [
+   {
+    "key": "spaceDiff.nativeViewAll",
+    "en": "Changes"
+   },
+   {
+    "key": "spaceDiffEditor",
+    "en": "Space Diff"
+   },
+   {
+    "key": "spaceDiffEditor.label",
+    "en": "Space Diff Editor"
+   }
+  ],
+  "vs/workbench/contrib/windsurfDiffViewer/browser/spaceDiffEditorPane": [
+   {
+    "key": "spaceDiff.nFiles",
+    "en": "{0} files changed"
+   },
+   {
+    "key": "spaceDiff.oneFile",
+    "en": "1 file changed"
+   },
+   {
+    "key": "spaceDiff.title",
+    "en": "Space Diff"
+   }
+  ],
+  "vs/workbench/contrib/windsurfFeedback/browser/windsurfFeedback.contribution": [
+   {
+    "key": "WindsurfChangelog",
+    "en": "Changelog"
+   },
+   {
+    "key": "WindsurfDiagnostics",
+    "en": "Download Diagnostics"
+   },
+   {
+    "key": "joinCommunity",
+    "en": "Join the Community"
+   },
+   {
+    "key": "openDocs",
+    "en": "Docs"
+   },
+   {
+    "key": "openFeedbackPanel",
+    "en": "Report a bug"
+   },
+   {
+    "key": "openFeedbackPanelDescription",
+    "en": "Report a bug."
+   },
+   {
+    "key": "provideFeedback",
+    "en": "Provide Feedback"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfMcpService/browser/windsurfMcp.contribution": [
+   {
+    "key": "acpMcpRegistryMarketplacePage",
+    "en": "Devin MCP Registry"
+   },
+   {
+    "key": "acpMcpRegistryPluginPage",
+    "en": "Devin MCP Registry Plugin"
+   },
+   {
+    "key": "openAcpMcpOutputChannel",
+    "en": "Open Devin MCP Output Channel"
+   },
+   {
+    "key": "openAcpMcpOutputChannelDescription",
+    "en": "Show the MCP output channel logs."
+   },
+   {
+    "key": "openAcpMcpRegistryMarketplace",
+    "en": "Devin MCP Registry"
+   },
+   {
+    "key": "openAcpMcpRegistryMarketplaceDescription",
+    "en": "Open the Devin CLI MCP registry."
+   },
+   {
+    "key": "openAcpMcpRegistryPluginPage",
+    "en": "Devin MCP Plugin Page"
+   },
+   {
+    "key": "openAcpMcpRegistryPluginPageDescription",
+    "en": "Open the Devin CLI MCP registry plugin page for a specific server."
+   },
+   {
+    "key": "openDevinForTerminalMcpConfigFile",
+    "en": "Open Devin for Terminal MCP Config File"
+   },
+   {
+    "key": "openDevinForTerminalMcpConfigFileDescription",
+    "en": "Open the Devin for Terminal MCP configuration file."
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfMigration/electron-browser/windsurfMigration.contribution": [
+   {
+    "key": "devinDesktopCategory",
+    "en": "Devin Desktop"
+   },
+   {
+    "key": "resetMigration.confirm.button",
+    "en": "&&Reset and restart"
+   },
+   {
+    "key": "resetMigration.confirm.detail",
+    "en": "This deletes your current Devin Desktop settings, extensions, and editor state, then restarts and re-runs the first-launch migration from Windsurf. Your Windsurf data is not affected."
+   },
+   {
+    "key": "resetMigration.confirm.message",
+    "en": "Reset migration from Windsurf and restart?"
+   },
+   {
+    "key": "resetMigration.devOnly",
+    "en": "Resetting the Windsurf migration is only available in installed builds."
+   },
+   {
+    "key": "resetMigration.unavailable",
+    "en": "Resetting the Windsurf migration is not available in this build."
+   },
+   {
+    "key": "resetMigrationFromWindsurf",
+    "en": "Reset migration from Windsurf"
+   },
+   {
+    "key": "windsurfMigration.welcomeDismiss",
+    "en": "Get started"
+   },
+   {
+    "key": "windsurfMigration.welcomeImageAlt",
+    "en": "Devin Desktop"
+   },
+   {
+    "key": "windsurfMigration.welcomeMessage",
+    "en": "Welcome to Devin Desktop! Manage fleets of local and cloud agents from one surface. Plan, delegate, review, and ship without leaving your editor."
+   },
+   {
+    "key": "windsurfMigration.welcomeSectionContent",
+    "en": "Manage fleets of local and cloud agents from one surface. Plan, delegate, review, and ship without leaving your editor."
+   },
+   {
+    "key": "windsurfMigration.welcomeTitle",
+    "en": "Welcome to Devin Desktop"
+   }
+  ],
+  "vs/workbench/contrib/windsurfOnboarding/browser/windsurfOnboarding.contribution": [
+   {
+    "key": "resetOnboarding",
+    "en": "Reset Onboarding"
+   },
+   {
+    "key": "resetOnboardingDescription",
+    "en": "Log out of the current account and start onboarding again."
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfPlanEditor/browser/planEditor.contribution": [
+   {
+    "key": "devin.implementPlan",
+    "en": "Implement Plan"
+   },
+   {
+    "key": "planEditor",
+    "en": "Plan Editor"
+   }
+  ],
+  "vs/workbench/contrib/windsurfPlanViewer/browser/planViewer.contribution": [
+   {
+    "key": "planViewerEditor",
+    "en": "Plan Viewer"
+   }
+  ],
+  "vs/workbench/contrib/windsurfPullRequest/browser/pullRequest.contribution": [
+   {
+    "key": "devin.openPullRequestEditor",
+    "en": "Open Pull Request"
+   },
+   {
+    "key": "devin.pullRequest.findNext",
+    "en": "Find Next in Devin Review"
+   },
+   {
+    "key": "devin.pullRequest.findPrevious",
+    "en": "Find Previous in Devin Review"
+   },
+   {
+    "key": "devin.pullRequest.hideFind",
+    "en": "Stop Find in Devin Review"
+   },
+   {
+    "key": "devin.pullRequest.refresh",
+    "en": "Refresh Devin Review"
+   },
+   {
+    "key": "devin.pullRequest.showFind",
+    "en": "Find in Devin Review"
+   },
+   {
+    "key": "devin.pullRequest.toggleDevTools",
+    "en": "Toggle Developer Tools (Devin Review)"
+   },
+   {
+    "key": "openInDevinReview",
+    "en": "Open in Devin Review"
+   },
+   {
+    "key": "openInGitHub",
+    "en": "Open in GitHub"
+   },
+   {
+    "key": "pullRequest.configuration.title",
+    "en": "Devin Review"
+   },
+   {
+    "key": "pullRequest.embeddedReview.enabled",
+    "en": "Render Devin Review in an embedded webview iframe instead of a native browser view. Intended for local development; in production this is controlled by a feature rollout."
+   },
+   {
+    "key": "pullRequestEditor",
+    "en": "Pull Request"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   },
+   {
+    "key": "windsurf.enterPullRequestUrl",
+    "en": "Enter the pull request URL"
+   }
+  ],
+  "vs/workbench/contrib/windsurfSettingsPage/browser/react/windsurfReactSettingsPage.contribution": [
+   {
+    "key": "windsurfReactSettingsPage",
+    "en": "Devin Settings Page"
+   }
+  ],
+  "vs/workbench/contrib/windsurfSettingsPage/browser/react/windsurfReactSettingsPageInput": [
+   {
+    "key": "windsurfReactSettingsIcon",
+    "en": "Icon of the Devin settings editor label."
+   },
+   {
+    "key": "windsurfReactSettingsPageInputName",
+    "en": "Devin Settings"
+   }
+  ],
+  "vs/workbench/contrib/windsurfSettingsPage/browser/windsurfSettingsPage.contribution": [
+   {
+    "key": "deleteGlobalRules",
+    "en": "Delete Global Rules"
+   },
+   {
+    "key": "deleteWorkspaceFile",
+    "en": "Delete Workspace File"
+   },
+   {
+    "key": "openDevinLocalCustomizationsTab",
+    "en": "Devin Local Customizations Tab"
+   },
+   {
+    "key": "openDevinLocalCustomizationsTabDescription",
+    "en": "Open the Devin Local customizations tab."
+   },
+   {
+    "key": "openFolderInNewWindow",
+    "en": "Open Folder in New Window"
+   },
+   {
+    "key": "openFoldersInNewWindow",
+    "en": "Open Folders in New Window"
+   },
+   {
+    "key": "openGlobalRules",
+    "en": "Open Global Rules"
+   },
+   {
+    "key": "openWindsurfSettings",
+    "en": "Open Devin User Settings"
+   },
+   {
+    "key": "openWindsurfSettingsWithId",
+    "en": "Open Devin Settings Page With Setting ID"
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   },
+   {
+    "key": "windsurfSettings",
+    "en": "Devin Settings"
+   }
+  ],
+  "vs/workbench/contrib/windsurfSettingsPage/browser/windsurfSettingsPageConstants": [
+   {
+    "key": "openWindsurfSettings",
+    "en": "Open Devin Settings"
+   }
+  ],
+  "vs/workbench/contrib/windsurfShellViewer/browser/shellViewer.contribution": [
+   {
+    "key": "shellViewerEditor",
+    "en": "Shell Viewer"
+   },
+   {
+    "key": "shellViewerEditor.label",
+    "en": "Shell Viewer Editor"
+   }
+  ],
+  "vs/workbench/contrib/windsurfStatusBarSettingsService/browser/tabs/keybindingTab": [
+   {
+    "key": "view all",
+    "en": "View all Devin shortcuts"
+   }
+  ],
+  "vs/workbench/contrib/windsurfStatusBarSettingsService/browser/windsurfStatusBarSettingsPanel": [
+   {
+    "key": "hideQuickSettingsPanel",
+    "en": "Hide Quick Settings Panel"
+   },
+   {
+    "key": "hideQuickSettingsPanelDescription",
+    "en": "Hide the Devin quick settings panel."
+   },
+   {
+    "key": "isQuickSettingsPanelVisible",
+    "en": "Check if Quick Settings Panel is Visible"
+   },
+   {
+    "key": "openBugReportPanel",
+    "en": "Report a Bug"
+   },
+   {
+    "key": "openBugReportPanelDescription",
+    "en": "Open the bug report panel to submit feedback."
+   },
+   {
+    "key": "openQuickSettingsPanel",
+    "en": "Quick Settings Panel"
+   },
+   {
+    "key": "openQuickSettingsPanelDescription",
+    "en": "Open the Devin quick settings panel."
+   },
+   {
+    "key": "windsurf",
+    "en": "Devin"
+   }
+  ],
+  "vs/workbench/contrib/windsurfTestRecordingViewer/browser/testRecordingViewer.contribution": [
+   {
+    "key": "testRecordingViewerEditor",
+    "en": "Test Recording Viewer"
+   }
+  ],
+  "vs/workbench/electron-browser/actions/installActions": [
+   {
+    "key": "devinCliDisallowed",
+    "en": "Please contact your Devin team administrator to enable installing Devin CLI via Devin Desktop"
+   },
+   {
+    "key": "devinCliInstallError",
+    "en": "Failed to install Devin CLI: {0}"
+   },
+   {
+    "key": "devinCliInstalledUnix",
+    "en": "Devin CLI successfully installed. Run `{0}` in a new terminal to use it."
+   },
+   {
+    "key": "devinCliInstalledWindows",
+    "en": "Devin CLI successfully installed. Run `{0}` in a new terminal to use it. You must quit and re-open (not just reload) Devin to use it in the integrated terminal."
+   },
+   {
+    "key": "devinCliNoTeamConfig",
+    "en": "Unable to retrieve team settings. Please try again later."
+   },
+   {
+    "key": "devinCliNotAuthed",
+    "en": "Please sign in to Devin before installing Devin CLI."
+   },
+   {
+    "key": "installDevinCli",
+    "en": "Install Devin CLI"
+   }
+  ],
+  "vs/workbench/services/devinCloudFiles/browser/devinCloudEditorError": [
+   {
+    "key": "devinCloudFiles.editor.asleep",
+    "en": "This file is on your Devin VM, and the machine is asleep."
+   },
+   {
+    "key": "devinCloudFiles.editor.connecting",
+    "en": "The connection to the session machine opens. The file opens when its files arrive."
+   },
+   {
+    "key": "devinCloudFiles.editor.failed",
+    "en": "The files of the session machine are not available."
+   },
+   {
+    "key": "devinCloudFiles.editor.localPreferred",
+    "en": "This file is on your Devin VM. The explorer shows your local files."
+   },
+   {
+    "key": "devinCloudFiles.editor.notConnected",
+    "en": "This file is on a Devin VM. The connection to the session machine is not open yet."
+   },
+   {
+    "key": "devinCloudFiles.editor.otherSession",
+    "en": "This file is on the machine of another Devin session. Select that session to open the file."
+   },
+   {
+    "key": "devinCloudFiles.editor.waking",
+    "en": "The session machine starts. The file opens when its files arrive."
+   },
+   {
+    "key": "devinCloudFiles.retryAction",
+    "en": "Try again"
+   },
+   {
+    "key": "devinCloudFiles.useCloudAction",
+    "en": "Show Devin VM files"
+   },
+   {
+    "key": "devinCloudFiles.wakeAction",
+    "en": "Wake up machine"
+   }
+  ],
+  "vs/workbench/services/extensionManagement/common/extensionManagementService": [
+   {
+    "key": "Devin for Web",
+    "en": "{0} for the Web"
+   }
+  ],
+  "vs/workbench/services/userDataProfile/common/userDataProfileIcons": [
+   {
+    "key": "settingsViewDropdownIcon",
+    "en": "Settings dropdown icon."
+   }
+  ]
+ }
+}

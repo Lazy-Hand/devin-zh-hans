@@ -1,0 +1,73 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: 列出插件
+        run: |
+          echo "plugins:"
+          for d in plugins/*/; do
+            [ -f "$d/package.json" ] && echo "  - $(basename "$d")"
+          done
+
+      - name: 语法检查
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+          bad = 0
+          for p in list(pathlib.Path("tools").rglob("*.py")) + list(pathlib.Path("plugins").rglob("*.py")):
+              try:
+                  ast.parse(p.read_text(encoding="utf-8"))
+              except SyntaxError as e:
+                  print("FAIL", p, e); bad += 1
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: 校验各插件清单完整
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          need = ("name", "displayName", "description", "version", "publisher", "engines")
+          bad = 0
+          for p in sorted(pathlib.Path("plugins").glob("*/package.json")):
+              pkg = json.loads(p.read_text(encoding="utf-8"))
+              miss = [k for k in need if k not in pkg]
+              if miss:
+                  print("FAIL", p, "缺少", miss); bad += 1
+              else:
+                  print("OK  ", p.parent.name, pkg["name"], pkg["version"])
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: 打包全部插件
+        run: python tools/build_vsix.py --all
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vsix
+          path: dist/*.vsix
+          if-no-files-found: error
+
+      - name: 发布 Release（打 tag 时）
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.vsix
+          generate_release_notes: true

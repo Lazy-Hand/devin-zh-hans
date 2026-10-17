@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "apps": "应用",
+    "bots": "Devin 实例",
+    "agent": "智能体",
+    "ask": "提问",
+    "automations": "自动化",
+    "back": "返回",
+    "backToApp": "返回应用",
+    "betaFeatures": "测试功能",
+    "cloudSettings": "云设置",
+    "customize": "自定义",
+    "compliance": "合规",
+    "hideTab": "隐藏标签页",
+    "migrations": "迁移",
+    "more": "更多",
+    "new": "新建",
+    "newSession": "新建会话",
+    "oncall": "值班",
+    "organizations": "组织",
+    "review": "评审",
+    "reviewBillingTags": "账单标签",
+    "search": "搜索",
+    "security": "安全",
+    "sessionGroups": "账单标签",
+    "sessions": "会话",
+    "settings": "设置",
+    "showTab": "显示标签页",
+    "wiki": "知识库",
+    "workflows": "工作流"
+  }
+}
