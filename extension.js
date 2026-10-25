@@ -23,6 +23,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const crypto = require('crypto');
+const childProcess = require('child_process');
 
 const TAG = '[devin-zh]';
 const log = (...a) => console.log(TAG, ...a);
@@ -313,13 +314,39 @@ function makePayload(zh) {
   const parts = [];
   for (const ns of Object.keys(zh)) {
     // 命名空间名本身是安全标识符时用 .x，否则用 ["x"]
-    const ref = /^[A-Za-z_$][\w$]*$/.test(ns) ? 'mu.' + ns : 'mu[' + JSON.stringify(ns) + ']';
     const init = /^[A-Za-z_$][\w$]*$/.test(ns)
       ? 'mu.' + ns + '||(mu.' + ns + '={})'
       : 'mu[' + JSON.stringify(ns) + ']||(mu[' + JSON.stringify(ns) + ']={})';
     parts.push('Object.assign(' + init + ',' + JSON.stringify(zh[ns]) + ')');
   }
   return HOST_MARK + parts.join(',') + HOST_END;
+}
+
+// 用当前 Electron/Node 对完整 ES module 做语法检查。先在临时文件验证，失败则不碰原 chunk。
+function webappSyntaxError(source) {
+  const tmp = path.join(os.tmpdir(), 'devin-zh-webapp-' + process.pid + '-' + Date.now() + '.mjs');
+  try {
+    fs.writeFileSync(tmp, source, 'utf8');
+    const r = childProcess.spawnSync(process.execPath, ['--check', tmp], {
+      env: { ...process.env, ELECTRON_RUN_AS_NODE: '1' },
+      stdio: 'ignore', windowsHide: true,
+    });
+    if (r.error) return r.error.message;
+    if (r.status !== 0) return 'node --check exited ' + r.status;
+    return null;
+  } finally {
+    try { fs.rmSync(tmp, { force: true }); } catch { }
+  }
+}
+
+function writeValidWebappChunk(chunk, source) {
+  const error = webappSyntaxError(source);
+  if (error) {
+    log('webapp 语法检查失败，已放弃写入: ' + error);
+    return false;
+  }
+  fs.writeFileSync(chunk, source, 'utf8');
+  return true;
 }
 
 function applyWebappI18n(ctx) {
@@ -345,7 +372,7 @@ function applyWebappI18n(ctx) {
   const b0 = s.indexOf(HOST_END);
   if (a0 >= 0 && b0 > a0) {
     const old = s.slice(a0, b0 + HOST_END.length);
-    if (old === payload) return { webapp: true, changed: false };
+    if (old === payload && !webappSyntaxError(s)) return { webapp: true, changed: false };
     backup(chunk, 'webapp');
     // 旧式载荷形如 `/*devin-zh*/Mt.isInitialized||Eu(),Mt.addResourceBundle(…)`，
     // 锚点被吞进了载荷里 —— 先整体摘掉，再补回锚点，最后把新载荷插到锚点之前。
@@ -362,11 +389,14 @@ function applyWebappI18n(ctx) {
     const at2 = next.indexOf(HOST_ANCHOR);
     if (at2 >= 0) {
       next = next.slice(0, at2) + payload + ',' + next.slice(at2);
+      // 旧载荷两侧原本各有一个表达式分隔逗号；整体摘掉再插入会留下 `,,/*devin-zh*/`。
+      // 只收敛注入点处的重复逗号，不改其它代码。
+      next = next.replace(/,(?:\s*,)+\s*\/\*devin-zh\*\//g, ',' + HOST_MARK);
       // 锚点原本紧跟的逗号可能变成尾逗号（`…,Mt.isInitialized||Eu(),}`），必须收敛，
       // 否则整个 chunk 语法错误、Devin 起不来。
       next = next.replace(/(Mt\.isInitialized\|\|Eu\(\)),(\s*\})/g, '$1$2');
     }
-    fs.writeFileSync(chunk, next, 'utf8');
+    if (!writeValidWebappChunk(chunk, next)) return { webapp: false, changed: false };
     log('已更新 webapp 中文资源（' + Object.keys(zh).length + ' 个命名空间根）');
     return { webapp: true, changed: true };
   }
@@ -378,8 +408,8 @@ function applyWebappI18n(ctx) {
   // 插在之后则 init 已用旧 mu 完成，改 mu 不再影响已注册的 resources。
   s = s.slice(0, at) + payload + ',' + s.slice(at);
   s = s.replace(/(Mt\.isInitialized\|\|Eu\(\)),(\s*\})/g, '$1$2');
-  // 语法自检：写坏 chunk 会让 Devin 起不来，宁可报错也不落盘
-  fs.writeFileSync(chunk, s, 'utf8');
+  // 语法自检：写坏 chunk 会让 Devin 起不来，宁可跳过也不落盘
+  if (!writeValidWebappChunk(chunk, s)) return { webapp: false, changed: false };
   log('已注入 webapp 中文资源（' + Object.keys(zh).length + ' 个命名空间根）');
   return { webapp: true, changed: true };
 }

@@ -57,15 +57,16 @@ const dz = "function __dz(a,b){for(var k in b){var v=b[k];"
 const stmt = dz + ';__dz(mu||(mu={}),' + JSON.stringify(zh) + ')';
 eval(stmt);
 
-// ── 4. 模拟 i18next 的 key 查找（defaultNS=translation，点号嵌套）──
-function t(key, ns) {
+// ── 4. 模拟 i18next 的 key 查找：优先匹配最长命名空间，其余点号保留在扁平 key 中 ──
+function t(key) {
   const parts = key.split('.');
-  let cur = mu;
-  for (const p of parts) {
-    if (cur == null || typeof cur !== 'object') return key;
-    cur = cur[p];
+  for (let i = parts.length - 1; i > 0; i--) {
+    const ns = parts.slice(0, i).join('.');
+    if (!mu[ns]) continue;
+    const value = mu[ns][parts.slice(i).join('.')];
+    if (typeof value === 'string') return value;
   }
-  return typeof cur === 'string' ? cur : key;
+  return key;
 }
 
 const cases = [
@@ -78,6 +79,12 @@ const cases = [
   ['nav.newSession', '新建会话'],
   ['settings.highContrast', '高对比度模式'],
   ['settings.uiFont', '界面字体'],
+  ['localSettings.general.openEditorSettings.label', '打开编辑器设置'],
+  ['localSettings.sections.devinTab', 'Devin 标签页'],
+  ['localSettings.chisel.descriptionWithPath', '这些设置仅适用于 Devin Local，并保存到 <fileLink>{{path}}</fileLink>'],
+  ['notificationPreferences.description', '选择哪些通知进入收件箱'],
+  ['notificationPreferences.mobilePushFor', '将“{{name}}”推送到移动端'],
+  ['settings.autoapproveManageToolsDescription', '你拥有的会话在以下情况下无需事先询问'],
 ];
 
 let pass = 0;
@@ -95,9 +102,9 @@ for (const [key, want] of cases) {
 // 界面回退成显示 key 本身（localSettings.general.openEditorSettings.label）。
 console.log('\n== 深合并完整性（未覆盖的英文 key 不能丢）==');
 // 用例必须是「载荷确实没覆盖」的 key —— 否则测不出浅合并的破坏。
-// sections.devinTab / common.ok 在载荷里没有中文，合并后必须保持英文原文。
+// listRow.addItemTo / common.ok 在载荷里没有中文，合并后必须保持英文原文。
 const guards = [
-  ['localSettings', 'sections.devinTab', 'Devin Tab'],
+  ['localSettings', 'listRow.addItemTo', 'Add item to {{id}}'],
   ['localSettings', 'common.ok', 'Ok'],
   ['transcript', 'someUncoveredKey', 'Untouched English'],
 ];

@@ -19,10 +19,12 @@ const fs = require('fs');
 const Module = require('module');
 const os = require('os');
 const crypto = require('crypto');
+const childProcess = require('child_process');
 
 const APPLY = process.argv.includes('--apply');
 const REAL = process.argv.includes('--real');
 const KEEP = process.argv.includes('--keep');   // 复用已有沙盒（验证幂等）
+const UPGRADE = process.argv.includes('--upgrade'); // 从带旧载荷的干净 chunk 升级
 const ROOT = path.resolve(__dirname, '..');
 const SANDBOX = path.join(ROOT, '.verify');
 
@@ -104,6 +106,25 @@ function buildSandbox() {
         const s = path.join(src, f);
         if (fs.existsSync(s)) fs.copyFileSync(s, path.join(tgt, f));
       }
+    }
+  }
+
+  if (UPGRADE) {
+    // 回归场景：当前代码里已有一份旧词典，激活时必须替换载荷而不是叠加逗号。
+    const dir = path.join(dstApp, 'out/vs/workbench/devin-webapp-host/assets');
+    for (const f of fs.readdirSync(dir)) {
+      if (!f.startsWith('entry-host-editor-mode-menu')) continue;
+      const anchor = 'Mt.isInitialized||Eu()';
+      const mark = '/*devin-zh*/', end = '/*/devin-zh*/';
+      const oldPayload = mark + 'Object.assign(mu.account||(mu.account={}),{"__upgrade":"old"})' + end;
+      let base = fs.readFileSync(path.join(dir, f), 'utf8');
+      const a = base.indexOf(mark), b = base.indexOf(end);
+      if (a >= 0 && b > a) base = base.slice(0, a) + oldPayload + base.slice(b + end.length);
+      else if (base.includes(anchor)) base = base.replace(anchor, oldPayload + ',' + anchor);
+      else throw new Error('测试 chunk 缺少注入锚点');
+      // 即使复制源已经带有本 bug 的重复逗号，测试也从合法的旧版状态开始。
+      base = base.replace(/,(?:\s*,)+\s*\/\*devin-zh\*\//g, ',' + mark);
+      fs.writeFileSync(path.join(dir, f), base, 'utf8');
     }
   }
   return { inst: dst, home: homeDst };
@@ -236,6 +257,11 @@ setTimeout(() => {
   ok(!!chunk, 'webapp 中文资源已注入' + (chunk ? '（' + path.basename(chunk) + '）' : ''));
   if (chunk) {
     const s = fs.readFileSync(chunk, 'utf8');
+    const syntax = childProcess.spawnSync(process.execPath, ['--check', chunk], { stdio: 'ignore' });
+    ok(syntax.status === 0, '落地后的 webapp chunk 通过 node --check'
+      + (syntax.status === 0 ? '' : ': ' + (syntax.error || 'exit ' + syntax.status)));
+    ok(!s.includes(',,/*devin-zh*/'), '载荷前没有重复逗号');
+    ok(!s.includes('__upgrade'), '旧版载荷已被完整替换');
     // 注入方式必须是「合并进 mu（resources 对象）」而不是 init 之后 addResourceBundle：
     // i18next 的 initAsync 默认 true，init 完成时用 resources 覆盖 bundle，
     // 后加的会被吃掉 —— 这正是界面显示原始 key 的根因。

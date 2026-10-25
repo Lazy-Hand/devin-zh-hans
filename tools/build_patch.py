@@ -246,7 +246,9 @@ if os.path.exists(en_path):
     _en = rd(en_path)["namespaces"]
     # 用完整词典查（含 assets/ui-dict.json 从 NLS 反查来的通用词），
     # 否则 nav.security = "Security" 这类基础词会漏掉。
-    _lookup = {}
+    # 先放入完整 webapp 词表：插值模板不能进 DOM，但必须保留给 i18next。
+    # 再用通用词典和人工校订覆盖，保持既有的译文优先级。
+    _lookup = dict(webapp_zh)
     for p in (os.path.join(ASSETS, "ui-dict.json"),
               os.path.join(ASSETS, "ui-strings-zh.json")):
         if os.path.exists(p):

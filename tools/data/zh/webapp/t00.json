@@ -311,5 +311,21 @@
   "The models file exists but could not be read, so it cannot be edited here. Fix the file on disk (check permissions and encoding), then reload.": "模型文件存在但无法读取，因此无法在此编辑。请在磁盘上修复该文件（检查权限和编码），然后重新加载。",
   "The models file changed on disk since it was loaded, so saving would overwrite those changes. Reload to pick them up, then re-apply your edits.": "模型文件自加载后在磁盘上已更改，保存将覆盖这些更改。请重新加载以获取更改，然后重新应用你的编辑。",
   "Model settings apply to the air-gapped Devin agent — both Devin Local and the devin CLI on this machine. Changes take effect after the agent restarts.": "模型设置适用于气隙 Devin 智能体 — 包括此机器上的 Devin Local 和 devin CLI。更改在智能体重启后生效。",
-  "Let Devin see which files you edit and create in your workspace, and let a Devin Cloud session read unsaved edits when it reads a file on this machine.": "允许 Devin 查看你在工作区中编辑和创建的文件，并允许 Devin Cloud 会话在此机器上读取文件时读取未保存的编辑。"
+  "Let Devin see which files you edit and create in your workspace, and let a Devin Cloud session read unsaved edits when it reads a file on this machine.": "允许 Devin 查看你在工作区中编辑和创建的文件，并允许 Devin Cloud 会话在此机器上读取文件时读取未保存的编辑。",
+  "These settings only apply to Devin Local and are saved to <fileLink>{{path}}</fileLink>": "这些设置仅适用于 Devin Local，并保存到 <fileLink>{{path}}</fileLink>",
+  "Choose which notifications reach your inbox, and which of those are also pushed to your devices.": "选择哪些通知进入收件箱，以及其中哪些还要推送到你的设备。",
+  "Push \"{{name}}\" to mobile": "将“{{name}}”推送到移动端",
+  "Push \"{{name}}\" to desktop": "将“{{name}}”推送到桌面端",
+  "Show the notifications in \"{{name}}\"": "显示“{{name}}”中的通知",
+  "Hide the notifications in \"{{name}}\"": "隐藏“{{name}}”中的通知",
+  "Sessions that need you, finish, or can be restarted.": "需要你处理、已完成或可重新启动的会话。",
+  "PRs & reviews": "PR 与评审",
+  "Review requests, activity on your PRs and Devin Review results.": "评审请求、你的 PR 动态以及 Devin Review 结果。",
+  "Usage & billing": "用量与账单",
+  "Usage limits, budgets and contract dates.": "用量上限、预算和合同日期。",
+  "Requests & approvals": "请求与审批",
+  "Requests waiting on you, and answers to your own requests.": "等待你处理的请求，以及你所发起请求的答复。",
+  "Automations & integrations": "自动化与集成",
+  "Failed runs, disconnected integrations and disabled webhooks.": "运行失败、集成断开连接以及 webhook 被禁用。",
+  "Sessions you own can create, edit, and delete automations, knowledge, playbooks, schedules, MCP servers, and other resources you already have permission to manage without asking first, when you asked for or pre-approved the action or it is trivial. Otherwise Devin still asks for approval": "你拥有的会话在以下情况下无需事先询问即可创建、编辑和删除自动化、知识库、手册、计划、MCP 服务器，以及你已有权管理的其他资源：你已请求或预先批准该操作，或该操作无关紧要。否则 Devin 仍会请求批准"
 }

@@ -32,7 +32,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 RUNTIME = r"""/* devin-zh-dom.js — Devin 界面简体中文（DOM 层）
  *
  * 由 tools/build_dom.py 生成，请勿手改。
- * 只修改文本节点的 nodeValue，不触碰 React 状态、不触碰事件、不触碰输入框。
+ * 只修改文本节点与输入框 placeholder，不触碰 React 状态、事件或输入内容。
  */
 (function () {
   'use strict';
@@ -123,10 +123,33 @@ RUNTIME = r"""/* devin-zh-dom.js — Devin 界面简体中文（DOM 层）
     hits++;
   }
 
+  /* 只翻译输入框的 placeholder，不读取或修改输入内容。 */
+  function translatePlaceholder(el) {
+    if (!el || !el.getAttribute) return;
+    if (el.isContentEditable || el.getAttribute('translate') === 'no') return;
+    if (el.matches && el.matches(SKIP_SEL)) return;
+    if (shouldSkip(el)) return;
+    var text = el.getAttribute('placeholder');
+    if (!text) return;
+    var key = text.trim();
+    if (!key || key.length > 200 || CJK.test(key) || !/[A-Za-z]/.test(key)) return;
+    var out = lookup(key);
+    if (out === undefined || out === key) return;
+    var lead = text.slice(0, text.indexOf(key));
+    var tail = text.slice(text.indexOf(key) + key.length);
+    el.setAttribute('placeholder', lead + out + tail);
+    hits++;
+  }
+
   function walk(root) {
     if (!root) return;
     if (root.nodeType === 3) { translateNode(root); return; }
     if (root.nodeType !== 1) return;
+    translatePlaceholder(root);
+    if (root.querySelectorAll) {
+      var fields = root.querySelectorAll('input[placeholder],textarea[placeholder]');
+      for (var i = 0; i < fields.length; i++) translatePlaceholder(fields[i]);
+    }
     if (SKIP_TAGS[root.tagName]) return;
     if (root.matches && root.matches(SKIP_SEL)) return;
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
@@ -172,13 +195,16 @@ RUNTIME = r"""/* devin-zh-dom.js — Devin 界面简体中文（DOM 层）
         var m = records[i];
         if (m.type === 'characterData') {
           if (m.target && m.target.parentElement) add.push(m.target);
+        } else if (m.type === 'attributes') {
+          add.push(m.target);
         } else {
           for (var j = 0; j < m.addedNodes.length; j++) add.push(m.addedNodes[j]);
         }
       }
       if (add.length) schedule(add);
     }).observe(document.documentElement, {
-      childList: true, subtree: true, characterData: true
+      childList: true, subtree: true, characterData: true,
+      attributes: true, attributeFilter: ['placeholder']
     });
   }
 
