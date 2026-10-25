@@ -1,0 +1,2360 @@
+{
+"windsurf": [
+{
+"key": "windsurf.contributes.commands.0.title",
+"path": [
+"contributes",
+"commands",
+0,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.0.category",
+"path": [
+"contributes",
+"commands",
+0,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.1.title",
+"path": [
+"contributes",
+"commands",
+1,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.1.category",
+"path": [
+"contributes",
+"commands",
+1,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.2.title",
+"path": [
+"contributes",
+"commands",
+2,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.2.category",
+"path": [
+"contributes",
+"commands",
+2,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.3.title",
+"path": [
+"contributes",
+"commands",
+3,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.3.category",
+"path": [
+"contributes",
+"commands",
+3,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.4.title",
+"path": [
+"contributes",
+"commands",
+4,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.4.category",
+"path": [
+"contributes",
+"commands",
+4,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.5.title",
+"path": [
+"contributes",
+"commands",
+5,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.5.category",
+"path": [
+"contributes",
+"commands",
+5,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.6.title",
+"path": [
+"contributes",
+"commands",
+6,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.6.category",
+"path": [
+"contributes",
+"commands",
+6,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.7.title",
+"path": [
+"contributes",
+"commands",
+7,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.7.category",
+"path": [
+"contributes",
+"commands",
+7,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.8.title",
+"path": [
+"contributes",
+"commands",
+8,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.8.category",
+"path": [
+"contributes",
+"commands",
+8,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.9.title",
+"path": [
+"contributes",
+"commands",
+9,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.9.category",
+"path": [
+"contributes",
+"commands",
+9,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.10.title",
+"path": [
+"contributes",
+"commands",
+10,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.10.category",
+"path": [
+"contributes",
+"commands",
+10,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.11.title",
+"path": [
+"contributes",
+"commands",
+11,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.11.category",
+"path": [
+"contributes",
+"commands",
+11,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.12.title",
+"path": [
+"contributes",
+"commands",
+12,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.12.category",
+"path": [
+"contributes",
+"commands",
+12,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.13.title",
+"path": [
+"contributes",
+"commands",
+13,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.13.category",
+"path": [
+"contributes",
+"commands",
+13,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.14.title",
+"path": [
+"contributes",
+"commands",
+14,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.14.category",
+"path": [
+"contributes",
+"commands",
+14,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.15.title",
+"path": [
+"contributes",
+"commands",
+15,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.15.category",
+"path": [
+"contributes",
+"commands",
+15,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.16.title",
+"path": [
+"contributes",
+"commands",
+16,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.16.category",
+"path": [
+"contributes",
+"commands",
+16,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.17.title",
+"path": [
+"contributes",
+"commands",
+17,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.17.category",
+"path": [
+"contributes",
+"commands",
+17,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.18.title",
+"path": [
+"contributes",
+"commands",
+18,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.18.category",
+"path": [
+"contributes",
+"commands",
+18,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.19.title",
+"path": [
+"contributes",
+"commands",
+19,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.19.category",
+"path": [
+"contributes",
+"commands",
+19,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.20.title",
+"path": [
+"contributes",
+"commands",
+20,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.20.category",
+"path": [
+"contributes",
+"commands",
+20,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.21.title",
+"path": [
+"contributes",
+"commands",
+21,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.21.category",
+"path": [
+"contributes",
+"commands",
+21,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.22.title",
+"path": [
+"contributes",
+"commands",
+22,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.22.category",
+"path": [
+"contributes",
+"commands",
+22,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.23.title",
+"path": [
+"contributes",
+"commands",
+23,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.23.category",
+"path": [
+"contributes",
+"commands",
+23,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.24.title",
+"path": [
+"contributes",
+"commands",
+24,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.24.category",
+"path": [
+"contributes",
+"commands",
+24,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.25.title",
+"path": [
+"contributes",
+"commands",
+25,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.25.category",
+"path": [
+"contributes",
+"commands",
+25,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.26.title",
+"path": [
+"contributes",
+"commands",
+26,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.26.category",
+"path": [
+"contributes",
+"commands",
+26,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.27.title",
+"path": [
+"contributes",
+"commands",
+27,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.27.category",
+"path": [
+"contributes",
+"commands",
+27,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.28.title",
+"path": [
+"contributes",
+"commands",
+28,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.28.category",
+"path": [
+"contributes",
+"commands",
+28,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.29.title",
+"path": [
+"contributes",
+"commands",
+29,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.29.category",
+"path": [
+"contributes",
+"commands",
+29,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.30.title",
+"path": [
+"contributes",
+"commands",
+30,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.30.category",
+"path": [
+"contributes",
+"commands",
+30,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.31.title",
+"path": [
+"contributes",
+"commands",
+31,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.31.category",
+"path": [
+"contributes",
+"commands",
+31,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.32.title",
+"path": [
+"contributes",
+"commands",
+32,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.32.category",
+"path": [
+"contributes",
+"commands",
+32,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.33.title",
+"path": [
+"contributes",
+"commands",
+33,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.33.category",
+"path": [
+"contributes",
+"commands",
+33,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.34.title",
+"path": [
+"contributes",
+"commands",
+34,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.34.category",
+"path": [
+"contributes",
+"commands",
+34,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.35.title",
+"path": [
+"contributes",
+"commands",
+35,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.35.category",
+"path": [
+"contributes",
+"commands",
+35,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.36.title",
+"path": [
+"contributes",
+"commands",
+36,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.36.category",
+"path": [
+"contributes",
+"commands",
+36,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.37.title",
+"path": [
+"contributes",
+"commands",
+37,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.37.category",
+"path": [
+"contributes",
+"commands",
+37,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.38.title",
+"path": [
+"contributes",
+"commands",
+38,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.38.category",
+"path": [
+"contributes",
+"commands",
+38,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.39.title",
+"path": [
+"contributes",
+"commands",
+39,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.39.category",
+"path": [
+"contributes",
+"commands",
+39,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.40.title",
+"path": [
+"contributes",
+"commands",
+40,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.40.category",
+"path": [
+"contributes",
+"commands",
+40,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.41.title",
+"path": [
+"contributes",
+"commands",
+41,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.41.category",
+"path": [
+"contributes",
+"commands",
+41,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.42.title",
+"path": [
+"contributes",
+"commands",
+42,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.42.category",
+"path": [
+"contributes",
+"commands",
+42,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.43.title",
+"path": [
+"contributes",
+"commands",
+43,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.43.category",
+"path": [
+"contributes",
+"commands",
+43,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.44.title",
+"path": [
+"contributes",
+"commands",
+44,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.44.category",
+"path": [
+"contributes",
+"commands",
+44,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.45.title",
+"path": [
+"contributes",
+"commands",
+45,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.45.category",
+"path": [
+"contributes",
+"commands",
+45,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.46.title",
+"path": [
+"contributes",
+"commands",
+46,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.46.category",
+"path": [
+"contributes",
+"commands",
+46,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.47.title",
+"path": [
+"contributes",
+"commands",
+47,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.47.category",
+"path": [
+"contributes",
+"commands",
+47,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.48.title",
+"path": [
+"contributes",
+"commands",
+48,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.48.category",
+"path": [
+"contributes",
+"commands",
+48,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.49.title",
+"path": [
+"contributes",
+"commands",
+49,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.49.category",
+"path": [
+"contributes",
+"commands",
+49,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.50.title",
+"path": [
+"contributes",
+"commands",
+50,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.50.category",
+"path": [
+"contributes",
+"commands",
+50,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.51.title",
+"path": [
+"contributes",
+"commands",
+51,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.51.category",
+"path": [
+"contributes",
+"commands",
+51,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.52.title",
+"path": [
+"contributes",
+"commands",
+52,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.52.category",
+"path": [
+"contributes",
+"commands",
+52,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.53.title",
+"path": [
+"contributes",
+"commands",
+53,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.53.category",
+"path": [
+"contributes",
+"commands",
+53,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.54.title",
+"path": [
+"contributes",
+"commands",
+54,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.54.category",
+"path": [
+"contributes",
+"commands",
+54,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.55.title",
+"path": [
+"contributes",
+"commands",
+55,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.55.category",
+"path": [
+"contributes",
+"commands",
+55,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.56.title",
+"path": [
+"contributes",
+"commands",
+56,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.56.category",
+"path": [
+"contributes",
+"commands",
+56,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.57.title",
+"path": [
+"contributes",
+"commands",
+57,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.57.category",
+"path": [
+"contributes",
+"commands",
+57,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.58.title",
+"path": [
+"contributes",
+"commands",
+58,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.58.category",
+"path": [
+"contributes",
+"commands",
+58,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.commands.59.title",
+"path": [
+"contributes",
+"commands",
+59,
+"title"
+]
+},
+{
+"key": "windsurf.contributes.commands.59.category",
+"path": [
+"contributes",
+"commands",
+59,
+"category"
+]
+},
+{
+"key": "windsurf.contributes.authentication.0.label",
+"path": [
+"contributes",
+"authentication",
+0,
+"label"
+]
+},
+{
+"key": "windsurf.contributes.configuration.title",
+"path": [
+"contributes",
+"configuration",
+"title"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.marketplaceExtensionGalleryServiceURL.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.marketplaceExtensionGalleryServiceURL",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.marketplaceGalleryItemURL.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.marketplaceGalleryItemURL",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.portalUrl.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.portalUrl",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.enableCursorImportCursor.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.enableCursorImportCursor",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.useIndexingV2.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.useIndexingV2",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.completionMode.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.completionMode",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.autoContinue.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.autoContinue",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.allowCascadeAccessGitignoreFiles.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.allowCascadeAccessGitignoreFiles",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.cascade.readClaudeCodeConfig.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.cascade.readClaudeCodeConfig",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.acp.preferredAgent.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.acp.preferredAgent",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.acp.diffZonesEnabled.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.acp.diffZonesEnabled",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.terminal.shellTimeoutMs.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.terminal.shellTimeoutMs",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.terminal.cascadeProfile.osx.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.terminal.cascadeProfile.osx",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.terminal.cascadeProfile.linux.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.terminal.cascadeProfile.linux",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.terminal.cascadeProfile.windows.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.terminal.cascadeProfile.windows",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.acp.enabledAgents.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.acp.enabledAgents",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.acp.agentEnv.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.acp.agentEnv",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.windsurf.acp.agentPreferences.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"windsurf.acp.agentPreferences",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.marketplaceExtensionGalleryServiceURL.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.marketplaceExtensionGalleryServiceURL",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.marketplaceGalleryItemURL.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.marketplaceGalleryItemURL",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.portalUrl.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.portalUrl",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.enableCursorImportCursor.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.enableCursorImportCursor",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.useIndexingV2.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.useIndexingV2",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.environment.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.environment",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.completionMode.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.completionMode",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.autoContinue.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.autoContinue",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.allowCascadeAccessGitignoreFiles.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.allowCascadeAccessGitignoreFiles",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.disableAutoOpenEditedFiles.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.disableAutoOpenEditedFiles",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.agentNotifications.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.agentNotifications",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.cascade.readClaudeCodeConfig.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.cascade.readClaudeCodeConfig",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.preferredAgent.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.preferredAgent",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.diffZonesEnabled.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.diffZonesEnabled",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.shareTerminalContext.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.shareTerminalContext",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.shareUserEdits.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.shareUserEdits",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.runSaveActions.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.runSaveActions",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.remoteHosts.enabled.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.remoteHosts.enabled",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.remoteHosts.autoConnect.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.remoteHosts.autoConnect",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.terminal.shellTimeoutMs.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.terminal.shellTimeoutMs",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.terminal.cascadeProfile.osx.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.terminal.cascadeProfile.osx",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.terminal.cascadeProfile.linux.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.terminal.cascadeProfile.linux",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.terminal.cascadeProfile.windows.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.terminal.cascadeProfile.windows",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.enabledAgents.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.enabledAgents",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.agentEnv.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.agentEnv",
+"description"
+]
+},
+{
+"key": "windsurf.contributes.configuration.properties.devin.acp.agentPreferences.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.acp.agentPreferences",
+"description"
+]
+}
+],
+"windsurf-dev-containers": [
+{
+"key": "windsurf-dev-containers.contributes.commands.0.title",
+"path": [
+"contributes",
+"commands",
+0,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.0.category",
+"path": [
+"contributes",
+"commands",
+0,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.1.title",
+"path": [
+"contributes",
+"commands",
+1,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.1.category",
+"path": [
+"contributes",
+"commands",
+1,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.2.title",
+"path": [
+"contributes",
+"commands",
+2,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.2.category",
+"path": [
+"contributes",
+"commands",
+2,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.3.title",
+"path": [
+"contributes",
+"commands",
+3,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.3.category",
+"path": [
+"contributes",
+"commands",
+3,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.4.title",
+"path": [
+"contributes",
+"commands",
+4,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.4.category",
+"path": [
+"contributes",
+"commands",
+4,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.5.title",
+"path": [
+"contributes",
+"commands",
+5,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.5.category",
+"path": [
+"contributes",
+"commands",
+5,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.6.title",
+"path": [
+"contributes",
+"commands",
+6,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.6.category",
+"path": [
+"contributes",
+"commands",
+6,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.7.title",
+"path": [
+"contributes",
+"commands",
+7,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.7.category",
+"path": [
+"contributes",
+"commands",
+7,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.8.title",
+"path": [
+"contributes",
+"commands",
+8,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.8.category",
+"path": [
+"contributes",
+"commands",
+8,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.9.title",
+"path": [
+"contributes",
+"commands",
+9,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.9.category",
+"path": [
+"contributes",
+"commands",
+9,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.10.title",
+"path": [
+"contributes",
+"commands",
+10,
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.commands.10.category",
+"path": [
+"contributes",
+"commands",
+10,
+"category"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.title",
+"path": [
+"contributes",
+"configuration",
+"title"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.enableSSHAgentForwarding.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.enableSSHAgentForwarding",
+"description"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.showReopenInContainerPrompt.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.showReopenInContainerPrompt",
+"description"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.lifecycleCommands.enabled.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.lifecycleCommands.enabled",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.dotfiles.repository.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.dotfiles.repository",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.dotfiles.installCommand.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.dotfiles.installCommand",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.dotfiles.targetPath.markdownDescription",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.dotfiles.targetPath",
+"markdownDescription"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.experimental.disableServerChecksum.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.experimental.disableServerChecksum",
+"description"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.dockerPath.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.dockerPath",
+"description"
+]
+},
+{
+"key": "windsurf-dev-containers.contributes.configuration.properties.remote.devinDevContainers.dockerComposePath.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinDevContainers.dockerComposePath",
+"description"
+]
+}
+],
+"windsurf-remote-devin": [
+{
+"key": "windsurf-remote-devin.contributes.commands.0.title",
+"path": [
+"contributes",
+"commands",
+0,
+"title"
+]
+},
+{
+"key": "windsurf-remote-devin.contributes.commands.0.category",
+"path": [
+"contributes",
+"commands",
+0,
+"category"
+]
+},
+{
+"key": "windsurf-remote-devin.contributes.configuration.title",
+"path": [
+"contributes",
+"configuration",
+"title"
+]
+},
+{
+"key": "windsurf-remote-devin.contributes.configuration.properties.devin.cloudWorkspace.apiUrl.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"devin.cloudWorkspace.apiUrl",
+"description"
+]
+}
+],
+"windsurf-remote-openssh": [
+{
+"key": "windsurf-remote-openssh.contributes.commands.0.title",
+"path": [
+"contributes",
+"commands",
+0,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.0.category",
+"path": [
+"contributes",
+"commands",
+0,
+"category"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.1.title",
+"path": [
+"contributes",
+"commands",
+1,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.1.category",
+"path": [
+"contributes",
+"commands",
+1,
+"category"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.2.title",
+"path": [
+"contributes",
+"commands",
+2,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.2.category",
+"path": [
+"contributes",
+"commands",
+2,
+"category"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.3.title",
+"path": [
+"contributes",
+"commands",
+3,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.3.category",
+"path": [
+"contributes",
+"commands",
+3,
+"category"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.4.title",
+"path": [
+"contributes",
+"commands",
+4,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.4.category",
+"path": [
+"contributes",
+"commands",
+4,
+"category"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.5.title",
+"path": [
+"contributes",
+"commands",
+5,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.6.title",
+"path": [
+"contributes",
+"commands",
+6,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.7.title",
+"path": [
+"contributes",
+"commands",
+7,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.8.title",
+"path": [
+"contributes",
+"commands",
+8,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.9.title",
+"path": [
+"contributes",
+"commands",
+9,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.10.title",
+"path": [
+"contributes",
+"commands",
+10,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.11.title",
+"path": [
+"contributes",
+"commands",
+11,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.commands.12.title",
+"path": [
+"contributes",
+"commands",
+12,
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.title",
+"path": [
+"contributes",
+"configuration",
+"title"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.configFile.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.configFile",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.path.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.path",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.serverInstallPath.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.serverInstallPath",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.httpProxy.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.httpProxy",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.httpsProxy.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.httpsProxy",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.connectTimeout.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.connectTimeout",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.maxReconnectionAttempts.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.maxReconnectionAttempts",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.reconnectionGraceTime.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.reconnectionGraceTime",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.experimental.serverDownloadUrlTemplate.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.experimental.serverDownloadUrlTemplate",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.experimental.serverBinaryName.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.experimental.serverBinaryName",
+"description"
+]
+},
+{
+"key": "windsurf-remote-openssh.contributes.configuration.properties.remote.devinSSH.experimental.disableServerChecksum.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.devinSSH.experimental.disableServerChecksum",
+"description"
+]
+}
+],
+"windsurf-remote-wsl": [
+{
+"key": "windsurf-remote-wsl.contributes.commands.0.title",
+"path": [
+"contributes",
+"commands",
+0,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.0.category",
+"path": [
+"contributes",
+"commands",
+0,
+"category"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.1.title",
+"path": [
+"contributes",
+"commands",
+1,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.1.category",
+"path": [
+"contributes",
+"commands",
+1,
+"category"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.2.title",
+"path": [
+"contributes",
+"commands",
+2,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.2.category",
+"path": [
+"contributes",
+"commands",
+2,
+"category"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.3.title",
+"path": [
+"contributes",
+"commands",
+3,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.3.category",
+"path": [
+"contributes",
+"commands",
+3,
+"category"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.4.title",
+"path": [
+"contributes",
+"commands",
+4,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.4.category",
+"path": [
+"contributes",
+"commands",
+4,
+"category"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.5.title",
+"path": [
+"contributes",
+"commands",
+5,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.6.title",
+"path": [
+"contributes",
+"commands",
+6,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.7.title",
+"path": [
+"contributes",
+"commands",
+7,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.8.title",
+"path": [
+"contributes",
+"commands",
+8,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.9.title",
+"path": [
+"contributes",
+"commands",
+9,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.10.title",
+"path": [
+"contributes",
+"commands",
+10,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.11.title",
+"path": [
+"contributes",
+"commands",
+11,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.12.title",
+"path": [
+"contributes",
+"commands",
+12,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.commands.13.title",
+"path": [
+"contributes",
+"commands",
+13,
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.configuration.title",
+"path": [
+"contributes",
+"configuration",
+"title"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.configuration.properties.remote.WSL.serverDownloadUrlTemplate.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.WSL.serverDownloadUrlTemplate",
+"description"
+]
+},
+{
+"key": "windsurf-remote-wsl.contributes.configuration.properties.remote.WSL.experimental.disableServerChecksum.description",
+"path": [
+"contributes",
+"configuration",
+"properties",
+"remote.WSL.experimental.disableServerChecksum",
+"description"
+]
+}
+]
+}

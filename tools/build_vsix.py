@@ -29,7 +29,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 # 仓库级目录 / 文件：不属于插件，不进 VSIX
 EXCLUDE_DIRS = {
-    ".git", ".github", ".vscode", "tools", "docs", "build",
+    ".git", ".github", ".vscode", "tools", "docs", "build", ".verify",
     "node_modules", "__pycache__", ".venv",
 }
 EXCLUDE_FILES = {

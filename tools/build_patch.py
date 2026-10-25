@@ -2,315 +2,315 @@
 """
 build_patch.py — 由词表生成插件产物
 
-输入 (tools/data/):
-  todo.json              NLS 缺口清单 [{file,key,en}]（由 analyze_nls.py 生成）
-  zh/g1..g4.json         这些条目的 en -> 中文
-  zh/g5.json             windsurf 扩展贡献点的 id -> 中文
+输入（tools/data/）：
+    todo.json          NLS 缺口清单（由 analyze_nls.py 生成）
+    zh/g1..g4.json     历史缺口的 en -> 中文
+    zh/g6.json         Devin 3.11.x 新增缺口的 en -> 中文
+    zh/g7.json         内置扩展贡献点的 en -> 中文
+    webapp.json        webapp-host 的 i18n key（由 analyze_webapp.py 生成）
 
-输出 (仓库根):
-  translations/main.i18n.json               官方译文 + 本插件补充的合并版语言包
-  translations/extensions/windsurf.i18n.json
-  assets/ui-dict.json                       DOM 翻译器词典
-  assets/windsurf.en2key.json               值替换表
-  assets/windsurf.package.nls.json          windsurf 扩展英文默认值
-  assets/windsurf.pkgmap.json               字段路径 -> %key%（备查）
+输出（仓库根）：
+    translations/main.i18n.json               官方译文 + 本插件补充的合并版语言包
+    translations/extensions/windsurf.i18n.json  windsurf 扩展贡献点（兼容旧的语言包路线）
+    assets/ui-dict.json                        DOM 翻译器通用词典
+    assets/ui-strings-zh.json                  DOM 翻译器人工词表（含 webapp 专有文案）
+    assets/ext-manifest.*.json                 内置扩展贡献点的落地计划（见 build_manifest_plan.py）
+    assets/webapp-i18n.json                    webapp-host i18next 覆盖表（en -> zh）
+    tools/data/meta.json / build.log
 
 前提：本机已安装官方简体中文语言包（合并版的底子来自它）。
 """
-import json, os, re, sys, collections, io
+import json, os, re, sys, glob
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (  # noqa: E402
     DEVIN_APP as _APP, LANGPACK as _LP, DATA as _DATA,
-    SHARED as _SHARED, PLUGIN as _PLUGIN, OUT as _OUT,
+    DICT as _DICT, PLUGIN as _PLUGIN,
 )
+
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-HERE = os.path.dirname(os.path.abspath(__file__))
+
 TRANS = os.path.join(_PLUGIN, "translations")
 TRANS_EXT = os.path.join(TRANS, "extensions")
 ASSETS = os.path.join(_PLUGIN, "assets")
-DIST = _OUT
-for _d in (TRANS, TRANS_EXT, ASSETS, _DATA, DIST):
+for _d in (TRANS, TRANS_EXT, ASSETS, _DATA):
     os.makedirs(_d, exist_ok=True)
 
 log = []
+
+
 def L(*a):
-    s = " ".join(str(x) for x in a); log.append(s); print(s)
+    s = " ".join(str(x) for x in a)
+    log.append(s)
+    print(s)
 
-# ---------- 定位 Devin ----------
-def find_devin():
-    cands = [
-        os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "Devin"),
-        r"C:\Program Files\Devin",
-    ]
-    for c in cands:
-        if c and os.path.exists(os.path.join(c, "Devin.exe")):
-            return c
-    return None
 
-DEVIN = find_devin()
-HOME = os.path.expanduser("~")
-EXTDIR = os.path.join(HOME, ".devin", "extensions")
-
-def find_langpack():
-    if not os.path.isdir(EXTDIR):
-        return None
-    for d in sorted(os.listdir(EXTDIR)):
-        if "language-pack-zh-hans" in d:
-            p = os.path.join(EXTDIR, d)
-            if os.path.isfile(os.path.join(p, "translations", "main.i18n.json")):
-                return p
-    return None
-
-LANGPACK = find_langpack()
-L("Devin 安装目录      :", DEVIN)
-L("用户扩展目录        :", EXTDIR)
-L("中文语言包          :", LANGPACK)
-
-# ---------- 读译文 ----------
 def rd(p):
     with open(p, "r", encoding="utf-8") as f:
         return json.load(f)
 
-todo = rd(os.path.join(_DATA, "todo.json"))["by_file"]           # {file:[{key,en}]}
+
+def wr(p, obj, indent=None, sort=False):
+    with open(p, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=indent, sort_keys=sort)
+
+
+L("Devin 安装目录 :", _APP)
+L("中文语言包     :", _LP)
+
+# ───────────────────────── 读译文 ─────────────────────────
+todo = rd(os.path.join(_DATA, "todo.json"))["by_file"]      # {file: [{key,en}]}
 en2zh = {}
-for i in (1, 2, 3, 4):
-    d = rd(os.path.join(_DATA, "zh", f"g{i}.json"))
+for p in sorted(glob.glob(os.path.join(_DATA, "zh", "g[0-9]*.json"))):
+    d = rd(p)
+    d.pop("_comment", None)
     en2zh.update(d)
-L("NLS 译文条数        :", len(en2zh))
+L("NLS 译文条数   :", len(en2zh), "（来自", len(glob.glob(os.path.join(_DATA, 'zh', 'g[0-9]*.json'))), "个词表）")
 
-g5 = rd(os.path.join(_DATA, "zh", "g5.json"))                    # id -> zh
-L("windsurf 译文条数   :", len(g5))
-
-# 从 windsurf 扩展 package.json 现场提取 id -> en（id 格式与 g5 一致）
-WS_PKG = os.path.join(DEVIN or "", "resources", "app", "extensions", "windsurf", "package.json")
-raw = {}
-if os.path.isfile(WS_PKG):
-    _pkg = rd(WS_PKG)
-    _c = _pkg.get("contributes", {})
-    for _cmd in _c.get("commands", []):
-        if isinstance(_cmd.get("title"), str) and not _cmd["title"].startswith("%"):
-            raw["commands/%s/title" % _cmd["command"]] = _cmd["title"]
-        if isinstance(_cmd.get("category"), str):
-            raw["commands/%s/category" % _cmd["command"]] = _cmd["category"]
-    for _a in _c.get("authentication") or []:
-        if isinstance(_a.get("label"), str):
-            raw["authentication/%s/label" % _a["id"]] = _a["label"]
-    _cfgs = _c.get("configuration")
-    _cfgs = _cfgs if isinstance(_cfgs, list) else ([_cfgs] if isinstance(_cfgs, dict) else [])
-    for _b in _cfgs:
-        if isinstance(_b.get("title"), str):
-            raw["configuration/title"] = _b["title"]
-        for _pk, _pv in (_b.get("properties") or {}).items():
-            _d = _pv.get("markdownDescription") or _pv.get("description")
-            if isinstance(_d, str):
-                raw["configuration/%s/description" % _pk] = _d
-L("windsurf 字段数     :", len(raw), f"(来源 {WS_PKG})")
-
-# ---------- 1. NLS 补充表 (file -> {key: zh}) ----------
+# ───────────────────────── 1. NLS 补充表 ─────────────────────────
 supp = {}
 miss_en = []
 for f, items in todo.items():
     for it in items:
         z = en2zh.get(it["en"])
         if not z:
-            miss_en.append(it["en"]); continue
+            miss_en.append(it["en"])
+            continue
         supp.setdefault(f, {})[it["key"]] = z
 n_supp = sum(len(v) for v in supp.values())
 L("\n[1] NLS 补充表:", n_supp, "条 /", len(supp), "个源文件")
 if miss_en:
-    L("    未命中译文(键不一致):", len(miss_en), miss_en[:5])
+    L("    ⚠ 未命中译文:", len(miss_en), miss_en[:3])
 
-with open(os.path.join(_DATA, "nls-supplement.json"), "w", encoding="utf-8", newline="\n") as f:
-    json.dump(supp, f, ensure_ascii=False, indent=1)
+wr(os.path.join(_DATA, "nls-supplement.json"), supp, indent=1)
 
-# ---------- 2. 合并进 main.i18n.json ----------
-if LANGPACK:
-    mpath = os.path.join(LANGPACK, "translations", "main.i18n.json")
-    with open(mpath, "r", encoding="utf-8") as f:
-        main = json.load(f)
-    contents = main.setdefault("contents", {})
-    added = 0
-    for f, kv in supp.items():
-        tgt = contents.setdefault(f, {})
-        for k, v in kv.items():
-            if k not in tgt:
-                tgt[k] = v; added += 1
-    out = os.path.join(TRANS, "main.i18n.json")
-    with open(out, "w", encoding="utf-8", newline="\n") as f:
-        json.dump(main, f, ensure_ascii=False)
-    L(f"[2] main.i18n.json 合并: 新增 {added} 条, 总 {sum(len(v) for v in contents.values()):,} 条")
-    L("    输出:", out, f"({os.path.getsize(out)/1048576:.2f} MB)")
+# ───────────────────────── 2. 合并版语言包 ─────────────────────────
+if not _LP:
+    L("[2] ✗ 未找到官方中文语言包，无法生成合并版")
+    sys.exit(1)
 
-    # ---------- 3. React UI 通用词典: 英文原文 -> 中文 ----------
-    pairs = {}
-    for f, kv in contents.items():
-        if not isinstance(kv, dict):
+main = rd(os.path.join(_LP, "translations", "main.i18n.json"))
+contents = main.setdefault("contents", {})
+
+# Devin 升级后 NLS key 会变，合并版里会留下永远不会被查询的死条目
+# （官方语言包本身就有约 1,000 条本构建已不存在的 key，上一版插件补充的也在内）。
+# 用当前构建的 nls.keys.json 精确剔除：contents 只服务 vscode 核心 bundle，
+# 不在 keys.json 里的 key 永远查不到，删掉纯属减重，不影响任何界面。
+cur_keys = set()
+keys_path = os.path.join(_APP or "", "out", "nls.keys.json")
+if os.path.exists(keys_path):
+    for entry in rd(keys_path):
+        for k in entry[1]:
+            cur_keys.add((entry[0], k))
+
+pruned = 0
+if cur_keys:
+    for f in list(contents):
+        tgt = contents.get(f)
+        if not isinstance(tgt, dict):
             continue
-        for k, v in kv.items():
-            if not isinstance(v, str):
-                continue
-            pairs.setdefault(k, v)
-    bad = re.compile(r"[\n\r<>{}]|\$\(|//|https?:|\.js\b|\.json\b|=>|\bnull\b|\bundefined\b")
-    ui = {}
-    for en, zh in pairs.items():
-        s = en.strip()
-        if s != en or not (2 <= len(s) <= 60):
-            continue
-        if bad.search(s):
-            continue
-        if s.isupper() and len(s) > 2:
-            continue
-        if "%" in s or "&" in s:
-            continue
-        if not re.search(r"[A-Za-z]", s):
-            continue
-        ui[s] = zh
-    with open(os.path.join(ASSETS, "ui-dict.json"), "w", encoding="utf-8", newline="\n") as f:
-        json.dump(ui, f, ensure_ascii=False, indent=0, sort_keys=True)
-    L(f"[3] React UI 通用词典: {len(ui):,} 条 ({os.path.getsize(os.path.join(ASSETS,'ui-dict.json'))/1048576:.2f} MB)")
-else:
-    L("[2] 未找到语言包，跳过合并")
+        for k in list(tgt):
+            if (f, k) not in cur_keys:
+                del tgt[k]
+                pruned += 1
+        if not tgt:
+            del contents[f]
 
-# ---------- 4. windsurf 扩展本地化 ----------
-def keyfor(i):
-    p = i.split("/")
-    if len(p) == 3 and p[0] == "commands":
-        return f"devin.cmd.{p[1]}.{'title' if p[2]=='title' else 'category'}"
-    if len(p) == 3 and p[0] == "authentication":
-        return f"devin.auth.{p[1]}.label"
-    if len(p) == 2 and p[0] == "configuration" and p[1] == "title":
-        return "devin.config.title"
-    if len(p) == 3 and p[0] == "configuration" and p[2] == "description":
-        return f"devin.config.{p[1]}.description"
-    return None
-
-pkgmap = {}      # id -> %key%
-nlsdef = {}      # key -> en
-pkgzh = {}       # key -> zh
-
-# g5 按“英文原文”去重过，先建立 en -> zh，再按 id 全量映射
-en2zh_ws = {}
-for i, z in g5.items():
-    e = raw.get(i)
-    if e:
-        en2zh_ws.setdefault(e, z)
-L("windsurf 去重后译文  :", len(en2zh_ws), "条 unique 英文")
-
-skipped = []
-for i, en in raw.items():
-    k = keyfor(i)
-    z = en2zh_ws.get(en)
-    if not k:
-        skipped.append(i); continue
-    pkgmap[i] = f"%{k}%"
-    nlsdef[k] = en
-    if z:
-        pkgzh[k] = z
-    else:
-        skipped.append(i)
-L(f"\n[4] windsurf 扩展: 映射 {len(pkgmap)} 个字段, 生成 {len(pkgzh)} 条中文译文, 缺译文 {len(skipped)} 个")
-if skipped:
-    L("    缺译文:", skipped[:8])
-
-# 值替换表：英文原文 -> %key%（扩展用它在 contributes 里做值替换，不依赖路径解析）
-en2key = {}
-for i, en in raw.items():
-    k = keyfor(i)
-    if k and en not in en2key:
-        en2key[en] = f"%{k}%"
-
-
-def _merge_existing(existing_path, current, label):
-    """与已有产物合并。
-
-    为什么需要：本脚本从「当前安装目录」的 windsurf/package.json 提取字段，
-    但那个文件在插件装过之后已经被换成 %key% 了，提取结果会偏少（176 → 112）。
-    直接覆盖就会把仓库里的完整产物写坏，所以已存在的条目一律保留。
-    """
-    if not os.path.exists(existing_path):
-        return current
-    try:
-        with open(existing_path, "r", encoding="utf-8") as f:
-            old = json.load(f)
-    except Exception as e:
-        L(f"    ⚠ 读取已有 {label} 失败(忽略): {e}")
-        return current
-    if not isinstance(old, dict):
-        return current
-    added = 0
-    for k, v in old.items():
-        if k not in current:
-            current[k] = v
+added = 0
+for f, kv in supp.items():
+    tgt = contents.setdefault(f, {})
+    for k, v in kv.items():
+        if k not in tgt:
+            tgt[k] = v
             added += 1
-    if added:
-        L(f"    + 与已有 {label} 合并，补回 {added} 条（安装目录已被本地化，提取不全）")
-    return current
+
+out_main = os.path.join(TRANS, "main.i18n.json")
+wr(out_main, main)
+total = sum(len(v) for v in contents.values())
+L("[2] main.i18n.json: 剔除死条目 %d 条, 新增 %d 条, 总 %s 条, %.2f MB"
+  % (pruned, added, format(total, ","), os.path.getsize(out_main) / 1048576))
+
+# ───────────────────────── 3. DOM 通用词典 ─────────────────────────
+# DOM 层是按**可见文本**匹配的，所以词典的键必须是英文原文，不是 NLS key。
+# 英文原文的来源是 out/nls.keys.json（顺序）与 out/nls.messages.json（值）—— 两者
+# 逐项对应，可以精确还原「(源文件, key) -> 英文默认值」。再用合并版语言包的
+# contents[源文件][key] 找到中文，就得到 (英文原文 -> 中文)。
+#
+# 早期版本错把 NLS key 当成了英文原文（例如拿 "desktopShell.goBack" 去匹配界面上的
+# "Back"），结果词典条数看着不少、实际命中率很低。这里改成按原文建表。
+nls_pairs = 0
+ui = {}
+keys_path = os.path.join(_APP or "", "out", "nls.keys.json")
+msgs_path = os.path.join(_APP or "", "out", "nls.messages.json")
+if os.path.exists(keys_path) and os.path.exists(msgs_path):
+    _keys = rd(keys_path)
+    _msgs = rd(msgs_path)
+    _flat = [(e[0], k) for e in _keys for k in e[1]]
+    if len(_flat) == len(_msgs):
+        bad = re.compile(
+            r"[\n\r\t<>{}]"                      # 多行 / 标记 / 插值
+            r"|\$\(|//|https?:"                  # 命令 id / URL
+            r"|\.(js|ts|css|json|md)\b|=>"       # 文件名 / 箭头
+            r"|\bnull\b|\bundefined\b"
+            r"|^\s|\s$"
+        )
+        for (f, k), en in zip(_flat, _msgs):
+            if not isinstance(en, str):
+                continue
+            s = en.strip()
+            if s != en or not (2 <= len(s) <= 60):
+                continue
+            if bad.search(s):
+                continue
+            if s.isupper() and len(s) > 2:
+                continue
+            if "%" in s or "&" in s:              # 占位符 / 加速键由语言包负责
+                continue
+            if not re.search(r"[A-Za-z]", s):
+                continue
+            z = (contents.get(f) or {}).get(k)
+            if not isinstance(z, str) or not z.strip() or z.strip() == s:
+                continue
+            ui.setdefault(s, z)
+        nls_pairs = len(_flat)
+    else:
+        L("    ⚠ nls.keys.json 与 nls.messages.json 长度不一致（%d vs %d），跳过原文词典"
+          % (len(_flat), len(_msgs)))
+else:
+    L("    ⚠ 未找到 nls.keys.json / nls.messages.json，跳过原文词典")
+
+wr(os.path.join(ASSETS, "ui-dict.json"), ui, indent=0, sort=True)
+L("[3] DOM 通用词典: %s 条（由 %s 条 NLS 原文反查）(%.2f MB)"
+  % (format(len(ui), ","), format(nls_pairs, ","),
+     os.path.getsize(os.path.join(ASSETS, 'ui-dict.json')) / 1048576))
+# ───────────────────────── 4. webapp-host 词表 ─────────────────────────
+# 人工/agent 翻译的 webapp 文案（英文原文 -> 中文）。
+# 两份产物用途不同，不能混：
+#   assets/ui-strings-zh.json  DOM 层用：键是英文原文，必须能整串匹配到文本节点
+#                              → 含 {{...}} 插值的条目要剔除（渲染后被替换成实际值）
+#   assets/webapp-i18n.json    i18next 覆盖层用：键是 i18n key（点分），值是中文
+#                              → 含 {{...}} 的反而要保留（i18next 会做插值）
+webapp_zh = {}
+for p in (os.path.join(_DICT, "webapp-zh.json"),
+          os.path.join(_DATA, "zh", "webapp-merged.json")):
+    if os.path.exists(p):
+        webapp_zh.update(rd(p))
+L("\n[4] webapp 词表:", len(webapp_zh), "条")
+
+extra = {}
+# 顺序即优先级：人工校订 > 旧界面词表 > webapp 译文
+for name in ("ui-common-zh.json", "ui-strings-zh.json"):
+    p = os.path.join(_DICT, name)
+    if os.path.exists(p):
+        d = rd(p)
+        d.pop("_comment", None)
+        extra.update(d)
+L("    人工校订词表:", len(extra), "条")
+
+dom_extra = dict(extra)
+for en, zh in webapp_zh.items():
+    if not zh or zh.strip() == en.strip():
+        continue
+    if "{{" in en or "}}" in en:      # 插值模板，DOM 层匹配不到整串
+        continue
+    if len(en) > 200:
+        continue
+    dom_extra.setdefault(en, zh)      # 人工校订优先，不覆盖
+wr(os.path.join(ASSETS, "ui-strings-zh.json"), dom_extra, indent=0, sort=True)
+L("    assets/ui-strings-zh.json: %s 条 (%.2f MB)"
+  % (format(len(dom_extra), ","), os.path.getsize(os.path.join(ASSETS, 'ui-strings-zh.json')) / 1048576))
+
+# i18next 覆盖表：webapp.json 给出 (i18n key -> 英文)，用英文查中文，再还原成嵌套对象
+wa_flat = {}
+wp = os.path.join(_DATA, "webapp.json")
+if os.path.exists(wp):
+    for item in rd(wp)["keys"]:
+        z = webapp_zh.get(item["en"])
+        if not z or z.strip() == item["en"].strip():
+            continue
+        wa_flat.setdefault(item["key"], z)
+
+# 前缀冲突保护：如果 nav 与 nav.newSession 同时存在，放弃较短的 nav，
+# 否则把字符串覆盖到对象上会毁掉整棵子树。
+keys = set(wa_flat)
+bad_prefix = set()
+for k in keys:
+    parts = k.split(".")
+    for i in range(1, len(parts)):
+        pre = ".".join(parts[:i])
+        if pre in keys:
+            bad_prefix.add(pre)
+for k in bad_prefix:
+    wa_flat.pop(k, None)
 
 
-ASSETS_NLS = os.path.join(ASSETS, "windsurf.package.nls.json")
-ASSETS_E2K = os.path.join(ASSETS, "windsurf.en2key.json")
-TRANS_WS = os.path.join(TRANS_EXT, "windsurf.i18n.json")
+def nest(flat):
+    root = {}
+    for k, v in flat.items():
+        cur = root
+        parts = k.split(".")
+        ok = True
+        for p in parts[:-1]:
+            nxt = cur.get(p)
+            if nxt is None:
+                nxt = cur[p] = {}
+            elif not isinstance(nxt, dict):
+                ok = False
+                break
+            cur = nxt
+        if not ok:
+            continue
+        if isinstance(cur.get(parts[-1]), dict):
+            continue
+        cur[parts[-1]] = v
+    return root
 
-if any("%" in str(v) for v in raw.values()) or len(raw) < 150:
-    L("\n    ⚠ 注意：安装目录的 windsurf/package.json 已被本地化（含 %key%），")
-    L("      本次提取的字段不完整，将与已有产物合并以保持完整。")
 
-en2key = _merge_existing(ASSETS_E2K, en2key, "windsurf.en2key.json")
-nlsdef = _merge_existing(ASSETS_NLS, nlsdef, "windsurf.package.nls.json")
-try:
-    if os.path.exists(TRANS_WS):
-        with open(TRANS_WS, "r", encoding="utf-8") as f:
-            old_ws = json.load(f).get("contents", {}).get("package", {})
-        add = 0
-        for k, v in old_ws.items():
-            if k not in pkgzh:
-                pkgzh[k] = v; add += 1
-        if add:
-            L(f"    + 与已有 windsurf.i18n.json 合并，补回 {add} 条")
-except Exception as e:
-    L(f"    ⚠ 合并 windsurf.i18n.json 失败(忽略): {e}")
+wa_nested = nest(wa_flat)
+wr(os.path.join(ASSETS, "webapp-i18n.json"), wa_nested, indent=0, sort=True)
+L("    assets/webapp-i18n.json: %s 条 / 前缀冲突丢弃 %d (%.2f MB)"
+  % (format(len(wa_flat), ","), len(bad_prefix),
+     os.path.getsize(os.path.join(ASSETS, 'webapp-i18n.json')) / 1048576))
 
-with open(ASSETS_E2K, "w", encoding="utf-8", newline="\n") as f:
-    json.dump(en2key, f, ensure_ascii=False, indent=1)
-L(f"    值替换表: {len(en2key)} 条 -> windsurf.en2key.json")
-# pkgmap 只是备查文件，属于中间产物，放 data/ 不进插件
-with open(os.path.join(_DATA, "windsurf.pkgmap.json"), "w", encoding="utf-8", newline="\n") as f:
-    json.dump(pkgmap, f, ensure_ascii=False, indent=1)
-if pkgmap:
-    with open(os.path.join(_DATA, "windsurf.pkgmap.json"), "w", encoding="utf-8", newline="\n") as f:
-        json.dump(pkgmap, f, ensure_ascii=False, indent=1)
-with open(ASSETS_NLS, "w", encoding="utf-8", newline="\n") as f:
-    json.dump(nlsdef, f, ensure_ascii=False, indent=1)
-with open(TRANS_WS, "w", encoding="utf-8", newline="\n") as f:
-    json.dump({"": ["Devin 简体中文补丁 —— windsurf 扩展贡献点译文", "Do not edit this file."],
-               "version": "1.0.0",
-               "contents": {"package": pkgzh}}, f, ensure_ascii=False, indent=1)
-L(f"    windsurf 产物: nls {len(nlsdef)} 条 / 译文 {len(pkgzh)} 条")
+# ───────────────────────── 5. windsurf 扩展贡献点（兼容旧路线） ─────────────────────────
+g7 = rd(os.path.join(_DATA, "zh", "g7.json")) if os.path.exists(os.path.join(_DATA, "zh", "g7.json")) else {}
+plan = rd(os.path.join(ASSETS, "ext-manifest.json")) if os.path.exists(os.path.join(ASSETS, "ext-manifest.json")) else {}
+enmap = rd(os.path.join(ASSETS, "ext-manifest.en.json")) if os.path.exists(os.path.join(ASSETS, "ext-manifest.en.json")) else {}
 
-# ---------- 5. 汇总 ----------
+pkgzh = {}
+for ext, entries in plan.items():
+    for e in entries:
+        en = enmap.get(e["key"])
+        z = g7.get(en) if en else None
+        if z:
+            pkgzh[e["key"]] = z
+wr(os.path.join(TRANS_EXT, "windsurf.i18n.json"),
+   {"": ["Devin 简体中文补丁 —— 内置扩展贡献点译文", "Do not edit this file."],
+    "version": "1.0.0",
+    "contents": {"package": pkgzh}})
+L("\n[5] 扩展贡献点译文:", len(pkgzh), "条 / 字段", sum(len(v) for v in plan.values()))
+
+# ───────────────────────── 6. 汇总 ─────────────────────────
 meta = {
-    "devinDir": DEVIN,
-    "langpackDir": LANGPACK,
+    "devinDir": _APP,
+    "langpackDir": _LP,
     "langpackVersion": None,
     "nlsPairs": n_supp,
     "nlsFiles": len(supp),
-    "windsurfFields": len(pkgmap),
-    "uiDict": None,
+    "nlsTotal": total,
+    "uiDict": len(ui),
+    "webappDict": len(webapp_zh),
+    "webappI18n": len(wa_flat),
+    "extFields": sum(len(v) for v in plan.values()),
+    "extZh": len(pkgzh),
 }
-if LANGPACK:
-    try:
-        lp = rd(os.path.join(LANGPACK, "package.json"))
-        meta["langpackVersion"] = lp.get("version")
-    except Exception:
-        pass
 try:
-    meta["uiDict"] = len(ui)
-except NameError:
+    meta["langpackVersion"] = rd(os.path.join(_LP, "package.json")).get("version")
+except Exception:
     pass
-with open(os.path.join(_DATA, "meta.json"), "w", encoding="utf-8", newline="\n") as f:
-    json.dump(meta, f, ensure_ascii=False, indent=1)
+wr(os.path.join(_DATA, "meta.json"), meta, indent=1)
 L("\n" + json.dumps(meta, ensure_ascii=False, indent=1))
 
 with open(os.path.join(_DATA, "build.log"), "w", encoding="utf-8", newline="\n") as f:
     f.write("\n".join(log))
+

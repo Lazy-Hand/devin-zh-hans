@@ -1,32 +1,28 @@
-Devin 安装目录      : C:\Users\27837\AppData\Local\Programs\Devin
-用户扩展目录        : C:\Users\27837\.devin\extensions
-中文语言包          : C:\Users\27837\.devin\extensions\ms-ceintl.vscode-language-pack-zh-hans-1.126.0-universal
-NLS 译文条数        : 589
-windsurf 译文条数   : 66
-windsurf 字段数     : 112 (来源 C:\Users\27837\AppData\Local\Programs\Devin\resources\app\extensions\windsurf\package.json)
+Devin 安装目录 : C:\Users\27837\AppData\Local\Programs\Devin\resources\app
+中文语言包     : C:\Users\27837\.devin\extensions\ms-ceintl.vscode-language-pack-zh-hans-1.126.0-universal
+NLS 译文条数   : 929 （来自 7 个词表）
 
-[1] NLS 补充表: 667 条 / 148 个源文件
-[2] main.i18n.json 合并: 新增 0 条, 总 22,003 条
-    输出: C:\Users\27837\.dsh\profiles\desktop\data\session-manager\workspaces\00e8ebaf-4547-41ce-8e8e-bef828560b96\devin-plugin\plugins\zh-hans\translations\main.i18n.json (1.65 MB)
-[3] React UI 通用词典: 19,480 条 (1.39 MB)
-windsurf 去重后译文  : 32 条 unique 英文
+[1] NLS 补充表: 162 条 / 28 个源文件
+[2] main.i18n.json: 剔除死条目 1004 条, 新增 162 条, 总 21,161 条, 1.58 MB
+[3] DOM 通用词典: 9,776 条（由 21,210 条 NLS 原文反查）(0.59 MB)
 
-[4] windsurf 扩展: 映射 112 个字段, 生成 112 条中文译文, 缺译文 0 个
+[4] webapp 词表: 7056 条
+    人工校订词表: 193 条
+    assets/ui-strings-zh.json: 7,138 条 (0.42 MB)
+    assets/webapp-i18n.json: 4,575 条 / 前缀冲突丢弃 0 (0.22 MB)
 
-    ⚠ 注意：安装目录的 windsurf/package.json 已被本地化（含 %key%），
-      本次提取的字段不完整，将与已有产物合并以保持完整。
-    + 与已有 windsurf.en2key.json 合并，补回 66 条（安装目录已被本地化，提取不全）
-    + 与已有 windsurf.package.nls.json 合并，补回 64 条（安装目录已被本地化，提取不全）
-    + 与已有 windsurf.i18n.json 合并，补回 64 条
-    值替换表: 98 条 -> windsurf.en2key.json
-    windsurf 产物: nls 176 条 / 译文 176 条
+[5] 扩展贡献点译文: 254 条 / 字段 254
 
 {
- "devinDir": "C:\\Users\\27837\\AppData\\Local\\Programs\\Devin",
+ "devinDir": "C:\\Users\\27837\\AppData\\Local\\Programs\\Devin\\resources\\app",
  "langpackDir": "C:\\Users\\27837\\.devin\\extensions\\ms-ceintl.vscode-language-pack-zh-hans-1.126.0-universal",
  "langpackVersion": "1.126.0",
- "nlsPairs": 667,
- "nlsFiles": 148,
- "windsurfFields": 112,
- "uiDict": 19480
+ "nlsPairs": 162,
+ "nlsFiles": 28,
+ "nlsTotal": 21161,
+ "uiDict": 9776,
+ "webappDict": 7056,
+ "webappI18n": 4575,
+ "extFields": 254,
+ "extZh": 254
 }

@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Devin 桌面版 (Windsurf/Codeium 换皮 VS Code fork) 本地化可行性实证分析
-输出: report.md + missing.json (完整待翻译清单)
+analyze_nls.py — Devin 桌面版（Windsurf/Codeium 换皮 VS Code fork）NLS 缺口分析
+
+输出（tools/data/）：
+    coverage.md    覆盖率报告
+    missing.json   完整缺口清单 {file, key, en}
+    todo.json      按源文件分组的待译清单 {unique, by_file}（build_patch.py 的输入）
 """
 import json, os, re, collections, io
 
@@ -9,12 +13,17 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (  # noqa: E402
     DEVIN_APP as _APP, LANGPACK as _LP, DATA as _DATA,
-    SHARED as _SHARED, PLUGIN as _PLUGIN, OUT as _OUT,
+    DICT as _SHARED, PLUGIN as _PLUGIN, OUT as _OUT,
 )
 APP = _APP
 LP = _LP
-WS  = os.path.join(APP, "extensions", "windsurf")
+WS = os.path.join(APP, "extensions", "windsurf")
 OUTDIR = _DATA
+
+if not APP:
+    raise SystemExit("✗ 未找到 Devin 安装目录（用 DEVIN_INSTALL 指定）")
+if not LP:
+    raise SystemExit("✗ 未找到官方简体中文语言包（合并版需要它作底子）")
 
 buf = io.StringIO()
 def P(*a): print(*a, file=buf)
@@ -37,7 +46,17 @@ for entry in keys_raw:
 
 P("# Devin 桌面版汉化可行性实证报告\n")
 P(f"- Devin 安装目录: `{APP}`")
-P(f"- 应用版本: Devin 1.126.0 / windsurfVersion 3.10.67 / codeiumVersion 1.48.2 (Exafunction, Inc.)")
+try:
+    _prod = load(os.path.join(APP, "product.json"))
+    _author = _prod.get("author")
+    if isinstance(_author, dict):
+        _author = _author.get("name", "")
+    P("- 应用版本: %s %s / windsurfVersion %s / codeiumVersion %s%s"
+      % (_prod.get("nameShort"), _prod.get("version"),
+         _prod.get("windsurfVersion"), _prod.get("codeiumVersion"),
+         (" (%s)" % _author) if _author else ""))
+except Exception:
+    P("- 应用版本: (读取 product.json 失败)")
 P(f"- 语言包: `{LP}`\n")
 
 P("## 1. NLS 结构\n")
@@ -114,17 +133,28 @@ for f in sorted(zero, key=lambda x: -own_tot[x])[:30]:
     P(f"- `{f}` ({own_tot[f]} 条)")
 
 # windsurf 扩展 package.json 硬编码情况
+WS = os.path.join(APP, "extensions", "windsurf")
 pkg = load(os.path.join(WS, "package.json"))
 cmds = pkg.get("contributes", {}).get("commands", [])
 hard = [c for c in cmds if isinstance(c.get("title"), str) and not str(c["title"]).startswith("%")]
 nls_files = [x for x in os.listdir(WS) if x.startswith("package.nls")]
-P("\n## 7. `extensions/windsurf` 扩展本身\n")
-P(f"- package.json 命令数: {len(cmds)}")
-P(f"- title 为**硬编码英文**(无 `%key%` 占位符): **{len(hard)} / {len(cmds)}**")
-P(f"- 目录内 `package.nls*.json` 文件: {nls_files if nls_files else '**无** → 该扩展完全没有本地化入口**'}")
-P(f"- 编译产物: `dist/extension.js` {os.path.getsize(os.path.join(WS,'dist','extension.js')):,} bytes (未 minify 成 asar，可直接改)")
-P("\n结论: 该扩展的 64 个命令标题、菜单、配置项描述全部硬编码英文，**官方语言包机制无法覆盖**，")
-P("必须在 `resources/app/extensions/windsurf/package.json` 里补 `package.nls.zh-cn.json` 并改成 `%key%`。")
+P("\n## 7. 内置扩展的贡献点（Devin 家族）\n")
+P("| 扩展 | 命令数 | 硬编码英文 title | 目录内 package.nls* |")
+P("|---|---:|---:|---|")
+FAMILY = ["windsurf", "windsurf-dev-containers", "windsurf-remote-devin",
+          "windsurf-remote-openssh", "windsurf-remote-wsl"]
+for name in FAMILY:
+    p = os.path.join(APP, "extensions", name, "package.json")
+    if not os.path.exists(p):
+        continue
+    _p = load(p)
+    _c = _p.get("contributes", {}).get("commands", []) or []
+    _hard = [c for c in _c if isinstance(c.get("title"), str) and not str(c["title"]).startswith("%")]
+    _nls = [x for x in os.listdir(os.path.join(APP, "extensions", name)) if x.startswith("package.nls")]
+    P("| `%s` | %d | %d | %s |" % (name, len(_c), len(_hard), "、".join(_nls) if _nls else "**无**"))
+P("\n结论: 这些扩展的命令标题、菜单、配置项说明全部硬编码英文，**官方语言包机制无法覆盖**；")
+P("本插件的做法是写 `package.nls.json` / `package.nls.zh-cn.json` 并把 package.json 里的字符串换成 `%key%`")
+P("（见 `tools/build_manifest_plan.py` 与 `extension.js` 的第 2 层）。")
 
 # 导出完整清单
 exp = {
@@ -137,6 +167,15 @@ exp = {
 with open(os.path.join(OUTDIR, "missing.json"), "w", encoding="utf-8") as fh:
     json.dump(exp, fh, ensure_ascii=False, indent=1)
 
+# todo.json：build_patch.py 的输入，按源文件分组
+by_file = collections.defaultdict(list)
+for f, k in sorted(missing):
+    by_file[f].append({"key": k, "en": default.get(f, {}).get(k, "")})
+uniq = collections.Counter(default.get(f, {}).get(k, "") for f, k in missing)
+with open(os.path.join(OUTDIR, "todo.json"), "w", encoding="utf-8") as fh:
+    json.dump({"unique": [[e, n] for e, n in uniq.most_common() if e],
+               "by_file": dict(by_file)}, fh, ensure_ascii=False, indent=1)
+
 with open(os.path.join(OUTDIR, "coverage.md"), "w", encoding="utf-8") as fh:
     fh.write(buf.getvalue())
-print("OK missing =", len(missing), "total =", len(all_pairs))
+print("OK missing =", len(missing), "total =", len(all_pairs), "files =", len(by_file))

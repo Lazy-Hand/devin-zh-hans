@@ -35,10 +35,34 @@ jobs:
           miss = [k for k in need if k not in pkg]
           if miss:
               print("package.json 缺少字段:", miss); bad += 1
+          # dist/ 是生成产物但必须提交；assets/ 里是四层落地所需的全部数据
           for f in ("extension.js", "README.md", "LICENSE",
-                    "translations/main.i18n.json", "dist/devin-zh-dom.js"):
-              if not pathlib.Path(f).exists():
+                    "translations/main.i18n.json",
+                    "translations/extensions/windsurf.i18n.json",
+                    "dist/devin-zh-dom.js",
+                    "assets/ui-dict.json",
+                    "assets/ui-strings-zh.json",
+                    "assets/webapp-i18n.json",
+                    "assets/ext-manifest.json",
+                    "assets/ext-manifest.en.json",
+                    "assets/ext-manifest.zh.json"):
+              p = pathlib.Path(f)
+              if not p.exists():
                   print("缺少文件:", f); bad += 1
+              elif p.stat().st_size == 0:
+                  print("文件为空:", f); bad += 1
+          # 扩展贡献点计划必须每条都有英文与中文，否则落地时会出现 %key%
+          try:
+              plan = json.loads(pathlib.Path("assets/ext-manifest.json").read_text(encoding="utf-8"))
+              en = json.loads(pathlib.Path("assets/ext-manifest.en.json").read_text(encoding="utf-8"))
+              zh = json.loads(pathlib.Path("assets/ext-manifest.zh.json").read_text(encoding="utf-8"))
+              keys = [e["key"] for v in plan.values() for e in v]
+              noz = [k for k in keys if k not in en or k not in zh]
+              if noz:
+                  print("扩展贡献点缺英/中文:", len(noz), noz[:3]); bad += 1
+              print("扩展贡献点:", len(keys), "个字段全部可解析")
+          except Exception as e:
+              print("扩展贡献点计划校验失败:", e); bad += 1
           print("OK", "%s.%s" % (pkg.get("publisher"), pkg.get("name")), pkg.get("version"))
           sys.exit(1 if bad else 0)
           PY

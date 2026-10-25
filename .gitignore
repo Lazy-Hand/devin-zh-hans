@@ -16,3 +16,5 @@ Thumbs.db
 # 临时
 *.tmp
 *.bak
+# 验证沙盒（tools/verify_layers.js 生成）
+/.verify/

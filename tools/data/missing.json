@@ -1,6 +1,817 @@
 {
- "total": 21171,
- "covered": 21171,
- "missing": 0,
- "missing_list": []
+ "total": 21161,
+ "covered": 20999,
+ "missing": 162,
+ "missing_list": [
+  {
+   "file": "vs/editor/common/editorContextKeys",
+   "key": "editorIsOpen",
+   "en": "Whether an editor is open"
+  },
+  {
+   "file": "vs/platform/windsurfChatClient/common/chatClientPreview",
+   "key": "invalidChatClientPreviewIndex",
+   "en": "Invalid chat client preview index."
+  },
+  {
+   "file": "vs/platform/windsurfChatClient/electron-main/chatClientPreviewDownload",
+   "key": "chatClientPreviewIndexJson",
+   "en": "The chat client preview index is not valid UTF-8 JSON."
+  },
+  {
+   "file": "vs/platform/windsurfChatClient/electron-main/chatClientPreviewDownload",
+   "key": "chatClientPreviewWebappHostArchive",
+   "en": "The chat client preview webapp host archive is invalid."
+  },
+  {
+   "file": "vs/platform/windsurfChatClient/electron-main/chatClientPreviewDownload",
+   "key": "chatClientPreviewWebappHostHash",
+   "en": "The chat client preview webapp host checksum or length is incorrect."
+  },
+  {
+   "file": "vs/platform/windsurfChatClient/electron-main/chatClientPreviewDownload",
+   "key": "invalidChatClientPreviewIndexUrl",
+   "en": "Invalid chat client preview index URL."
+  },
+  {
+   "file": "vs/workbench/browser/parts/titlebar/agentEditorSwitch",
+   "key": "returnToAgentWindowTooltip",
+   "en": "Back to the agent window of this session"
+  },
+  {
+   "file": "vs/workbench/browser/windsurfSaveFile",
+   "key": "openContainingFolder",
+   "en": "Open containing folder"
+  },
+  {
+   "file": "vs/workbench/browser/windsurfSaveFile",
+   "key": "showInFileExplorer",
+   "en": "Show in File Explorer"
+  },
+  {
+   "file": "vs/workbench/browser/windsurfSaveFile",
+   "key": "showInFinder",
+   "en": "Show in Finder"
+  },
+  {
+   "file": "vs/workbench/browser/windsurfSaveFile",
+   "key": "windsurfFileDownloaded",
+   "en": "Downloaded '{0}'"
+  },
+  {
+   "file": "vs/workbench/browser/workbench.contribution",
+   "key": "devin.agentWindow.keepWindowWorkspace",
+   "en": "Show the window's own folders in the Agent Command Center instead of the active session's folders. Applies to windows that have not yet switched; reopen the folder or workspace to restore a window that already has."
+  },
+  {
+   "file": "vs/workbench/browser/workbench.contribution",
+   "key": "devin.desktopShell.backgroundThrottling",
+   "en": "Let the Devin Agent Window throttle timers and rendering while it is in the background. Off by default so sessions keep updating at full rate behind other windows. Takes effect immediately."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.disable",
+   "en": "Devin Cloud: Disable Save Notices"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.disabled",
+   "en": "Devin is no longer told about the files you save in this Devin Cloud session."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.enable",
+   "en": "Devin Cloud: Enable Save Notices"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.enabled",
+   "en": "Devin is now told about the files you save in this Devin Cloud session. Devin reviews, commits and pushes them."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.error",
+   "en": "Save notice failed"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.name",
+   "en": "Devin Cloud Save Notices"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.notified",
+   "en": "Devin told about saves"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.notifying",
+   "en": "Telling Devin about saves"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.off",
+   "en": "Save notices off"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.on",
+   "en": "Save notices on"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.queued",
+   "en": "Save notice queued"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.retrying",
+   "en": "Devin not told yet"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.status.unavailable",
+   "en": "Save notices unavailable"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.toggle",
+   "en": "Devin Cloud: Toggle Save Notices"
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.error",
+   "en": "Devin could not be told about your saves. Your files are saved on the session machine; tell Devin about them yourself."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.notified",
+   "en": "Devin knows about your saved files and commits and pushes them when it is safe."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.notifying",
+   "en": "Sending the list of saved files to Devin."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.off",
+   "en": "Devin is not told about the files you save. Click to turn save notices on."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.on",
+   "en": "Devin is told about the files you save and commits and pushes them. Click to turn off."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.queued",
+   "en": "Saved on the session machine. Devin is told after the saves pause."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.retrying",
+   "en": "Devin could not be reached. The notice is retried; you can also tell Devin about your saves yourself."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.tooltip.unavailable",
+   "en": "Save notices are not available for this session."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNotices.unsupported",
+   "en": "Save notices are not available for your account."
+  },
+  {
+   "file": "vs/workbench/contrib/devinCloudSaveNotices/electron-browser/devinCloudSaveNotices.contribution",
+   "key": "devinCloudSaveNoticesAvailable",
+   "en": "Whether this window is a Devin Cloud session window that can tell Devin about saved files."
+  },
+  {
+   "file": "vs/workbench/contrib/share/browser/share.contribution",
+   "key": "experimental.share.enabled.desktop",
+   "en": "Controls whether the Share command and the Share context menu entries are available."
+  },
+  {
+   "file": "vs/workbench/contrib/url/browser/url.contribution",
+   "key": "devin.links.confirmBeforeOpening",
+   "en": "When enabled, clicking a link in Devin to a website outside your trusted domains asks for confirmation before it opens in the browser."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions",
+   "key": "acpConnectRemoteHostPlaceholderWsl",
+   "en": "Select an SSH host or WSL distro, or enter user@host"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions",
+   "key": "acpRemoveRemoteHostButton",
+   "en": "&&Remove"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions",
+   "key": "acpRemoveRemoteHostConfirm",
+   "en": "Remove {0}?"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions",
+   "key": "acpRemoveRemoteHostSessions",
+   "en": "Its sessions stay on the host and come back if you add it again."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions",
+   "key": "acpRemoveRemoteHostTurn",
+   "en": "A turn is running on {0}; the host keeps running it until it ends."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/acpRemoteHostActions",
+   "key": "acpWslDistroStopped",
+   "en": "Stopped"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAcpService/browser/windsurfAcpService",
+   "key": "acpRemoteTerminalNoProvider",
+   "en": "{0} is not connected."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/cloudSessionEditorWindow",
+   "key": "cloudSessionEditorWindow.failed",
+   "en": "Couldn't open the IDE on the Devin session machine: {0}"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/cloudSessionEditorWindow",
+   "key": "cloudSessionEditorWindow.noWindow",
+   "en": "The window could not be opened."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/cloudSessionEditorWindow",
+   "key": "cloudSessionEditorWindow.notReady",
+   "en": "The session machine did not become ready for SSH in time."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/cloudSessionEditorWindow",
+   "key": "cloudSessionEditorWindow.opening",
+   "en": "Opening the IDE on the Devin session machine..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/cloudSessionEditorWindow",
+   "key": "cloudSessionEditorWindow.waking",
+   "en": "Waking up the Devin session machine..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/devinSessionSshWindow",
+   "key": "devinSessionSshWindow.lost",
+   "en": "The connection to the Devin session machine was lost. The machine may be asleep."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/devinSessionSshWindow",
+   "key": "devinSessionSshWindow.notShown",
+   "en": "The Devin session of this machine could not be shown in the Devin panel."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/devinSessionSshWindow",
+   "key": "devinSessionSshWindow.openInBrowser",
+   "en": "Open in browser"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/devinSessionSshWindow",
+   "key": "devinSessionSshWindow.reconnectFailed",
+   "en": "Couldn't reconnect to the Devin session machine: {0}"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/devinSessionSshWindow",
+   "key": "devinSessionSshWindow.wakeAndReconnect",
+   "en": "Wake up and reconnect"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/devinSessionSshWindow",
+   "key": "devinSessionSshWindow.waking",
+   "en": "Waking up the Devin session machine..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/windsurfAgentWindowActions",
+   "key": "openDevinSessionIdeWindow",
+   "en": "Open IDE Window for This Session"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfAgentWindow/browser/windsurfAgentWindowActions",
+   "key": "openDevinSessionIdeWindow.unavailable",
+   "en": "No Devin cloud session is in focus, so there is no session machine to open the IDE on."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCascade/browser/windsurfCascadeMainThreadCommands",
+   "key": "sendTextToAgentWindowChatFailed",
+   "en": "Could not send text to the agent tab."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCascadeView/browser/cascadeView.contribution",
+   "key": "cloudSessionWorkspace",
+   "en": "Workspace"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCascadeView/browser/cascadeView.contribution",
+   "key": "devinPage",
+   "en": "Devin"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCascadeView/browser/cloudSessionWorkspaceEditorInput",
+   "key": "cloudSessionWorkspace",
+   "en": "Workspace"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCascadeView/browser/cloudSessionWorkspaceEditorInput",
+   "key": "cloudSessionWorkspaceFailed",
+   "en": "Could not open the workspace. Reopen this tab to try again."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCascadeView/browser/cloudSessionWorkspaceEditorInput",
+   "key": "devinPage.customize",
+   "en": "Customize"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCodeMapViewer/browser/codeMapViewer.contribution",
+   "key": "addCodeMapToDevinLocal",
+   "en": "Add Codemap to Devin Local"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCodeScanFindings/browser/codeScanFindings.contribution",
+   "key": "codeScanFindingsEditor",
+   "en": "Code Scan Findings"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCodeScanFindings/browser/codeScanFindings.contribution",
+   "key": "devin.openCodeScanFindings",
+   "en": "Open Code Scan Findings"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCodeScanFindings/browser/codeScanFindingsEditorInput",
+   "key": "codeScanFindings.title",
+   "en": "Findings"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfCodeScanFindings/browser/codeScanFindingsEditorInput",
+   "key": "codeScanFindings.titled",
+   "en": "Findings: {0}"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/createDevinHost",
+   "key": "devinHost.localAgentsTrust",
+   "en": "Local agents run commands and repository hooks on this machine, so they are off until you trust the files in this workspace."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/createDevinHost",
+   "key": "devinWebappPreferenceWriteFailed",
+   "en": "Couldn't update {0}: {1}"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellAppControls",
+   "key": "desktopShell.editorGoBack",
+   "en": "Go Back"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellAppControls",
+   "key": "desktopShell.editorGoForward",
+   "en": "Go Forward"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellAppControls",
+   "key": "desktopShell.goBack",
+   "en": "Back"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellAppControls",
+   "key": "desktopShell.goForward",
+   "en": "Forward"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellAppControls",
+   "key": "desktopShell.toggleSidebar",
+   "en": "Toggle Sidebar"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "mEdit",
+   "en": "&&Edit"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "mFile",
+   "en": "&&File"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "mGoto",
+   "en": "&&Go"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "mHelp",
+   "en": "&&Help"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "mPreferences",
+   "en": "&&Preferences"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "mView",
+   "en": "&&View"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miAbout",
+   "en": "&&About"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miBack",
+   "en": "&&Back"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miCloseTab",
+   "en": "Close &&Tab"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miCloseWindow",
+   "en": "Close Window"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miCommandPalette",
+   "en": "&&Command Palette"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miCopy",
+   "en": "&&Copy"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miCut",
+   "en": "Cu&&t"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miDevinSettings",
+   "en": "Devin &&Settings"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miFind",
+   "en": "&&Find"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miFindNext",
+   "en": "Find &&Next"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miFindPrevious",
+   "en": "Find &&Previous"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miForward",
+   "en": "&&Forward"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miGoToFile",
+   "en": "Go to &&File..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miGotoDefinition",
+   "en": "Go to &&Definition"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miKeyboardShortcuts",
+   "en": "&&Keyboard Shortcuts"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miNewAgentWindow",
+   "en": "New &&Agent Window"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miNewIDEWindow",
+   "en": "New &&IDE Window"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miNewSession",
+   "en": "New &&Session"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miNextTab",
+   "en": "&&Next Tab"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miNotifications",
+   "en": "&&Notifications"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miOpen",
+   "en": "&&Open..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miOpenFile",
+   "en": "&&Open File..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miOpenFolder",
+   "en": "Open &&Folder..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miOpenFolderViaWorkspace",
+   "en": "Open &&Folder..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miOpenRecent",
+   "en": "Open &&Recent"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miPaste",
+   "en": "&&Paste"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miPreviousTab",
+   "en": "&&Previous Tab"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miProcessExplorer",
+   "en": "Open Process E&&xplorer"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miQuit",
+   "en": "E&&xit"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miRedo",
+   "en": "&&Redo"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miReopenClosedTab",
+   "en": "&&Reopen Closed Tab"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miReplace",
+   "en": "&&Replace"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miRevertFile",
+   "en": "Re&vert File"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miSave",
+   "en": "&&Save"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miSearchSessions",
+   "en": "Search &&Sessions"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miSearchWorkspace",
+   "en": "Search &&Workspace"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miSelectAll",
+   "en": "Select &&All"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleBlockComment",
+   "en": "Toggle &&Block Comment"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleDevTools",
+   "en": "Toggle Developer &&Tools"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleFullScreen",
+   "en": "&&Full Screen"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleLineComment",
+   "en": "&&Toggle Line Comment"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleSidebar",
+   "en": "Toggle &&Sidebar"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleTerminal",
+   "en": "Toggle &&Terminal"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miToggleTheme",
+   "en": "Toggle &&Theme"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miUndo",
+   "en": "&&Undo"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miViewLicense",
+   "en": "View &&License"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miZoomIn",
+   "en": "Zoom &&In"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miZoomOut",
+   "en": "Zoom &&Out"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellMenubar",
+   "key": "miZoomReset",
+   "en": "&&Reset Zoom"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellSignedOut",
+   "key": "desktopShell.signedOut.close",
+   "en": "Close"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellSignedOut",
+   "key": "desktopShell.signedOut.maximize",
+   "en": "Maximize"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellSignedOut",
+   "key": "desktopShell.signedOut.minimize",
+   "en": "Minimize"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/desktopShellSignedOut",
+   "key": "desktopShell.signedOut.restore",
+   "en": "Restore"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.addRemoteAgentSSHHost",
+   "en": "Add new SSH host for remote agents..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.configureRemoteAgentSSHHosts",
+   "en": "Configure SSH hosts for remote agents..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.connectRemoteAgentHost",
+   "en": "Connect to remote agent host..."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.copyApiKey",
+   "en": "Copy API key"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.copyDatadogSessionLink",
+   "en": "Copy Datadog session link"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.logOut",
+   "en": "Log out"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.newWindow",
+   "en": "New window"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.openAcpLocalRegistry",
+   "en": "Open local ACP agent registry"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.openChangelog",
+   "en": "Open changelog"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.openDevinForTerminalMcpConfigFile",
+   "en": "Open Devin for Terminal MCP config file"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.reloadAcpConnections",
+   "en": "Reload ACP connections"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.reloadWindow",
+   "en": "Reload window"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.startTracing",
+   "en": "Developer: Start tracing"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.stopTracing",
+   "en": "Developer: Stop tracing"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.switchToEditorMode",
+   "en": "Switch to editor mode"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.toggleDevTools",
+   "en": "Toggle developer tools"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappCommands",
+   "key": "devin.webapp.viewAccount",
+   "en": "View account"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappEditors",
+   "key": "devinWebappOpenFailed",
+   "en": "Couldn't open {0}: {1}"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappEditors",
+   "key": "devinWebappSaveAsTitle",
+   "en": "Save As"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappEditors",
+   "key": "devinWebappSaveBeforeOpenFailed",
+   "en": "Unsaved changes couldn't be saved"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappKeybindingEditing",
+   "key": "errorKeybindingsFileDirty",
+   "en": "Unable to write because the keybindings configuration file has unsaved changes. Please save it first and then try again."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfDesktopShell/browser/devinWebappKeybindingEditing",
+   "key": "webappKeybindingsInvalid",
+   "en": "The keybindings configuration file is not a valid array."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfSettingsPage/browser/windsurfSettingsPage.contribution",
+   "key": "customize.unavailable",
+   "en": "Customize is available in the Devin agent window, which this window cannot show."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfSettingsPage/browser/windsurfSettingsPage.contribution",
+   "key": "openCustomize",
+   "en": "Open Customize"
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfSettingsPage/browser/windsurfSettingsPage.contribution",
+   "key": "openCustomizeDescription",
+   "en": "Open the Customize page on what the local Devin agent loads."
+  },
+  {
+   "file": "vs/workbench/contrib/windsurfSettingsPage/browser/windsurfSettingsPage.contribution",
+   "key": "windsurfSettings.unavailable",
+   "en": "Devin Settings is available in the Devin agent window, which this window cannot show."
+  }
+ ]
 }

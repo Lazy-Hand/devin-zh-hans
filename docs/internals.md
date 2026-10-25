@@ -1,12 +1,13 @@
 # Devin Desktop 内部机制与实证记录
 
 这份文档记录逆向/实测得到的事实，以及几条**导致错误结论的坑**。所有结论都标注了证据来源。
+版本基线：**Devin 1.126.0 / windsurfVersion 3.11.216 / codeiumVersion 1.48.2**。
 
 ## 1. Devin Desktop 的身份
 
 **它是 Windsurf（Exafunction / Codeium）改名而来的 VS Code fork。**
 
-证据来自本机 Devin 1.126.0 的 `resources/app/product.json`：
+证据来自本机 `resources/app/product.json`：
 
 ```
 nameShort        : "Devin"
@@ -16,7 +17,7 @@ oldDataFolderName: ".windsurf"
 oldUrlProtocol   : "windsurf"
 licenseName      : "MIT"
 codeiumVersion   : "1.48.2"
-windsurfVersion  : "3.10.67"
+windsurfVersion  : "3.11.216"
 author           : Exafunction, Inc.
 extensionsGallery: marketplace.windsurf.com
 ```
@@ -28,8 +29,9 @@ extensionsGallery: marketplace.windsurf.com
 | 路径 | 内容 |
 |---|---|
 | `%LOCALAPPDATA%\Programs\Devin\` | 安装树（**未打包成 asar**，`resources/app` 是明文目录） |
-| `…\resources\app\out\` | 编译产物（workbench / sessions / extensions） |
-| `…\resources\app\node_modules\@exa\chat-client\index.js` | **真正被加载的 Agent chat-client（25 MB）** |
+| `…\resources\app\out\vs\workbench\devin-webapp-host\` | **Agent UI（3.11 起的实现）**，87 MB / 1,877 chunk |
+| `…\resources\app\out\vs\workbench\windsurf-chat-client\index.js` | 旧版 Agent 侧边栏（21 MB，3.11 仍在，但已不是主路径） |
+| `…\resources\app\out\vs\sessions\sessions.desktop.main.js` | 会话窗口（40 MB） |
 | `…\bin\devin-desktop.cmd` | CLI，等价于 VS Code 的 `code` —— `--install-extension` 可用 |
 | `%USERPROFILE%\.devin\argv.json` | 启动参数（`locale` 在这里） |
 | `%USERPROFILE%\.devin\extensions\` | 用户扩展与语言包 |
@@ -38,15 +40,15 @@ extensionsGallery: marketplace.windsurf.com
 
 ## 3. NLS（界面字符串）机制
 
-`out/nls.keys.json` 的结构是 `[[源文件, [key...]], ...]`（1,797 个源文件），
-`out/nls.messages.json` 是与之**顺序一一对应**的展平英文数组（21,220 条）。
+`out/nls.keys.json` 的结构是 `[[源文件, [key...]], ...]`（1,786 个源文件），
+`out/nls.messages.json` 是与之**顺序一一对应**的展平英文数组（21,210 条）。
 两者的长度一致，可用来精确还原每个 key 的默认英文。
 
 **关键**：`workbench.desktop.main.js` 里对 `nls.messages.json` 的引用次数是 **0**
 —— 英文默认值是**内联**在 bundle 里的，运行时并不读那个 json。
-所以"改 `nls.messages.json` 让界面变中文"这条路**不通**，只能走语言包。
+所以「改 `nls.messages.json` 让界面变中文」这条路**不通**，只能走语言包。
 
-覆盖率实测见 [coverage.md](coverage.md)：21,171 条中官方语言包覆盖 20,504 条（96.8%），缺 667 条。
+覆盖率见 [coverage.md](../tools/data/coverage.md)：21,161 条中官方语言包覆盖 20,999 条（99.2%），缺 162 条。
 
 ## 4. 完整性校验的确切范围
 
@@ -57,7 +59,7 @@ async _isPure(){
   let i = this.productService.checksums || {};        // ← 只取 product.json 的 checksums
   await this.lifecycleService.when(4);
   let e = await Promise.all(Object.keys(i).map(o => this._resolve(o, i[o])));
-  //                ^^^^^^^^^^^^^^ 只遍历这 11 个键
+  //                ^^^^^^^^^^^^^^ 只遍历清单里的键
   ...
 }
 async _resolve(i, e){ ... this.checksumService.checksum(uri) ... }
@@ -67,48 +69,116 @@ _showNotification(){ ... }        // ← 失败只弹通知，不阻止启动
 
 结论：
 
-- 校验范围**就是** `product.json.checksums` 那 11 个文件，**不含** `extensions/`，也不含用户目录；
+- 校验范围**就是** `product.json.checksums` 里列出的文件（3.11 是 **12 个**），
+  **不含** `extensions/`，也不含用户目录；
 - 哈希算法是 `base64(sha256(file))` 去掉 `=` 填充；
 - 校验失败**只弹通知**，不阻止启动。
 
-受保护的 11 个文件：
+受保护的 12 个文件（3.11.216）：
 
 ```
 vs/base/parts/sandbox/electron-browser/preload.js
 vs/workbench/workbench.desktop.main.js
 vs/workbench/windsurf-chat-client/index.js
+vs/workbench/devin-webapp-host/index.js                   ← 3.11 新增（442 B 的入口，不是 chunk）
 vs/workbench/workbench.desktop.main.css
 vs/workbench/api/node/extensionHostProcess.js
-vs/code/electron-browser/workbench/workbench.html        ← 我们注入 DOM 脚本
+vs/code/electron-browser/workbench/workbench.html         ← 我们注入 DOM 脚本
 vs/code/electron-browser/workbench/workbench.js
 vs/sessions/sessions.desktop.main.js
 vs/sessions/sessions.desktop.main.css
-vs/sessions/electron-browser/sessions.html               ← 我们注入 DOM 脚本
+vs/sessions/electron-browser/sessions.html                ← 我们注入 DOM 脚本
 vs/sessions/electron-browser/sessions.js
 ```
 
-`node_modules/@exa/chat-client/index.js` **不在**清单里，改它无需同步哈希。
+`node_modules/@exa/chat-client/index.js`、`devin-webapp-host/assets/**` **不在**清单里，改它们无需同步哈希。
 
-## 5. Agent UI 的 i18n 真相
+## 5. Agent UI 的实现（3.11 变化）
 
-这是本项目最反直觉的一段。Agent 侧边栏（新建会话 / 会话 / 评审 / …）实测**改不动**，排查链路：
+### 5.1 挂载方式
 
-| 检查 | 结果 | 推论 |
-|---|---|---|
-| `sessions.desktop.main.js` / `chat-client/index.js` 里的 i18next 资源表 | 确实存在 `"nav":{"newSession":"New session",...}` | 看起来该走 i18n |
-| 深合并入口 `englishOverrides:JSON.parse('...')` | 存在且**全局唯一**，注入后文件确认变大 | 界面**无任何变化** |
-| `useTranslation(` 在 bundle 里的调用数 | **0 次** | React 组件**根本没用 i18next**，资源表是死数据 |
-| `nav.` 作为 i18n key 的出现次数 | **0 次** | 同上 |
-| `"Cloud settings"` 全 `resources/app` 树出现次数 | **仅 1 处**（在死资源表里） | 界面显示它却改不动 → 文案来自**运行时数据** |
-| `Spaces` 的形态 | `label:"Spaces"`（硬编码 JSX prop） | 这类**能**改，实测生效 |
+`workbench.desktop.main.js`：
 
-顺带确认：这两个 bundle 里确实带西班牙语、日语资源（`nav.agent:"エージェント"`），
-说明 i18n 机制本身是通的，只是**没有中文**且 `lng` 硬编码 `"en"` —— 但即使把中文塞进资源表也无效，
-因为根本没有组件去读它。
+```js
+let n = await import("@devin/webapp-host");
+this.startup.mark("webappHostImported");
+c = n.installDevinHost(CLn(t, a, this.instantiationService, r, l, o, () => …))
+```
 
-**结论**：Agent 侧边栏文案只能在 DOM 层拦截。
+`@devin/webapp-host` 由 `out/vs/workbench/devin-webapp-host/index.js` 提供（`import.meta.resolve` 解析）。
+**所以 Agent UI 现在跑在 workbench 渲染进程里**，不再是一个独立窗口
+（`sessions.html` 那条路仍然存在，用于会话窗口）。
 
-## 6. 三个坑
+### 5.2 i18n 结构
+
+`devin-webapp-host/assets/entry-host-editor-mode-menu-*.js`：
+
+```js
+resources: { en: { translation: yl, review: lu } }, lng: "en", fallbackLng: "en"
+gu = [{code:"en"},
+      {code:"ja", translation: () => import("./ja-Cd26s5QO.js"), review: () => import("./ja-yCsZX4qV.js")},
+      {code:"pt", …}, {code:"es", …}]
+
+function Eu({pseudoLocale: e = !1, englishOverrides: t} = {}) { … Mt.use(Mn).init({…}) }
+…
+Mt.isInitialized || Eu()
+```
+
+要点：
+
+- 有**真实的多语言机制**（`ja` 5,030 key、`es` 4,846 key、`pt` 1,229 key），但**没有中文**；
+- `useTranslation(` 的调用数是 **2**（不是 0），说明大部分组件**确实**走 i18next —— 
+  这与 3.10 时代「chat-client 里 useTranslation 为 0、资源表是死数据」的结论相反；
+- 所以 3.11 起不必再靠 DOM 硬翻译，可以按 key 覆盖 —— 这是本插件第 3 层的由来。
+
+### 5.3 为什么用 addResourceBundle 而不是加一个 zh locale
+
+- `addResourceBundle(lng, ns, resources, deep, overwrite)` 的第四、第五参数正好是
+  「深合并 + 覆盖」，语义等于「用中文覆盖这些英文值」；
+- 加 locale 需要改 `gu` 数组、改 `changeLanguage` 的调用点、还要维护一份完整资源，
+  而 Devin 自己的 `englishOverrides` 入口只服务 `en`，改 locale 反而更脆弱；
+- 不新增 locale 就不会影响 ja / pt / es 用户。
+
+### 5.4 DOM 层仍然需要
+
+即便有 i18n，仍有大量文案来自运行时数据（会话标题、仓库名、动态状态、计数值），
+以及被拆成多个文本节点的句子。这部分只能 DOM 兜底。
+
+新版 DOM 的跳过标记（实测存在）：`[data-transcript-row-key]`（42 处）、
+`[data-slate-node]` / `[data-slate-editor]`、`[data-devin-input-box]`（14 处）、
+`[data-streamdown]`（51 处）、`.prose`（65 处）、`.xterm`（189 处）、`translate="no"`（1,247 处）。
+注意 `[data-testid*="message-content"]` 在新版**一处都没有**，已不能作为主要判据。
+
+## 6. 内置扩展的贡献点无法走语言包
+
+5 个 Devin 内置扩展的 `contributes` 全是硬编码英文，目录内没有 `package.nls*.json`：
+
+| 扩展 | 命令数 | 硬编码 title | package.nls* |
+|---|---:|---:|---|
+| `windsurf` | 60 | 60 | 无 |
+| `windsurf-dev-containers` | 11 | 11 | 无 |
+| `windsurf-remote-devin` | 1 | 1 | 无 |
+| `windsurf-remote-openssh` | 13 | 13 | 无 |
+| `windsurf-remote-wsl` | 14 | 14 | 无 |
+
+`workbench.desktop.main.js` 的解析顺序（反混淆）：
+
+```js
+async getLocalizedMessages(extUri, manifest, nlsConfig) {
+  const nlsDefault = joinPath(extUri, "package.nls.json");
+  const id = `${manifest.publisher}.${manifest.name}`;
+  const c = nlsConfig.translations[id];          // ① 语言包 bundle
+  if (c) { … return { values: g.contents?.package, default: nlsDefault }; }
+  …const p = await this.findMessageBundles(extUri, nlsConfig);   // ② package.nls.<lang>.json
+  …                                                             // ③ package.nls.json
+}
+```
+
+所以只要写 `package.nls.zh-cn.json` + `%key%`，**不需要注册语言包 bundle**。
+（1.0.x 走的是 ① 那条路：改 `package.json` 为 `%key%` 再把中文塞进语言包的
+`translations/extensions/windsurf.i18n.json`。两条都能用，②更简单、少一个同步点。）
+
+## 7. 三个坑
 
 ### 坑 1：`ELECTRON_RUN_AS_NODE` 会让 Devin 变成 Node，然后静默退出
 
@@ -119,7 +189,7 @@ vs/sessions/electron-browser/sessions.js
 - 日志目录不新建
 - **exit code 0**（正常退出，不报错）
 
-表现和"补丁破坏了完整性校验导致软件拒绝启动"一模一样。判定：
+表现和「补丁破坏了完整性校验导致软件拒绝启动」一模一样。判定：
 
 ```powershell
 & "$env:LOCALAPPDATA\Programs\Devin\Devin.exe" --version
@@ -130,7 +200,7 @@ vs/sessions/electron-browser/sessions.js
 ### 坑 2：不要伪造 `languagepacks.json` 的 hash
 
 VS Code 用 `clp/<hash>.<locale>` 作为语言包缓存目录名。
-把 hash 改成自定义值（本意是"强制重建"）会让它在启动时 `scandir` 一个不存在的目录：
+把 hash 改成自定义值（本意是「强制重建」）会让它在启动时 `scandir` 一个不存在的目录：
 
 ```
 ENOENT: no such file or directory, scandir
@@ -140,22 +210,37 @@ ENOENT: no such file or directory, scandir
 正确做法：**只补 `translations` 条目，不动 hash**。
 因为 hash 只由「语言包扩展 id + 版本」决定、不含 bundle 列表，补条目不会让它失配。
 
-### 坑 3：不要用"启动一次看进程在不在"判断补丁安全性
+### 坑 3：不要用「启动一次看进程在不在」判断补丁安全性
 
-排查过程中一度据此得出"改 `extensions/windsurf/package.json` 会触发字节级哈希校验"的结论，
+排查过程中一度据此得出「改 `extensions/windsurf/package.json` 会触发字节级哈希校验」的结论，
 并写进了文档 —— **是错的**。后来做基线测试才推翻：**完全未打补丁的原始状态同样启动不起来**，
 原因是坑 1 的环境变量残留。
 
 教训：启动本身受单实例锁、更新检查、环境变量等多因素影响，**单点采样会得出错误结论**。
 要么读代码（如第 4 节那样），要么固定全部变量做多次采样。
 
-另一个相关的误判：一次"读入 JSON → 原样写回"（值一个都没改，只有格式变化）也被当成了校验证据，
+另一个相关的误判：一次「读入 JSON → 原样写回」（值一个都没改，只有格式变化）也被当成了校验证据，
 实际上那次运行同样受环境变量干扰。
 
-## 7. Devin 的自动更新
+### 坑 4（3.11 新增）：webapp-host 的 i18n 入口是带 hash 的 chunk 文件名
+
+`entry-host-editor-mode-menu-DUnUGWLA.js` 里的 hash 是构建期生成的，**每次 Devin 更新都会变**。
+所以：
+
+- 不能写死文件名去寻找，必须按��缀 `entry-host-editor-mode-menu*` + 内容含锚点来定位；
+- 同理，改写时也不能依赖字节偏移，只能靠字符串锚点 `Mt.isInitialized||Eu()`；
+- 该 chunk 不在 `product.json.checksums` 里（清单里是那个 442 字节的 `index.js`），
+  但**下次 Devin 更新会整个换掉**，所以注入必须是幂等且可重复的。
+
+### 坑 5（3.11 新增）：`devin-webapp-host/assets` 是 91 MB / 1,877 个文件
+
+任何「全量扫描所有 chunk」的脚本都要注意耗时。本仓库的 `tools/analyze_webapp.py` 只扫一遍
+（约 3 秒），并把结果缓存到 `tools/data/webapp.json`；验证脚本只复制 i18n 入口那一个 chunk。
+
+## 8. Devin 的自动更新
 
 安装树由 Inno Setup 维护（`unins000.exe`），自动更新会覆盖 `resources/app`。
-被覆盖的是第 2/3/4 层（扩展贡献点、bundle 字符串、窗口注入），
+被覆盖的是第 2/3/4 层（扩展贡献点、webapp i18next、窗口注入），
 第 1 层的语言包在用户目录、通常保留。
 
-因此插件的 `extension.js` 每次启动都做幂等自检，四项全部自动修复。
+因此插件的 `extension.js` 每次启动都做幂等自检，四层全部自动修复。
