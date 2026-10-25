@@ -249,6 +249,35 @@ RULES = [
     [r"^(\d+)\s+repositories$", "$1 个仓库"],
     [r"^(\d+)\s+selected$", "已选 $1 项"],
 
+    # ── 插值模板渲染后的形态 ──
+    # webapp 里大量文案是 `{{count}} jobs queued` 这类 i18next 模板，
+    # 渲染后变成 "3 jobs queued"，i18next 的 key 已经查不到，
+    # 只能在这一层按渲染后的形状替换。
+    [r"^(\d+)\s+jobs?\s+queued$", "已排队 $1 个任务"],
+    [r"^(\d+)\s+jobs?\s+queued\s+·\s+oldest:\s*(.+)$", "已排队 $1 个任务 · 最早：$2"],
+    [r"^(\d+)\s+days?$", "$1 天"],
+    [r"^(\d+)\s+day\s+left$", "剩余 $1 天"],
+    [r"^(\d+)\s+days\s+left$", "剩余 $1 天"],
+    [r"^(\d+)\s+certificates?$", "$1 个证书"],
+    [r"^Detected\s+·\s*(\d+)\s+certificates?\s+·\s*(.+)$", "已检测 · $1 个证书 · $2"],
+    [r"^CA bundle saved\s*\((\d+)\s+certificates?\)$", "CA 证书包已保存（$1 个证书）"],
+    [r"^Bundle updated\s+(.+)$", "证书包已更新 $1"],
+    [r"^(\d+)\s+controls?$", "$1 项控制"],
+    [r"^(\d+)\s+connections?$", "$1 个连接"],
+    [r"^(\d+)\s+users?$", "$1 名用户"],
+    [r"^(\d+)\s+seats?$", "$1 个席位"],
+    [r"^(\d+)\s+images?$", "$1 个镜像"],
+    [r"^(\d+)\s+credits?$", "$1 点额度"],
+    [r"^(\d+)\s+plugins?$", "$1 个插件"],
+    [r"^(\d+)\s+skills?$", "$1 个技能"],
+    [r"^(\d+)\s+resources?$", "$1 个资源"],
+    [r"^(\d+)\s+rules?$", "$1 条规则"],
+    [r"^(\d+)\s+models?$", "$1 个模型"],
+    [r"^Show\s+(\d+)\s+more\s+results?$", "再显示 $1 个结果"],
+    [r"^Show\s+(\d+)\s+more\s+result$", "再显示 $1 个结果"],
+    [r"^(\d+)\s+of\s+(\d+)\s+rows$", "$1 / $2 行"],
+    [r"^Showing\s+(\d+)\s+of\s+(\d+)$", "显示 $1 / $2"],
+
     # 提示行前缀
     [r"^Tip:\s*(.+)$", "提示：$1"],
 ]
