@@ -124,6 +124,22 @@ for f, kv in supp.items():
             tgt[k] = v
             added += 1
 
+# 品牌名回正：官方 zh-hans 是把 VS Code 翻成中文的，Devin 换了皮之后
+# "Devin Console" 会被译成 "VS Code 控制台"、"Restart Devin" → "重新启动 VS Code"。
+# 这里只改「英文原文里没有 VS Code/Windsurf，译文里却有」的条目 —— 没有歧义。
+brand_path = os.path.join(_DATA, "zh", "g8-brand.json")
+brand_fixed = 0
+if os.path.exists(brand_path):
+    for f, kv in rd(brand_path).items():
+        tgt = contents.get(f)
+        if not isinstance(tgt, dict):
+            continue
+        for k, v in kv.items():
+            if tgt.get(k) != v:
+                tgt[k] = v
+                brand_fixed += 1
+L("[2b] 品牌名回正: %d 条" % brand_fixed)
+
 out_main = os.path.join(TRANS, "main.i18n.json")
 wr(out_main, main)
 total = sum(len(v) for v in contents.values())
@@ -220,56 +236,37 @@ wr(os.path.join(ASSETS, "ui-strings-zh.json"), dom_extra, indent=0, sort=True)
 L("    assets/ui-strings-zh.json: %s 条 (%.2f MB)"
   % (format(len(dom_extra), ","), os.path.getsize(os.path.join(ASSETS, 'ui-strings-zh.json')) / 1048576))
 
-# i18next 覆盖表：webapp.json 给出 (i18n key -> 英文)，用英文查中文，再还原成嵌套对象
-wa_flat = {}
-wp = os.path.join(_DATA, "webapp.json")
-if os.path.exists(wp):
-    for item in rd(wp)["keys"]:
-        z = webapp_zh.get(item["en"])
-        if not z or z.strip() == item["en"].strip():
-            continue
-        wa_flat.setdefault(item["key"], z)
+# i18next 覆盖表：必须**保留命名空间结构**，否则 i18next 一条都查不到。
+# 形状就是 en 资源树的子集：{ ns: { key: 中文 } }
+#   i18next 查 "composerTips.newSession"  → root.composerTips.newSession
+# 早期版本把它拍平成 { "newSession": … }，看似 4,575 条其实全废。
+wa_ns = {}
+en_path = os.path.join(_DATA, "webapp-en.json")
+if os.path.exists(en_path):
+    _en = rd(en_path)["namespaces"]
+    # 用完整词典查（含 assets/ui-dict.json 从 NLS 反查来的通用词），
+    # 否则 nav.security = "Security" 这类基础词会漏掉。
+    _lookup = {}
+    for p in (os.path.join(ASSETS, "ui-dict.json"),
+              os.path.join(ASSETS, "ui-strings-zh.json")):
+        if os.path.exists(p):
+            _lookup.update(rd(p))
+    for name, kv in _en.items():
+        tgt = {}
+        for k, v in kv.items():
+            if not isinstance(v, str):
+                continue
+            z = _lookup.get(v)
+            if z and z.strip() != v.strip():
+                tgt[k] = z
+        if tgt:
+            wa_ns[name] = tgt
+else:
+    L("    ⚠ 缺少 data/webapp-en.json，先跑 tools/analyze_webapp.py")
 
-# 前缀冲突保护：如果 nav 与 nav.newSession 同时存在，放弃较短的 nav，
-# 否则把字符串覆盖到对象上会毁掉整棵子树。
-keys = set(wa_flat)
-bad_prefix = set()
-for k in keys:
-    parts = k.split(".")
-    for i in range(1, len(parts)):
-        pre = ".".join(parts[:i])
-        if pre in keys:
-            bad_prefix.add(pre)
-for k in bad_prefix:
-    wa_flat.pop(k, None)
-
-
-def nest(flat):
-    root = {}
-    for k, v in flat.items():
-        cur = root
-        parts = k.split(".")
-        ok = True
-        for p in parts[:-1]:
-            nxt = cur.get(p)
-            if nxt is None:
-                nxt = cur[p] = {}
-            elif not isinstance(nxt, dict):
-                ok = False
-                break
-            cur = nxt
-        if not ok:
-            continue
-        if isinstance(cur.get(parts[-1]), dict):
-            continue
-        cur[parts[-1]] = v
-    return root
-
-
-wa_nested = nest(wa_flat)
-wr(os.path.join(ASSETS, "webapp-i18n.json"), wa_nested, indent=0, sort=True)
-L("    assets/webapp-i18n.json: %s 条 / 前缀冲突丢弃 %d (%.2f MB)"
-  % (format(len(wa_flat), ","), len(bad_prefix),
+wr(os.path.join(ASSETS, "webapp-i18n.json"), wa_ns, indent=0, sort=True)
+L("    assets/webapp-i18n.json: %s 条 / %d 个命名空间 (%.2f MB)"
+  % (format(sum(len(v) for v in wa_ns.values()), ","), len(wa_ns),
      os.path.getsize(os.path.join(ASSETS, 'webapp-i18n.json')) / 1048576))
 
 # ───────────────────────── 5. windsurf 扩展贡献点（兼容旧路线） ─────────────────────────
@@ -300,7 +297,7 @@ meta = {
     "nlsTotal": total,
     "uiDict": len(ui),
     "webappDict": len(webapp_zh),
-    "webappI18n": len(wa_flat),
+    "webappI18n": sum(len(v) for v in wa_ns.values()),
     "extFields": sum(len(v) for v in plan.values()),
     "extZh": len(pkgzh),
 }
@@ -313,4 +310,5 @@ L("\n" + json.dumps(meta, ensure_ascii=False, indent=1))
 
 with open(os.path.join(_DATA, "build.log"), "w", encoding="utf-8", newline="\n") as f:
     f.write("\n".join(log))
+
 

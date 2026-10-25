@@ -9,7 +9,7 @@
 |---|---|---|---|
 | **1. 语言包** | 菜单栏、命令面板、设置界面、活动栏、状态栏、右键菜单、对话框 | 合并版 `main.i18n.json` 写进官方 zh-hans 语言包 | 启动最早期 |
 | **2. 扩展贡献点** | 内置 5 个 Devin 扩展的命令标题、设置项标题与说明（254 个字段） | `package.nls.json` + `package.nls.zh-cn.json` + `%key%` | 启动早期 |
-| **3. Agent UI i18next** | Agent 侧边栏与会话窗口的 i18n 文案（4,575 条） | 追加 `addResourceBundle("en","translation",{…})` | 窗口加载 |
+| **3. Agent UI i18next** | Agent 侧边栏、会话窗口与设置页的 i18n 文案（11,413 条） | 追加 `addResourceBundle("en","translation",{…})` | 窗口加载 |
 | **4. DOM 翻译器** | 运行时数据拼出来的其余文案 | 窗口 HTML 注入脚本 + TreeWalker + MutationObserver | 窗口加载后持续 |
 
 ## 第 1 层：语言包，补齐官方缺口

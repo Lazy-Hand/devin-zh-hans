@@ -1,0 +1,115 @@
+{
+ "vs/platform/contextkey/common/contextkeys": {
+  "productQualityType": "Devin 的质量类型"
+ },
+ "vs/platform/extensionManagement/node/extensionManagementService": {
+  "incompatible": "无法安装扩展“{0}”，因为它与 Devin“{1}”不兼容。",
+  "restartCode": "请在重新安装{0}之前重新启动 Devin。"
+ },
+ "vs/platform/externalTerminal/node/externalTerminalService": {
+  "console.title": "Devin 控制台"
+ },
+ "vs/platform/terminal/common/terminalPlatformConfiguration": {
+  "terminal.integrated.inheritEnv": "新 shell 是否应从 Devin 继承其环境，这可能会生成登录 shell，以确保初始化 $PATH 和其他开发变量。这不会对 Windows 造成影响。"
+ },
+ "vs/platform/update/common/update.config.contribution": {
+  "enableWindowsBackgroundUpdates": "启用在后台下载和安装新的 Devin 版本。"
+ },
+ "vs/workbench/browser/workbench.contribution": {
+  "appName": "\"${appName}\": 例如 Devin。"
+ },
+ "vs/workbench/contrib/extensions/browser/extensions.contribution": {
+  "InstallVSIXAction.successReload": "已完成安装扩展。请重新加载 Devin 以启用它。",
+  "InstallVSIXs.successReload": "已完成安装扩展。请重新加载 Devin 以启用它们。",
+  "workbench.extensions.installExtension.option.donotSync": "启用后，Devin 在启用“设置同步”时不同步此扩展。",
+  "workbench.extensions.installExtension.option.installOnlyNewlyAddedFromExtensionPackVSIX": "启用后，Devin 仅安装来自扩展包 VSIX 的新添加的扩展。仅在安装 VSIX 时才考虑此选项。",
+  "workbench.extensions.installExtension.option.installPreReleaseVersion": "启用后，Devin 将安装扩展的预发布版本(如果可用)。"
+ },
+ "vs/workbench/contrib/extensions/browser/extensionsActions": {
+  "deprecated with alternate settings message": "此扩展已弃用，因为此功能现在内置于 Devin。",
+  "deprecated with alternate settings tooltip": "此扩展已弃用，因为此功能现在内置于 Devin。配置这些 {0} 以使用此功能。",
+  "uninstallExtensionComplete": "请重新加载 Devin 以完成对扩展 {0} 的卸载。"
+ },
+ "vs/workbench/contrib/externalUriOpener/common/configuration": {
+  "externalUriOpeners.defaultId": "使用 Devin 的标准打开器打开。"
+ },
+ "vs/workbench/contrib/localization/common/localization.contribution": {
+  "vscode.extension.contributes.localizations.translations.id": "使用此翻译的 Devin 或扩展的 ID。Devin 的 ID 总为 \"vscode\"，扩展的 ID 的格式应为 \"publisherId.extensionName\"。",
+  "vscode.extension.contributes.localizations.translations.id.pattern": "翻译 Devin 或者扩展，ID 分别应为 \"vscode\" 或格式为 \"publisherId.extensionName\"。"
+ },
+ "vs/workbench/contrib/localization/common/localizationsActions": {
+  "configureLocaleDescription": "根据已安装的语言包更改 Devin 的区域设置。常用语言包括法语、中文、西班牙语、日语、德语、朝鲜语等。"
+ },
+ "vs/workbench/contrib/mcp/common/mcpConfiguration": {
+  "mcp.discovery.source.windsurf": "Devin",
+  "mcp.discovery.source.windsurf.config": "Devin 配置(`~/.codeium/windsurf/mcp_config.json`)"
+ },
+ "vs/workbench/contrib/remoteTunnel/electron-browser/remoteTunnel.contribution": {
+  "progress.turnOn.final": "现在，可以通过安全隧道 [{0}](command:{4}) 随时随地访问此计算机。要通过其他计算机进行连接，请使用生成的 [{1}]({2})链接，或者在桌面或 Web 中使用 [{6}]({7})扩展。可以通过“Devin 帐户”菜单 [配置](command:{3}) 或 [关闭](command:{5})此访问权限。"
+ },
+ "vs/workbench/contrib/tasks/browser/abstractTaskService": {
+  "TerminateAction.noProcess": "启动的进程不再存在。如果任务生成的后台任务退出 Devin，则可能会导致出现孤立的进程。"
+ },
+ "vs/workbench/contrib/tasks/common/jsonSchema_v2": {
+  "JsonSchema.tasks.promptOnClose": "若 Devin 关闭时有一个任务正在运行，是否提示用户。"
+ },
+ "vs/workbench/contrib/tasks/common/jsonSchemaCommon": {
+  "JsonSchema.tasks.promptOnClose": "若 Devin 关闭时有一个任务正在运行，是否提示用户。"
+ },
+ "vs/workbench/contrib/tasks/electron-browser/taskService": {
+  "TaskSystem.noProcess": "The launched task doesn't exist anymore. If the task spawned background processes exiting Devin might result in orphaned processes. To avoid this start the last background process with a wait flag."
+ },
+ "vs/workbench/contrib/terminal/browser/terminalView": {
+  "terminal.monospaceOnly": "终端仅支持等宽字体。如果这是新安装的字体，请确保重新启动 Devin。"
+ },
+ "vs/workbench/contrib/update/browser/update": {
+  "relaunchDetailInsiders": "按“重新加载”按钮切换到 Insiders 版本的 Devin。",
+  "relaunchDetailStable": "按“重新加载”按钮切换到稳定版的 Devin。",
+  "selectSyncService.detail": "默认情况下，Insiders 版本的 Devin 将使用单独的 Insiders 设置同步服务来同步你的设置、键绑定、扩展、片段、UI 状态。"
+ },
+ "vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.contribution": {
+  "minWelcomeDescription": "打开演练，以帮助你开始使用 Devin。",
+  "workbench.startupEditor.welcomePage": "打开包含帮助开始使用 Devin 和扩展内容的欢迎页面。"
+ },
+ "vs/workbench/contrib/welcomeGettingStarted/browser/gettingStartedExtensionPoint": {
+  "walkthroughs.steps.completionEvents.onCommand": "在 Devin 中的任何位置执行给定命令时，勾选步骤。"
+ },
+ "vs/workbench/contrib/welcomeGettingStarted/common/gettingStartedContent": {
+  "gettingStarted.commandPalette.description.interpolated": "在 Devin 中运行命令，无需动用鼠标即可完成任何任务。\r\n{0}",
+  "gettingStarted.extensions.description.interpolated": "扩展是 Devin 的精华。扩展范围包括方便地提升生产力、扩展现成的功能以及添加全新的功能。\r\n{0}",
+  "gettingStarted.extensionsWeb.description.interpolated": "扩展是 Devin 的增强功能。越来越多的扩展可在 Web 上使用。\r\n{0}",
+  "gettingStarted.setup.OpenFolderWeb.description.interpolated": "你已准备好开始编码。可以打开本地项目或远程仓库，以将文件置于 Devin。\r\n{0}\r\n{1}",
+  "gettingStarted.setup.title": "开始使用 Devin",
+  "gettingStarted.setup.walkthroughPageTitle": "安装程序 Devin",
+  "gettingStarted.setupAccessibility.description": "了解可用于访问 Devin 的工具和快捷方式。请注意，某些操作在演练的上下文中不可操作。",
+  "gettingStarted.setupWeb.title": "面向 Web 的 Devin 入门",
+  "gettingStarted.videoTutorial.description.interpolated": "请观看系列简短实用视频教程中的第一课，了解 Devin 的主要功能。\r\n{0}"
+ },
+ "vs/workbench/contrib/workspace/browser/workspace.contribution": {
+  "workspace.trust.description": "控制是否在 Devin 内启用工作区信任。",
+  "workspace.trust.emptyWindow.description": "控制空窗口在 Devin 中是否默认受信任。当与 `#{0}#` 一起使用时，可以启用 Devin 的完整功能，而无需在空窗口中进行提示。"
+ },
+ "vs/workbench/electron-browser/desktop.contribution": {
+  "argv.disableChromiumSandbox": "禁用 Chromium 沙盒。当在 Linux 上以提升的权限运行 Devin 并在 Windows 上的 Applocker 下运行时，这很有用。",
+  "argv.useInMemorySecretStorage": "确保内存中存储将用于机密存储，而不是使用 OS 的凭据存储。此选项通常在运行 Devin 扩展测试或遇到凭据存储问题时使用。"
+ },
+ "vs/workbench/services/extensions/common/extensionsRegistry": {
+  "vscode.extension.activationEvents": "Devin 扩展的激活事件。",
+  "vscode.extension.activationEvents.star": "在 Devin 启动时发出的激活事件。为确保良好的最终用户体验，请仅在其他激活事件组合不适用于你的情况时，才在扩展中使用此事件。",
+  "vscode.extension.categories": "Devin 库用于对扩展进行分类的类别。",
+  "vscode.extension.contributes": "由此包表示的 Devin 扩展的所有贡献。",
+  "vscode.extension.displayName": "Devin 库中使用的扩展的显示名称。",
+  "vscode.extension.engines.vscode": "对于 Devin 扩展，指定与其兼容的 Devin 版本。不能为 *。例如: ^1.105.0 表示最低兼容 Devin 版本 1.105.0。",
+  "vscode.extension.galleryBanner": "Devin 商城使用的横幅。",
+  "vscode.extension.galleryBanner.color": "Devin 商城页标题上的横幅颜色。",
+  "vscode.extension.publisher": "Devin 扩展的发布者。",
+  "vscode.extension.scripts.prepublish": "包作为 Devin 扩展发布前执行的脚本。",
+  "vscode.extension.scripts.uninstall": "Devin 扩展的卸载钩子。在扩展从 Devin 卸载且 Devin 重启 (关闭后开启) 后执行的脚本。仅支持 Node 脚本。"
+ },
+ "vs/workbench/services/extensions/electron-browser/nativeExtensionService": {
+  "relaunch": "重新启动 Devin"
+ },
+ "vs/workbench/services/userDataProfile/browser/userDataProfileManagement": {
+  "reload message": "切换配置文件需要重新加载 Devin。"
+ }
+}

@@ -32,8 +32,8 @@ Devin 的界面由四个互不相通的字符串来源拼成，所以要分四�
 |---|---|---|
 | **1. 语言包** | 菜单栏、命令面板、设置界面、侧边栏、状态栏、右键菜单、对话框 | 合并版 `main.i18n.json`（21,161 条）写进官方 zh-hans 语言包 |
 | **2. 内置扩展** | 5 个 Devin 内置扩展的 60+ 个命令标题、设置项标题与说明（254 个字段） | `package.nls.json` + `package.nls.zh-cn.json` + `%key%` 占位符 |
-| **3. Agent UI（i18next）** | Agent 侧边栏与会话窗口的 i18n 文案 | 把中文按英文 key 深合并进 webapp-host 的 `en` 资源（4,575 条） |
-| **4. DOM 翻译器** | 运行时数据拼出来、语言包与 i18next 都碰不到的文案 | 窗口注入脚本 + TreeWalker + MutationObserver（词典 25,999 条 + 22 条正则） |
+| **3. Agent UI（i18next）** | Agent 侧边栏、会话窗口与设置页的 i18n 文案 | 把中文按英文 key 深合并进 webapp-host 的 `en` 资源（11,413 条 / 309 个命名空间） |
+| **4. DOM 翻译器** | 运行时数据拼出来、语言包与 i18next 都碰不到的文案 | 窗口注入脚本 + TreeWalker + MutationObserver（词典 20,220 条 + 36 条正则） |
 
 ### 第 3 层的原理
 

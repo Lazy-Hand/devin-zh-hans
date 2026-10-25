@@ -205,29 +205,52 @@ RUNTIME = r"""/* devin-zh-dom.js — Devin 界面简体中文（DOM 层）
 
 # ───────────────────────── 正则规则 ─────────────────────────
 # 只处理「整串匹配才安全」的模板：带数字/占位符的短语，整串替换比逐词替换稳。
+#
+# 相对时间是重点：webapp 用 `Intl.RelativeTimeFormat(locale)` 生成
+# "yesterday" / "3 days ago" / "in 2 hours" 这类文案，locale 由 Devin 传入（en），
+# 在 i18next 里查不到对应 key，只能在这一层按形状替换。
 RULES = [
+    # 相对时间（Intl.RelativeTimeFormat narrow/long 的英文输出）
+    [r"^(\d+)\s+seconds?\s+ago$", "$1 秒前"],
+    [r"^(\d+)\s+minutes?\s+ago$", "$1 分钟前"],
+    [r"^(\d+)\s+hours?\s+ago$", "$1 小时前"],
+    [r"^(\d+)\s+days?\s+ago$", "$1 天前"],
+    [r"^(\d+)\s+weeks?\s+ago$", "$1 周前"],
+    [r"^(\d+)\s+months?\s+ago$", "$1 个月前"],
+    [r"^(\d+)\s+years?\s+ago$", "$1 年前"],
+    [r"^in\s+(\d+)\s+seconds?$", "$1 秒后"],
+    [r"^in\s+(\d+)\s+minutes?$", "$1 分钟后"],
+    [r"^in\s+(\d+)\s+hours?$", "$1 小时后"],
+    [r"^in\s+(\d+)\s+days?$", "$1 天后"],
+    [r"^in\s+(\d+)\s+weeks?$", "$1 周后"],
+    [r"^in\s+(\d+)\s+months?$", "$1 个月后"],
+    [r"^in\s+(\d+)\s+years?$", "$1 年后"],
+    [r"^yesterday$", "昨天"],
+    [r"^today$", "今天"],
+    [r"^tomorrow$", "明天"],
+    [r"^just now$", "刚刚"],
+    [r"^last week$", "上周"],
+    [r"^next week$", "下周"],
+    [r"^last month$", "上个月"],
+    [r"^next month$", "下个月"],
+
+    # 计数短语
     [r"^(\d+)\s+MCP\s+servers?$", "$1 个 MCP 服务器"],
-    [r"^(\d+)\s+sessions?$", "$1 个会话"],
     [r"^(\d+)\s+files?\s+changed$", "$1 个文件已更改"],
-    [r"^(\d+)\s+file\s+changed$", "$1 个文件已更改"],
+    [r"^(\d+)\s+files?$", "$1 个文件"],
     [r"^(\d+)\s+insertions?\(\+\)$", "$1 行插入(+)"],
     [r"^(\d+)\s+deletions?\(-\)$", "$1 行删除(-)"],
     [r"^(\d+)\s+issues?\s+found$", "发现 $1 个问题"],
     [r"^(\d+)\s+bugs?\s+found$", "发现 $1 个缺陷"],
+    [r"^(\d+)\s+sessions?$", "$1 个会话"],
     [r"^(\d+)\s+comments?$", "$1 条评论"],
     [r"^(\d+)\s+results?$", "$1 个结果"],
     [r"^(\d+)\s+members?$", "$1 名成员"],
     [r"^(\d+)\s+repositories$", "$1 个仓库"],
-    [r"^(\d+)\s+minutes?\s+ago$", "$1 分钟前"],
-    [r"^(\d+)\s+hours?\s+ago$", "$1 小时前"],
-    [r"^(\d+)\s+days?\s+ago$", "$1 天前"],
-    [r"^(\d+)\s+seconds?\s+ago$", "$1 秒前"],
-    [r"^in\s+(\d+)\s+minutes?$", "$1 分钟后"],
-    [r"^in\s+(\d+)\s+hours?$", "$1 小时后"],
-    [r"^in\s+(\d+)\s+days?$", "$1 天后"],
-    [r"^Just now$", "刚刚"],
+    [r"^(\d+)\s+selected$", "已选 $1 项"],
+
+    # 提示行前缀
     [r"^Tip:\s*(.+)$", "提示：$1"],
-    [r"^Learn more\s*(.*)$", "了解更多$1"],
 ]
 
 

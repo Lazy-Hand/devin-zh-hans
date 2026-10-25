@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.2.0
+
+修掉三个让汉化「装了却几乎看不见效果」的实质性 bug。菜单栏与侧边栏在 1.1.x 已生效，
+但设置页、输入框提示、会话时间这些要么整片英文，要么译错。
+
+- **修复：webapp i18next 载荷用了扁平 key，一条都匹配不到。**
+  Devin 的 en 资源是**嵌套命名空间**结构（`yl={composerTips:ma, nav:$a, …}`），
+  i18next 查的是 `composerTips.newSession`。1.1.x 用正则 `key: 值` 扫出 4,575 个扁平 key
+  并注入成 `{"newSession": …}`，命中率为 0。改为结构化解析建出真实的树：
+  **317 个命名空间 / 19,269 个 key**。`tools/extract_webapp_i18n.js`。
+- **修复：漏掉了 `JSON.parse(\`…\`)` 内联资源。**
+  设置页那一大片文案（`settings` 命名空间 **3,938 个 key**）是内联 JSON 字符串，
+  不是对象字面量，整个没被扫到 —— 这就是截图里「外观 / 语言 / 通知」整页英文的原因。
+  解析器现在同时处理两种写法，并修正模板字符串 → JSON 的转义层级（`\"` 与 `\u`）。
+- **修复：DOM 词典用 NLS key 建表而不是英文原文。**
+  `desktopShell.goBack` 这种 key 永远不会出现在界面文本里。改为从
+  `nls.keys.json`（顺序）+ `nls.messages.json`（值）反查英文原文，配
+  `tools/dict/ui-common-zh.json` 人工校订层处理一词多义
+  （`Forward` 前进 vs 转发、`Review` 评审 vs 审阅、`View` 视图 vs 查看）。
+- **修复：官方语言包把 Devin 译成了别的品牌。**
+  官方 zh-hans 是给 VS Code 做的：`Devin Console` → "VS Code 控制台"、
+  `Restart Devin` → "重新启动 VS Code"、`mcp.discovery.source.windsurf` → "Windsurf"。
+  新增 `tools/data/zh/g8-brand.json`，只回正「英文原文里没有 VS Code/Windsurf、
+  译文里却有」的 **59** 条 —— 无歧义才改。
+- **修复：相对时间不经过 i18n。** `yesterday` / `3 days ago` 由
+  `Intl.RelativeTimeFormat(locale)` 生成，查不到 key。DOM 层新增 36 条正则规则
+  覆盖秒/分/时/天/周/月/年与 `in N x`、`yesterday/today/tomorrow/just now`。
+- **验证加强：断言载荷 key 真能查到。** 之前只检查「载荷存在」，所以上面那些 bug 全漏了。
+  现在 `verify_layers.js` 会解析载荷、逐 key 比对 en 资源树，并抽查实际条目：
+  `载荷 key 命中率 100.0%（11413/11413）`。
+- 数据：webapp 覆盖从 6,576 → **11,413** 条（309 个命名空间）；
+  DOM 词典 16,518 → **20,220** 条；新增设置页译文 2,444 条。
+
 ## 1.1.0
 
 适配 **Devin 3.11.216**（`windsurfVersion` 3.10.67 → 3.11.216）。这次更新换了 Agent UI 的实现，
@@ -9,29 +42,20 @@
   Devin 3.11 起 Agent 侧边栏由 `out/vs/workbench/devin-webapp-host/`（约 91 MB、1,800+ chunk）
   承担，由 `workbench.desktop.main.js` 用 `import("@devin/webapp-host")` 挂进 workbench 渲染进程。
   它自带 i18next 与 en/ja/pt/es 四份资源，**没有中文**。本插件沿用 Devin 自己的实例，
-  在 `Mt.isInitialized||Eu()` 后追加 `addResourceBundle("en","translation",{…})`，
-  按英文 key 把 **4,575** 条中文深合并进 `en`。不新增 locale、不改 `lng`、不动组件代码。
+  在 `Mt.isInitialized||Eu()` 后追加 `addResourceBundle("en","translation",{…})`。
+  不新增 locale、不改 `lng`、不动组件代码。
 - **重做第 2 层：内置扩展从 1 个扩到 5 个。**
   新增 `windsurf-dev-containers` / `windsurf-remote-devin` / `windsurf-remote-openssh` /
   `windsurf-remote-wsl`，字段数 176 → **254**。改为写 `package.nls.json` +
-  `package.nls.zh-cn.json` 走 VS Code 自己的 `getLocalizedMessages` 路径，
-  不再依赖注册语言包 bundle。
+  `package.nls.zh-cn.json` 走 VS Code 自己的 `getLocalizedMessages` 路径。
 - **语言包补齐新版缺口。** 新增 162 条译文（`tools/data/zh/g6.json`），
   主要是新的桌面壳菜单栏（55 条 `&&` 加速键）、Devin Cloud 保存通知（24 条）、
   webapp 命令与 ACP 远程主机（17 + 6 条）、SSH 会话窗口等。
-  同时用当前构建的 `nls.keys.json` **剔除 1,004 条死条目**（官方语言包自带的、
-  本构建已不存在的 key），合并版从 22,003 → **21,161** 条，全部可查。
-- **DOM 词典扩容。** 19,565 → **25,999** 条（新增 webapp 专有文案 7,056 条），
-  正则规则 4 → 22 条（相对时间、计数短语、`Tip:` 等模板）。
-  跳过规则更新到新版 DOM 结构：新增 `[data-slate-node]`、`[data-devin-input-box]`、
-  `.markdown-body`、`.cm-content`，并加 CJK 短路（已含中文的节点不再处理）。
-- **完整性校验从 11 项变 12 项**（新版 `product.json.checksums` 多了
-  `vs/workbench/devin-webapp-host/index.js`）。同步逻辑改为遍历全部条目，不再写死。
+  同时用当前构建的 `nls.keys.json` **剔除 1,004 条死条目**，合并版 22,003 → **21,161** 条。
+- **完整性校验从 11 项变 12 项**（新版多了 `vs/workbench/devin-webapp-host/index.js`）。
+  同步逻辑改为遍历全部条目，不再写死。
 - **提升可验证性。** 新增 `tools/verify_layers.js`：给 `extension.js` 喂假 `vscode` 模块，
-  在 `resources/app` 的沙盒副本上跑真实落地逻辑并断言四层状态，验证幂等（第二次零写入）。
-  沙盒通过 `DEVIN_INSTALL` / `DEVIN_HOME` 环境变量指向，不写系统目录。
-- 删除被取代的 `tools/patch_dom_inject.py`、`patch_agent_ui.py`、`patch_ui_strings.py`
-  与 `assets/windsurf.en2key.json`、`assets/windsurf.package.nls.json`（新路线不再需要值替换表）。
+  在 `resources/app` 的沙盒副本上跑真实落地逻辑并断言，验证幂等（第二次零写入）。
 
 ## 1.0.2
 

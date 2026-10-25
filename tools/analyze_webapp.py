@@ -1,184 +1,144 @@
 # -*- coding: utf-8 -*-
 """
-analyze_webapp.py — 分析新版 Agent UI（devin-webapp-host）的 i18n 资源与词典缺口
+analyze_webapp.py — 分析新版 Agent UI（devin-webapp-host）的 i18n 资源与缺口
 
-背景（Devin 3.11.216 起）：
-  Agent 侧边栏不再是 `windsurf-chat-client/index.js`，而是新的 webapp-host：
+背景（Devin 3.11 起）：
+  Agent 侧边栏由 `out/vs/workbench/devin-webapp-host/` 承担（87 MB / 约 1,877 chunk），
+  由 `workbench.desktop.main.js` 用 `import("@devin/webapp-host")` 挂进 workbench 渲染进程。
 
-      out/vs/workbench/devin-webapp-host/
-          index.js            ← 稳定入口，被 workbench.desktop.main.js `import("@devin/webapp-host")`
-          assets/*.js         ← 1800+ 个 rolldown chunk（约 91 MB）
-          splash.html         ← 启动占位
-          index.css
+  它自建 i18next，`entry-host-editor-mode-menu-*.js` 里：
 
-  它在渲染进程里自建 i18next 实例（`entry-host-editor-mode-menu-*.js` 里的 `Eu()`）：
+      let n = { en: { translation: t ? … : mu, review: hu } }
+      … Mt.use(Mn).init({ resources: n, lng: "en", fallbackLng: "en",
+                          ns: ["translation","review"], defaultNS: "translation" })
+      gu = [{code:"en"}, {code:"ja",…}, {code:"pt",…}, {code:"es",…}]     ← 没有中文
 
-      resources: { en: { translation: yl, review: lu } }, lng: "en", fallbackLng: "en"
-      gu = [{code:"en"},{code:"ja",…},{code:"pt",…},{code:"es",…}]
+  **关键：资源是嵌套命名空间结构**，不是扁平 key：
 
-  即：**有真实的多语言机制**（ja / pt / es 各有一份 chunk），但没有中文。
+      yl = { composerTips: ma, nav: $a, common: ga, apps: …, … }
+      ma = { newSession: "Tip: Start a new session (<shortcut/>)", … }
+      $a = { newSession: "New session", security: "Security", … }
 
-  本脚本据此产出三样东西：
-    1) en 资源里的 (key, 英文)，并用 ja/es/pt chunk 的 key 集合交叉验证，
-       只有出现在语言包里的 key 才算真 i18n key（把组件局部变量名过滤掉）；
-    2) 与现有词典比对，算出缺口；
-    3) 缺口按「短句优先」排序写成待译清单，供人工/agent 翻译。
+  i18next 查的是 "composerTips.newSession"。早期版本按 `key: 值` 正则扫出 4,575 个
+  扁平 key 并注入成 { "newSession": … }，**永远匹配不到**，等于一条都没生效。
+  现在改为调用 `tools/extract_webapp_i18n.js`（结构化解析，不执行代码）拿到真正的树。
 
 输出：
-    tools/data/webapp.json             完整结构化结果
-    tools/data/webapp.md               覆盖率报告
-    tools/data/webapp-todo.json        待译清单 {"en": ""}（值为空，等填）
+    tools/data/webapp-en.json    {namespaces: {ns: {key: en}}, stats}
+    tools/data/webapp.json       + covered / missing / todo
+    tools/data/webapp.md         覆盖率报告
 """
-import json, os, re, sys, collections
+import json, os, re, subprocess, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _paths import DEVIN_APP as _APP, DATA as _DATA, DICT as _DICT, ASSETS as _ASSETS  # noqa: E402
+from _paths import DEVIN_APP as _APP, DATA as _DATA, DICT as _DICT, PLUGIN as _PLUGIN  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-HOST = os.path.join(_APP or "", "out", "vs", "workbench", "devin-webapp-host")
-ASSET_DIR = os.path.join(HOST, "assets")
-
-LOCALE_CHUNK = re.compile(r"^(ja|es|pt|zh|ko|fr|de|ru|it|xx)-")
-PAIR = re.compile(r"""([A-Za-z_$][\w$]{0,60})\s*:\s*(?:`([^`\\$]{1,400})`|"([^"\\$]{1,400})"|'([^'\\$]{1,400})')""")
-
-# 值不像 UI 文案
-BAD_VALUE = re.compile(
-    r"\{\{"                                   # 插值模板，DOM 层匹配不到整串
-    r"|=>|\)\s*&&|\)\s*\|\||^\s*[,)\]}]"
-    r"|^#?[0-9a-fA-F]{3,8}$|^\d+(\.\d+)?(px|rem|em|ms|s|%)?$"
-    r"|^[\W_]+$|\\\\|\\u[0-9a-f]{4}"
-    r"|\.(js|mjs|ts|tsx|css|json|sh|yml|yaml)\b"
-    r"|https?://|^\./|^/|^-{1,2}[a-z]"
-    r"|^[a-z][A-Za-z0-9]*(\.[A-Za-z0-9_]+)+$"  # a.b.c 形式的 i18n key 引用
-    r"|^[a-z][a-z0-9]*([A-Z][a-z0-9]+)+$"      # camelCase 标识符
-    r"|^[A-Z][A-Z0-9_]+$"                      # CONSTANT
-    r"|[A-Za-z0-9_]\.[A-Za-z0-9_]+\(\)"        # foo.bar() 调用串
-)
-
-
-def read(fn):
-    try:
-        return open(os.path.join(ASSET_DIR, fn), "r", encoding="utf-8", errors="ignore").read()
-    except OSError:
-        return ""
-
-
-def pairs_of(text):
-    out = {}
-    for m in PAIR.finditer(text):
-        v = (m.group(2) or m.group(3) or m.group(4) or "").strip()
-        if v:
-            out.setdefault(m.group(1), v)
-    return out
+EN_JSON = os.path.join(_DATA, "webapp-en.json")
 
 
 def load_dict():
+    """英文原文 -> 中文。优先级：webapp 专用 > 人工校订 > 通用词表。"""
     d = {}
-    for p in (os.path.join(_ASSETS, "ui-dict.json"), os.path.join(_ASSETS, "ui-strings-zh.json")):
+    for p in (os.path.join(_PLUGIN, "assets", "ui-dict.json"),
+              os.path.join(_PLUGIN, "assets", "ui-strings-zh.json")):
         if os.path.exists(p):
             with open(p, "r", encoding="utf-8") as f:
                 d.update(json.load(f))
-    p = os.path.join(_DICT, "webapp-zh.json")
-    if os.path.exists(p):
-        with open(p, "r", encoding="utf-8") as f:
-            d.update(json.load(f))
+    for p in (os.path.join(_DICT, "ui-common-zh.json"),
+              os.path.join(_DICT, "webapp-zh.json")):
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f:
+                dd = json.load(f)
+                dd.pop("_comment", None)
+                d.update(dd)
     return d
 
 
-def usable(en):
-    if not en or len(en) < 2 or len(en) > 200:
-        return False
-    if not re.search(r"[A-Za-z]", en):
-        return False
-    if BAD_VALUE.search(en):
-        return False
-    if " " not in en and en[0].islower():
-        return False
-    if len(en.split()) > 30:
-        return False
-    return True
-
-
 def main():
-    if not os.path.isdir(ASSET_DIR):
-        print("✗ 未找到 webapp-host 资产目录:", ASSET_DIR)
+    rc = subprocess.call(["node", os.path.join(os.path.dirname(__file__), "extract_webapp_i18n.js")])
+    if rc != 0 or not os.path.exists(EN_JSON):
+        print("✗ 提取 webapp i18n 资源失败")
         return 1
 
-    files = [f for f in sorted(os.listdir(ASSET_DIR)) if f.endswith(".js")]
-    locale_files = [f for f in files if LOCALE_CHUNK.match(f)]
-    en_files = [f for f in files if not LOCALE_CHUNK.match(f)]
-
-    loc_keys, loc_count = set(), {}
-    for f in locale_files:
-        ks = pairs_of(read(f))
-        loc_count[f] = len(ks)
-        loc_keys |= set(ks)
-
-    en = {}
-    for f in en_files:
-        for k, v in pairs_of(read(f)).items():
-            en.setdefault(k, (v, f))
-
-    keys = [(k, en[k][0], en[k][1]) for k in en if k in loc_keys]
-    keys.sort()
+    en = json.load(open(EN_JSON, encoding="utf-8"))
+    ns = en["namespaces"]
+    stats = en["stats"]
 
     dict_ = load_dict()
-    uniq_en = {v for _, v, _ in keys}
-    uniq_hit = {e for e in uniq_en if e in dict_}
-    missing = sorted(e for e in uniq_en if e not in dict_)
 
-    todo = [e for e in missing if usable(e)]
+    # 统计：按 key 计数，同时按英文原文去重
+    total_keys = 0
+    covered_keys = 0
+    uniq_en = set()
+    uniq_hit = set()
+    missing = []
+    todo = []
 
+    for name, kv in ns.items():
+        for k, v in kv.items():
+            if not isinstance(v, str):
+                continue
+            total_keys += 1
+            uniq_en.add(v)
+            z = dict_.get(v)
+            if z and z.strip() != v.strip():
+                covered_keys += 1
+                uniq_hit.add(v)
+            else:
+                missing.append({"ns": name, "key": k, "en": v})
+                if 2 <= len(v) <= 200 and re.search(r"[A-Za-z]", v):
+                    todo.append(v)
+
+    todo = sorted(set(todo))
     out = {
-        "host": HOST,
-        "chunks": len(en_files),
-        "localeChunks": loc_count,
-        "localeKeys": len(loc_keys),
-        "keys": [{"key": k, "en": v, "chunk": c} for k, v, c in keys],
-        "stats": {
-            "i18nKeys": len(keys),
-            "uniqueEnglish": len(uniq_en),
-            "covered": len(uniq_hit),
-            "missing": len(missing),
-            "todo": len(todo),
-        },
+        "chunk": stats.get("chunk"),
+        "namespaces": len(ns),
+        "totalKeys": total_keys,
+        "uniqueEnglish": len(uniq_en),
+        "coveredKeys": covered_keys,
+        "coveredEnglish": len(uniq_hit),
+        "missing": len(missing),
+        "todo": len(todo),
+        "missingList": missing,
     }
-    os.makedirs(_DATA, exist_ok=True)
     with open(os.path.join(_DATA, "webapp.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(out, f, ensure_ascii=False, indent=1)
     with open(os.path.join(_DATA, "webapp-todo.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump({e: "" for e in todo}, f, ensure_ascii=False, indent=0)
 
-    by_chunk = collections.Counter(c for _, _, c in keys)
     A = ["# webapp-host（新版 Agent UI）i18n 资源与词典覆盖\n",
-         "- 目录: `%s`" % HOST,
-         "- chunk 数: **%d**（另有语言包 chunk %d 个）" % (len(en_files), len(locale_files))]
-    for f, n in sorted(loc_count.items()):
-        A.append("  - `%s` → %d 个 key" % (f, n))
-    A += ["- 语言包 key 并集: **%d**" % len(loc_keys),
-          "- en 资源里能对上语言包 key 的: **%d**" % len(keys),
-          "- 去重后英文原文: **%d**" % len(uniq_en),
-          "- 词典已覆盖: **%d** (%.1f%%)" % (len(uniq_hit), len(uniq_hit) / max(len(uniq_en), 1) * 100),
-          "- 仍缺中文: **%d**（其中可直接做整串替换的 %d）" % (len(missing), len(todo)),
-          "\n## 英文资源最集中的 chunk\n", "| 条数 | chunk |", "|---:|---|"]
-    for c, n in by_chunk.most_common(15):
-        A.append("| %d | `%s` |" % (n, c))
-    A += ["\n## 缺口样例（前 80）\n", "| key | 英文 |", "|---|---|"]
-    seen, shown = set(), 0
-    for k, v, c in keys:
-        if v in dict_ or v in seen or not usable(v):
+         "- i18n chunk: `%s`" % stats.get("chunk"),
+         "- 命名空间: **%d**" % len(ns),
+         "- 叶子 key: **%s**" % format(total_keys, ","),
+         "- 去重后英文原文: **%s**" % format(len(uniq_en), ","),
+         "- 词典已覆盖: **%s** (%.1f%%)"
+         % (format(len(uniq_hit), ","), len(uniq_hit) / max(len(uniq_en), 1) * 100),
+         "- 仍缺中文: **%s**（其中可整串替换 %s）"
+         % (format(len(uniq_en) - len(uniq_hit), ","), format(len(todo), ",")),
+         "\n## 最大的命名空间\n", "| 条数 | 命名空间 |", "|---:|---|"]
+    top = sorted(ns.items(), key=lambda kv: -len(kv[1]))[:15]
+    for k, v in top:
+        A.append("| %d | `%s` |" % (len(v), k))
+    A += ["\n## 缺口样例（前 60）\n", "| 命名空间 | key | 英文 |", "|---|---|---|"]
+    seen = set()
+    n = 0
+    for m in missing:
+        if m["en"] in seen:
             continue
-        seen.add(v)
-        A.append("| `%s` | %s |" % (k, v.replace("|", "\\|")[:110]))
-        shown += 1
-        if shown >= 80:
+        seen.add(m["en"])
+        A.append("| `%s` | `%s` | %s |"
+                 % (m["ns"], m["key"], m["en"].replace("|", "\\|")[:100]))
+        n += 1
+        if n >= 60:
             break
     with open(os.path.join(_DATA, "webapp.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(A) + "\n")
 
-    print("OK i18nKeys=%d uniqueEn=%d covered=%d missing=%d todo=%d"
-          % (len(keys), len(uniq_en), len(uniq_hit), len(missing), len(todo)))
+    print("OK ns=%d keys=%d uniqueEn=%d covered=%d missing=%d todo=%d"
+          % (len(ns), total_keys, len(uniq_en), len(uniq_hit),
+             len(uniq_en) - len(uniq_hit), len(todo)))
     return 0
 
 

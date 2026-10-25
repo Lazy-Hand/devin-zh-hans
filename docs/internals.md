@@ -139,7 +139,26 @@ Mt.isInitialized || Eu()
   而 Devin 自己的 `englishOverrides` 入口只服务 `en`，改 locale 反而更脆弱；
 - 不新增 locale 就不会影响 ja / pt / es 用户。
 
-### 5.4 DOM 层仍然需要
+### 5.4 资源有两种写法，第二种漏掉会丢掉设置页整页
+
+en 资源在 chunk 里以两种形式出现：
+
+```js
+// ① 对象字面量（模板/普通字符串）
+ma={agentLocation:`Tip: Run Devin in the cloud…`, sessionNav:`Tip: Move between sessions (<up/> / <down/>)`,…}
+
+// ② 内联 JSON 字符串
+Ss=JSON.parse(`{"wikiEffortLow":"Low","wikiEffortMedium":"Medium",…}`)
+```
+
+**设置页那 3,938 个 key 全在 ② 里**（`settings` 命名空间）。只扫 ① 的话，
+读出的树只有 8,189 个 key，设置页的「外观 / 语言 / 通知」整页会保持英文。
+
+解析 ② 还要处理转义层级：模板字符串里的 `\"` 在 JSON 里应当是 `\"`（保留反斜杠），
+`\u` 要连后面 4 位一起搬。直接 `JSON.parse` 原文会报
+`Expecting ',' delimiter` 或 `Invalid \escape`。
+
+### 5.5 DOM 层仍然需要
 
 即便有 i18n，仍有大量文案来自运行时数据（会话标题、仓库名、动态状态、计数值），
 以及被拆成多个文本节点的句子。这部分只能 DOM 兜底。

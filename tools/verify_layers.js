@@ -239,6 +239,67 @@ setTimeout(() => {
     ok(s.includes('addResourceBundle("en","translation"'), '载荷使用 addResourceBundle("en","translation")');
     ok(s.includes('Mt.isInitialized||Eu()'), '原始初始化锚点保留（不破坏 Devin 自身逻辑）');
     ok(s.split('/*devin-zh*/').length === 2, '载荷只有一份（幂等）');
+
+    // ★ 关键断言：载荷的 key 必须真的能在 en 资源树里查到。
+    //   早期版本注入的是扁平 key（"newSession"），而 i18next 查的是
+    //   "composerTips.newSession"，看着 4,575 条实际一条都没命中。
+    const enPath = path.join(ROOT, 'tools', 'data', 'webapp-en.json');
+    if (fs.existsSync(enPath)) {
+      const enNs = JSON.parse(fs.readFileSync(enPath, 'utf8')).namespaces;
+      // 从载荷里抠出 JSON 对象
+      const a = s.indexOf('/*devin-zh*/');
+      const b = s.indexOf('/*/devin-zh*/');
+      const body = s.slice(a, b);
+      const jm = body.match(/addResourceBundle\("en","translation",(\{[\s\S]*\}),!0,!0\)$/);
+      if (!jm) {
+        ok(false, '载荷 JSON 无法解析');
+      } else {
+        let payload = null;
+        try { payload = JSON.parse(jm[1]); } catch (e) { ok(false, '载荷 JSON 解析失败: ' + e.message); }
+        if (payload) {
+          const nsList = Object.keys(payload);
+          const bad = nsList.filter((ns) => !(ns in enNs));
+          ok(bad.length === 0,
+            '载荷命名空间全部存在于 en 资源（' + nsList.length + ' 个'
+            + (bad.length ? '，未知 ' + bad.length + ' 个: ' + bad.slice(0, 3).join(',') : '') + '）');
+
+          // 抽样：每个命名空间至少一半的 key 能在 en 里找到
+          let checked = 0, found = 0, unknownSamples = [];
+          for (const ns of nsList) {
+            const src = enNs[ns];
+            if (!src) continue;
+            for (const k of Object.keys(payload[ns])) {
+              checked++;
+              if (k in src) found++;
+              else if (unknownSamples.length < 5) unknownSamples.push(ns + '.' + k);
+            }
+          }
+          const ratio = checked ? found / checked : 1;
+          ok(ratio >= 0.95,
+            '载荷 key 命中率 ' + (ratio * 100).toFixed(1) + '%（' + found + '/' + checked + '）'
+            + (unknownSamples.length ? ' 未命中如: ' + unknownSamples.join(', ') : ''));
+
+          // 抽样截图里的实际条目
+          const probes = ['composerTips.sessionNav', 'composerTips.newSession', 'nav.newSession',
+            'nav.security', 'agents.local'];
+          for (const p of probes) {
+            let cur = payload, hitv = null;
+            for (let i = p.split('.').length; i > 0; i--) {
+              const parts = p.split('.');
+              const ns = parts.slice(0, i).join('.');
+              if (payload[ns]) {
+                cur = payload[ns]; hitv = cur;
+                for (const q of parts.slice(i)) {
+                  hitv = hitv && typeof hitv === 'object' ? hitv[q] : undefined;
+                }
+                break;
+              }
+            }
+            ok(typeof hitv === 'string', '抽查 ' + p + ' → ' + (typeof hitv === 'string' ? hitv : '(未覆盖)'));
+          }
+        }
+      }
+    }
   }
 
   // 4) DOM

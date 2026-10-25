@@ -55,11 +55,27 @@ python tools/build_vsix.py            # ⑥ 打包
 
 用途：判断一次 Devin 更新引入了多少新字符串。3.11.216 → 缺口 162 条。
 
-### ② `analyze_webapp.py` — Agent UI 的 i18n 分析
+### ② `analyze_webapp.py` + `extract_webapp_i18n.js` — Agent UI 的 i18n 分析
 
-从 `devin-webapp-host/assets/` 里抽取 `key: 文案` 对，并用 `ja` / `es` / `pt` 语言包 chunk
-的 key 集合做**交叉验证** —— 只有同时出现在语言包里的 key 才算真 i18n key，
-这一步把噪声从 2 万降到 6 千。
+`extract_webapp_i18n.js` 从 i18n 入口 chunk 里还原**带命名空间**的 en 资源树。
+
+关键点：资源有两种写法，都必须扫。
+
+```js
+// ① 对象字面量
+ma={sessionNav:`Tip: Move between sessions (<up/> / <down/>)`,…}
+// ② 内联 JSON 字符串 —— 设置页 3,938 个 key 全在这里
+Ss=JSON.parse(`{"displayLanguage":"Display language",…}`)
+```
+
+只扫 ① 会得到 8,189 个 key，设置页整页英文；两种都扫得到 **317 个命名空间 / 19,269 个 key**。
+解析 ② 需要把模板字符串的转义还原成 JSON 层级（`\"`、`\uXXXX`），否则会
+`Expecting ',' delimiter` / `Invalid \escape`。
+
+脚本用**结构化解析**而不是 `vm` 执行 —— 这些字面量里夹着 IIFE 和跨 chunk 引用，
+执行会抛 `n is not a function`。
+
+产物 `data/webapp-en.json` 给 `analyze_webapp.py` 与 `build_patch.py` 共用。
 
 输出：
 
