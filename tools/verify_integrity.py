@@ -178,3 +178,19 @@ print("OK checksums=%s unresolved=%d nozh=%d supp=%d webapp=%s"
          "injected" if chunk else "missing"))
 
 
+
+# ── 第 3 层运行时验证：注入的中文必须真的能被 i18next 查到 ──
+# 光检查「文件里有载荷」不够 —— 曾经载荷完整存在，但因为插在 init 之后被覆盖，
+# 界面仍显示原始 key。这里跑一次真实的合并 + key 查找。
+import subprocess as _sp
+_rt = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_runtime_merge.js')
+if os.path.exists(_rt):
+    _r = _sp.run(['node', _rt], capture_output=True, text=True, encoding='utf-8', errors='replace')
+    if _r.returncode == 0:
+        print('✓ webapp 运行时查找验证通过（中文可被 i18next 查到）')
+    else:
+        print('✗ webapp 运行时查找验证失败')
+        print((_r.stdout or '')[-1200:])
+        ok = False
+else:
+    print('· 跳过 webapp 运行时验证（未找到 test_runtime_merge.js）')

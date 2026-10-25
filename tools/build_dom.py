@@ -194,6 +194,17 @@ RUNTIME = r"""/* devin-zh-dom.js — Devin 界面简体中文（DOM 层）
     /* webapp-host 挂载后布局会整体重排，补两轮扫描 */
     window.setTimeout(rescan, 400);
     window.setTimeout(rescan, 1500);
+    window.setTimeout(rescan, 4000);
+    /* 兜底巡检：会话列表 / 相对时间这类由 Intl.RelativeTimeFormat 生成、
+       且会被 React 重新水合的文本，MutationObserver 偶尔收不到（节点被复用后
+       只改 textContent 且不在我们观察的祖先链上）。低频补扫很便宜：只走 TreeWalker，
+       已是中文的节点被 CJK 短路，实际开销接近零。 */
+    var ticks = 0;
+    var timer = window.setInterval(function () {
+      ticks++;
+      rescan();
+      if (ticks >= 30) window.clearInterval(timer);   /* 约 60 秒后停 */
+    }, 2000);
     console.log('[devin-zh] DOM 翻译器已加载：词典 ' + Object.keys(DICT).length
       + ' 条 / 规则 ' + RULES.length + ' 条');
   }

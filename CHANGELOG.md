@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.2.1
+
+修掉一个比 1.2.0 更致命的时序 bug：**webapp 的中文资源从来没真正进入 i18next**。
+界面因此出现两种症状：单词恰好被 DOM 层翻成的（安全 / 评审 / 知识库）是中文，
+其余位置直接暴露**原始 i18n key**（`sidebar.automations`、`sidebar.recent`），
+输入框提示行 `Tip: Hide or show the sidebar` 也保持英文。
+
+- **根因：`addResourceBundle` 的调用时机被 init 覆盖。**
+  1.2.0 注入的是 `Mt.isInitialized||Eu(), Mt.addResourceBundle("en","translation",{…})`。
+  i18next 的 `initAsync` 默认 `true`，`init()` 完成时会用 `resources` 覆盖已有 bundle，
+  于是后加的中文被吃掉 —— 文件里载荷完整、验证脚本全绿，界面却是原始 key。
+- **改为合并进 `resources` 对象本身。** `mu` 就是英文资源（`mu=yl`），
+  在 `Mt.isInitialized||Eu()` **之前**插 `Object.assign(mu||{}, 中文)`，
+  中文直接成为 `init({resources})` 的一部分，与英文同源同寿命，不依赖任何时序。
+- **修掉尾逗号导致的语法错误。** 锚点后原本有逗号，插在锚点前再拼接会留下
+  `…,Mt.isInitialized||Eu(),}`，整个 chunk 语法错误、Devin 起不来。已收敛并加断言。
+- **验证从「文件里有载荷」升级到「i18next 真的能查到」。**
+  新增 `tools/test_runtime_merge.js`：真实执行注入语句、模拟 `t()` 查找，
+  9 条断言覆盖截图里出问题的每一处；已接入 `verify_integrity.py`。
+  `verify_layers.js` 增加三条硬断言：
+  `载荷位于初始化锚点之前`、`不是 addResourceBundle 形态`、`锚点后无残留尾逗号`。
+- **DOM 层加兜底巡检。** 会话列表的相对时间由 `Intl.RelativeTimeFormat` 生成、
+  且会被 React 复用节点重新水合，`MutationObserver` 偶尔收不到。
+  启动后 60 秒内每 2 秒补扫一次（已是中文的节点被 CJK 短路，开销接近零）。
+- `.backup`（2.2 MB 原始 chunk）不再打进 VSIX。
+
 ## 1.2.0
 
 修掉三个让汉化「装了却几乎看不见效果」的实质性 bug。菜单栏与侧边栏在 1.1.x 已生效，

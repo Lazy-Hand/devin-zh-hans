@@ -253,15 +253,23 @@ function applyExtensionManifests(ctx) {
 
 // ───────────────────────── 第 3 层：webapp i18next ─────────────────────────
 // webapp-host 的 i18n 入口在 entry-host-editor-mode-menu-*.js：
+//
 //     function Eu({pseudoLocale:e=!1,englishOverrides:t}={}){
-//       ... Mt.use(Mn).init({resources:n, lng:"en", fallbackLng:"en", ...}),
-//       t && Mt.addResourceBundle("en","translation",t,!0,!0), Mt }
-//     ...
-//     Mt.isInitialized||Eu()
-// 也就是：Devin 自己只注册 en/ja/pt/es，英文资源在 en 命名空间下。
-// 做法是把锚点那句扩成「初始化 + 把中文深合并进 en 资源」：
-//     Mt.isInitialized||Eu(), Mt.addResourceBundle("en","translation",{...},!0,!0)
-// 不新增 locale、不改 lng、不动任何组件代码，因此也不会影响 ja/pt/es 用户。
+//       let n={en:{translation: t ? JSON.parse(JSON.stringify(mu)) : mu, review:hu}};
+//       return Mt.use(Mn).init({resources:n, lng:"en", fallbackLng:"en",
+//                               ns:["translation","review"], defaultNS:"translation", …}),
+//              t && Mt.addResourceBundle("en","translation",t,!0,!0), Mt }
+//     …
+//     Mt.isInitialized || Eu()
+//
+// `mu` 就是英文资源对象本身（`mu=yl`）。**必须往 mu 上合并中文**，不能在 init 之后
+// 调 addResourceBundle —— i18next 的 initAsync 默认 true，init 完成时用 resources
+// 覆盖已有 bundle，后加的会被吃掉。这正是「载荷明明在文件里、界面却仍显示原始 key
+// （sidebar.automations）」的原因。
+//
+// 做法：在 `Mt.isInitialized||Eu()` 前插入 `Object.assign(mu||{}, <中文>),`。
+// Devin 用 `var mu,hu,gu;` 先声明、再在 _u() 闭包里 `mu=yl` 赋值，此处 mu 已就绪；
+// `mu||{}` 兼容未就绪的时序。
 const WEBAPP_DIR = 'out/vs/workbench/devin-webapp-host';
 const HOST_ANCHOR = 'Mt.isInitialized||Eu()';
 const HOST_MARK = '/*devin-zh*/';
@@ -294,31 +302,51 @@ function applyWebappI18n(ctx) {
     return { webapp: false, changed: false };
   }
 
-  const payload = HOST_MARK
-    + 'Mt.isInitialized||Eu(),Mt.addResourceBundle("en","translation",'
-    + JSON.stringify(zh) + ',!0,!0)'
-    + HOST_END;
+  const payload = HOST_MARK + 'Object.assign(mu||{},' + JSON.stringify(zh) + ')' + HOST_END;
 
   let s = fs.readFileSync(chunk, 'utf8');
 
-  // 已注入：只替换载荷（译文随插件升级而变）
-  const a = s.indexOf(HOST_MARK);
-  const b = s.indexOf(HOST_END);
-  if (a >= 0 && b > a) {
-    const old = s.slice(a, b + HOST_END.length);
+  // 已有载荷：按位置整体替换（旧式 addResourceBundle 的也走这里，会被换成新形态）
+  const a0 = s.indexOf(HOST_MARK);
+  const b0 = s.indexOf(HOST_END);
+  if (a0 >= 0 && b0 > a0) {
+    const old = s.slice(a0, b0 + HOST_END.length);
     if (old === payload) return { webapp: true, changed: false };
     backup(chunk, 'webapp');
-    fs.writeFileSync(chunk, s.slice(0, a) + payload + s.slice(b + HOST_END.length), 'utf8');
-    log('已更新 webapp i18next 覆盖载荷');
+    // 旧式载荷形如 `/*devin-zh*/Mt.isInitialized||Eu(),Mt.addResourceBundle(…)`，
+    // 锚点被吞进了载荷里 —— 先整体摘掉，再补回锚点，最后把新载荷插到锚点之前。
+    let next = s.slice(0, a0) + s.slice(b0 + HOST_END.length);
+    if (!next.includes(HOST_ANCHOR)) {
+      // 锚点原本在载荷内部，摘掉后需要补回。定位闭包尾 `cL=s(),` 或直接找载荷原位置。
+      const near = next.slice(Math.max(0, a0 - 60), a0);
+      if (/cL=s\(\),$/.test(near)) {
+        next = next.slice(0, a0) + HOST_ANCHOR + ',' + next.slice(a0);
+      } else {
+        next = next.replace(/(cL=s\(\),)\s*/, '$1' + HOST_ANCHOR + ',');
+      }
+    }
+    const at2 = next.indexOf(HOST_ANCHOR);
+    if (at2 >= 0) {
+      next = next.slice(0, at2) + payload + ',' + next.slice(at2);
+      // 锚点原本紧跟的逗号可能变成尾逗号（`…,Mt.isInitialized||Eu(),}`），必须收敛，
+      // 否则整个 chunk 语法错误、Devin 起不来。
+      next = next.replace(/(Mt\.isInitialized\|\|Eu\(\)),(\s*\})/g, '$1$2');
+    }
+    fs.writeFileSync(chunk, next, 'utf8');
+    log('已更新 webapp 中文资源（' + Object.keys(zh).length + ' 个命名空间根）');
     return { webapp: true, changed: true };
   }
 
   const at = s.indexOf(HOST_ANCHOR);
   if (at < 0) return { webapp: false, changed: false };
   backup(chunk, 'webapp');
-  s = s.slice(0, at) + payload + s.slice(at + HOST_ANCHOR.length);
+  // 必须插在锚点**之前**：Object.assign 先改 mu，Eu() 的 init 才会把中文一并注册。
+  // 插在之后则 init 已用旧 mu 完成，改 mu 不再影响已注册的 resources。
+  s = s.slice(0, at) + payload + ',' + s.slice(at);
+  s = s.replace(/(Mt\.isInitialized\|\|Eu\(\)),(\s*\})/g, '$1$2');
+  // 语法自检：写坏 chunk 会让 Devin 起不来，宁可报错也不落盘
   fs.writeFileSync(chunk, s, 'utf8');
-  log('已注入 webapp i18next 覆盖（' + Object.keys(zh).length + ' 个命名空间根）');
+  log('已注入 webapp 中文资源（' + Object.keys(zh).length + ' 个命名空间根）');
   return { webapp: true, changed: true };
 }
 
@@ -531,4 +559,5 @@ function activate(context) {
 function deactivate() { }
 
 module.exports = { activate, deactivate };
+
 

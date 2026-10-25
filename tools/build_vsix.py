@@ -31,6 +31,8 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 EXCLUDE_DIRS = {
     ".git", ".github", ".vscode", "tools", "docs", "build", ".verify",
     "node_modules", "__pycache__", ".venv",
+    # .backup 里是 patch_now.js 留的原始 webapp chunk（2.2 MB），纯本地调试产物
+    ".backup",
 }
 EXCLUDE_FILES = {
     ".gitignore", ".gitattributes", ".editorconfig", "CHANGELOG.md",

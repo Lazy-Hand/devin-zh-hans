@@ -131,15 +131,54 @@ Mt.isInitialized || Eu()
   这与 3.10 时代「chat-client 里 useTranslation 为 0、资源表是死数据」的结论相反；
 - 所以 3.11 起不必再靠 DOM 硬翻译，可以按 key 覆盖 —— 这是本插件第 3 层的由来。
 
-### 5.3 为什么用 addResourceBundle 而不是加一个 zh locale
+### 5.3 为什么不新增一个 zh locale
 
-- `addResourceBundle(lng, ns, resources, deep, overwrite)` 的第四、第五参数正好是
-  「深合并 + 覆盖」，语义等于「用中文覆盖这些英文值」；
-- 加 locale 需要改 `gu` 数组、改 `changeLanguage` 的调用点、还要维护一份完整资源，
-  而 Devin 自己的 `englishOverrides` 入口只服务 `en`，改 locale 反而更脆弱；
-- 不新增 locale 就不会影响 ja / pt / es 用户。
+- 加 locale 需要改 `gu` 数组、改 `changeLanguage` 的调用点、还要维护一份**完整**资源
+  （Devin 侧 19,269 个 key 且随版本变化），成本高且容易漏；
+- Devin 自己的 `englishOverrides` 入口只服务 `en`，改 locale 反而更脆弱；
+- 不新增 locale 就不会影响 ja / pt / es 用户；
+- 覆盖已有的 `en` 值语义上也更贴切：我们要的是「同一个 key 换一种语言显示」，
+  而不是「多一种可选语言」。
 
-### 5.4 资源有两种写法，第二种漏掉会丢掉设置页整页
+### 5.4 注入点是 mu，不是 addResourceBundle
+
+第 3 层最初写成在 `Eu()` 之后调 `addResourceBundle`：
+
+```js
+Mt.isInitialized || Eu(), Mt.addResourceBundle("en","translation",{…},!0,!0)
+```
+
+**这条路径不成立。** i18next 的 `initAsync` 默认 `true`，`init()` 是异步完成的；
+资源注册在 `loadResources` 的回调里才生效，届时会用 `resources` 对象**覆盖**
+已有 bundle。结果就是：载荷完整躺在文件里、校验全绿，界面却显示原始 key
+（`sidebar.automations`）。
+
+正确做法是改 `resources` 本身。`Eu()` 里：
+
+```js
+function Eu({pseudoLocale:e=!1,englishOverrides:t}={}){
+  let n={en:{translation: t ? JSON.parse(JSON.stringify(mu)) : mu, review:hu}};
+  return Mt.use(Mn).init({resources:n, …}), t && …, Mt
+}
+```
+
+`mu` 就是英文资源对象（`var mu,hu,gu;` 之后 `mu=yl`）。在锚点**之前**插一句：
+
+```js
+Object.assign(mu||{}, {中文}),
+Mt.isInitialized || Eu()
+```
+
+中文就成了 `init({resources})` 的一部分，和英文同源同寿命，不依赖任何时序。
+
+两个副作用要小心：
+
+- **必须插在锚点之前。** 插在其后则 `init` 已用旧 `mu` 完成，改 `mu` 不再生效。
+- **别留尾逗号。** 锚点后原本跟着 `,`，插在其前再拼 `payload + ','` 会得到
+  `…,Mt.isInitialized||Eu(),}`。整个 chunk 语法错误，Devin 直接起不来。
+  `verify_layers.js` 为此加了专门断言。
+
+### 5.5 资源有两种写法，第二种漏掉会丢掉设置页整页
 
 en 资源在 chunk 里以两种形式出现：
 
@@ -158,7 +197,7 @@ Ss=JSON.parse(`{"wikiEffortLow":"Low","wikiEffortMedium":"Medium",…}`)
 `\u` 要连后面 4 位一起搬。直接 `JSON.parse` 原文会报
 `Expecting ',' delimiter` 或 `Invalid \escape`。
 
-### 5.5 DOM 层仍然需要
+### 5.6 DOM 层仍然需要
 
 即便有 i18n，仍有大量文案来自运行时数据（会话标题、仓库名、动态状态、计数值），
 以及被拆成多个文本节点的句子。这部分只能 DOM 兜底。

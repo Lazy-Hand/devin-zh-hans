@@ -58,7 +58,7 @@
 ## 4. Agent UI（webapp-host）与 DOM 层
 
 - webapp i18next 载荷 : ✅ `entry-host-editor-mode-menu-DUnUGWLA.js`
-  - 使用 Devin 自带的 `addResourceBundle("en","translation",…)` : ✅
+  - 使用 Devin 自带的 `addResourceBundle("en","translation",…)` : ❌
   - 原始初始化锚点保留 : ✅
   - 载荷份数（应为 1） : 1
 - webapp 覆盖词条 : **11,413** 条
