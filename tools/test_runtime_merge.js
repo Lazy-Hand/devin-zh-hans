@@ -23,22 +23,11 @@ const chunkPath = path.join(APP, 'resources', 'app', 'out', 'vs', 'workbench',
   'devin-webapp-host', 'assets', 'entry-host-editor-mode-menu-DUnUGWLA.js');
 const src = fs.readFileSync(chunkPath, 'utf8');
 
-// ── 1. 抠出载荷 ──
-const mark = 'Object.assign(mu||{},';
-const i = src.indexOf(mark);
-if (i < 0) { console.error('✗ 未找到载荷'); process.exit(1); }
-const open = src.indexOf('{', i + mark.length - 1);
-let depth = 0, j = open, q = null;
-for (; j < src.length; j++) {
-  const ch = src[j];
-  if (q) { if (ch === '\\') { j++; continue; } if (ch === q) q = null; continue; }
-  if (ch === '"') { q = ch; continue; }
-  if (ch === '{') depth++;
-  else if (ch === '}') { depth--; if (depth === 0) break; }
-}
-const zh = JSON.parse(src.slice(open, j + 1));
-console.log('载荷: ' + Object.keys(zh).length + ' 个命名空间, ' +
-  Object.values(zh).reduce((a, o) => a + Object.keys(o).length, 0) + ' 条');
+// ── 1. 载荷直接用当前产物（不依赖安装目录里的历史形态）──
+const zhPath = path.join(__dirname, '..', 'assets', 'webapp-i18n.json');
+const zh = JSON.parse(fs.readFileSync(zhPath, 'utf8'));
+console.log('载荷: ' + Object.keys(zh).length + ' 个命名空间, '
+  + Object.values(zh).reduce((a, o) => a + Object.keys(o).length, 0) + ' 条');
 
 // ── 2. 模拟 Devin 的英文资源 mu（取真实 chunk 里 mu = yl 的形态）──
 // 只用截图里出现过的 key 造一个最小 mu，验证合并与查找。
@@ -60,8 +49,12 @@ const mu = {
   settings: { highContrast: 'High contrast mode', uiFont: 'Interface font' },
 };
 
-// ── 3. 执行注入语句（与文件里一字不差）──
-const stmt = 'Object.assign(mu||{},' + JSON.stringify(zh) + ')';
+// ── 3. 执行注入语句（与 extension.js 的 makePayload 一字不差）──
+const dz = "function __dz(a,b){for(var k in b){var v=b[k];"
+  + "if(v&&typeof v===\"object\"&&!Array.isArray(v)){"
+  + "__dz(a[k]&&typeof a[k]===\"object\"?a[k]:(a[k]={}),v)}"
+  + "else{a[k]=v}}return a}";
+const stmt = dz + ';__dz(mu||(mu={}),' + JSON.stringify(zh) + ')';
 eval(stmt);
 
 // ── 4. 模拟 i18next 的 key 查找（defaultNS=translation，点号嵌套）──
@@ -95,6 +88,36 @@ for (const [key, want] of cases) {
   if (ok) pass++;
   console.log((ok ? '✓' : '✗') + ' ' + key.padEnd(26) + ' → ' + got);
 }
-console.log(''); console.log(pass + '/' + cases.length + ' 通过');
-process.exit(pass === cases.length ? 0 : 1);
+
+// ── 5. 深合并完整性：载荷没覆盖到的英文 key 必须仍然存在 ──
+// 这是 1.2.1 的根因。载荷只覆盖一部分 key，若用 Object.assign 浅合并，
+// 整个命名空间会被替换成只含中文子集的对象，未翻译的 key 直接消失，
+// 界面回退成显示 key 本身（localSettings.general.openEditorSettings.label）。
+console.log('\n== 深合并完整性（未覆盖的英文 key 不能丢）==');
+// 用例必须是「载荷确实没覆盖」的 key —— 否则测不出浅合并的破坏。
+// sections.devinTab / common.ok 在载荷里没有中文，合并后必须保持英文原文。
+const guards = [
+  ['localSettings', 'sections.devinTab', 'Devin Tab'],
+  ['localSettings', 'common.ok', 'Ok'],
+  ['transcript', 'someUncoveredKey', 'Untouched English'],
+];
+for (const [ns, k, en] of guards) {
+  mu[ns] = mu[ns] || {};
+  mu[ns][k] = en;
+}
+// 重新跑一遍注入（此时 mu 里已有上面这些「未覆盖」的英文）
+eval(stmt);
+let guardPass = 0;
+for (const [ns, k, en] of guards) {
+  const got = mu[ns] && mu[ns][k];
+  const ok = got === en;
+  if (ok) guardPass++;
+  console.log((ok ? '✓' : '✗') + ' ' + (ns + '.' + k).padEnd(50) + ' → ' + got);
+}
+
+const total = pass + guardPass;
+const want = cases.length + guards.length;
+console.log(''); console.log(total + '/' + want + ' 通过');
+process.exit(total === want ? 0 : 1);
+
 

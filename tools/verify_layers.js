@@ -239,13 +239,19 @@ setTimeout(() => {
     // 注入方式必须是「合并进 mu（resources 对象）」而不是 init 之后 addResourceBundle：
     // i18next 的 initAsync 默认 true，init 完成时用 resources 覆盖 bundle，
     // 后加的会被吃掉 —— 这正是界面显示原始 key 的根因。
-    ok(/\/\*devin-zh\*\/Object\.assign\(mu\|\|\{\},/.test(s),
-      '载荷合并进 resources 对象（mu），不依赖 addResourceBundle 时序');
+    // ★ 必须是「逐命名空间 Object.assign」，不能整体浅合并：
+    //   载荷只覆盖一部分 key（localSettings 199 个里 57 个），
+    //   若 Object.assign(mu, zh) 整体替换，未翻译的 7,843 个英文 key 会消失，
+    //   界面回退成显示 key 本身（localSettings.general.openEditorSettings.label）。
+    ok(/\/\*devin-zh\*\/Object\.assign\(mu[.\[]/.test(s),
+      '载荷逐命名空间合并（保留未翻译的英文 key）');
+    ok(!/\/\*devin-zh\*\/Object\.assign\(mu\|\|\{\},/.test(s),
+      '没有整体浅合并 mu 的旧形态');
     ok(!/Mt\.isInitialized\|\|Eu\(\),Mt\.addResourceBundle/.test(s),
       '没有残留旧式 addResourceBundle 载荷');
     ok(s.includes('Mt.isInitialized||Eu()'), '原始初始化锚点保留（不破坏 Devin 自身逻辑）');
     ok(s.split('/*devin-zh*/').length === 2, '载荷只有一份（幂等）');
-    // ★ Object.assign 必须在锚点之前：Eu() 的 init 才会把中文注册进 resources。
+    // ★ 深合并必须在锚点之前：Eu() 的 init 才会把中文注册进 resources。
     //   插在锚点之后则 init 已用旧 mu 完成，改 mu 不再影响已注册的 resources ——
     //   这正是界面显示原始 key（sidebar.automations）的根因。
     const posMark = s.indexOf('/*devin-zh*/');
@@ -255,58 +261,77 @@ setTimeout(() => {
     // 尾逗号会让整个 chunk 语法错误、Devin 起不来
     ok(!/Mt\.isInitialized\|\|Eu\(\)\s*,\s*\}/.test(s), '锚点后无残留尾逗号（语法安全）');
 
-    // 载荷的 key 必须真的能在 en 资源树里查到
+    // 载荷的 key 必须真的能在 en 资源树里查到。
+    // 载荷是「逐命名空间 Object.assign(mu.x||(mu.x={}),{…})」的逗号序列，
+    // 用花括号配平把每个命名空间的 {…} 抠出来，拼回 {ns: {…}} 再比对。
     const enPath = path.join(ROOT, 'tools', 'data', 'webapp-en.json');
     if (fs.existsSync(enPath)) {
       const enNs = JSON.parse(fs.readFileSync(enPath, 'utf8')).namespaces;
       const a = s.indexOf('/*devin-zh*/');
       const b = s.indexOf('/*/devin-zh*/');
       const body = s.slice(a, b);
-      const jm = body.match(/Object\.assign\(mu\|\|\{\},(\{[\s\S]*\})\)$/);
-      if (!jm) {
-        ok(false, '载荷 JSON 无法解析');
+
+      const payload = {};
+      const reAssign = /Object\.assign\(mu(?:\.([A-Za-z_$][\w$]*)|\[("(?:[^"\\]|\\.)*")\])\|\|/g;
+      let m;
+      while ((m = reAssign.exec(body))) {
+        const ns = m[1] || JSON.parse(m[2]);
+        // 跳过 `||(mu.x={})` 里那个空对象，定位真正的载荷 '{'
+        const guard = body.indexOf('={})', m.index + m[0].length);
+        const ob = guard >= 0
+          ? body.indexOf('{', guard + 4)
+          : body.indexOf('{', m.index + m[0].length);
+        if (ob < 0) continue;
+        let depth = 0, k = ob, q = null;
+        for (; k < body.length; k++) {
+          const ch = body[k];
+          if (q) { if (ch === '\\') { k++; continue; } if (ch === q) q = null; continue; }
+          if (ch === '"') { q = ch; continue; }
+          if (ch === '{') depth++;
+          else if (ch === '}') { depth--; if (depth === 0) break; }
+        }
+        try { payload[ns] = JSON.parse(body.slice(ob, k + 1)); } catch (e) { /* 跳过 */ }
+      }
+
+      const nsList = Object.keys(payload);
+      if (!nsList.length) {
+        ok(false, '载荷无法解析出命名空间');
       } else {
-        let payload = null;
-        try { payload = JSON.parse(jm[1]); } catch (e) { ok(false, '载荷 JSON 解析失败: ' + e.message); }
-        if (payload) {
-          const nsList = Object.keys(payload);
-          const bad = nsList.filter((ns) => !(ns in enNs));
-          ok(bad.length === 0,
-            '载荷命名空间全部存在于 en 资源（' + nsList.length + ' 个'
-            + (bad.length ? '，未知 ' + bad.length + ' 个: ' + bad.slice(0, 3).join(',') : '') + '）');
+        const bad = nsList.filter((ns) => !(ns in enNs));
+        ok(bad.length === 0,
+          '载荷命名空间全部存在于 en 资源（' + nsList.length + ' 个'
+          + (bad.length ? '，未知 ' + bad.length + ' 个: ' + bad.slice(0, 3).join(',') : '') + '）');
 
-          let checked = 0, found = 0, unknownSamples = [];
-          for (const ns of nsList) {
-            const src = enNs[ns];
-            if (!src) continue;
-            for (const k of Object.keys(payload[ns])) {
-              checked++;
-              if (k in src || (src[k] && typeof src[k] === 'object')) found++;
-              else if (unknownSamples.length < 5) unknownSamples.push(ns + '.' + k);
-            }
+        let checked = 0, found = 0, unknownSamples = [];
+        for (const ns of nsList) {
+          const src = enNs[ns];
+          if (!src) continue;
+          for (const k of Object.keys(payload[ns])) {
+            checked++;
+            if (k in src || (src[k] && typeof src[k] === 'object')) found++;
+            else if (unknownSamples.length < 5) unknownSamples.push(ns + '.' + k);
           }
-          const ratio = checked ? found / checked : 1;
-          ok(ratio >= 0.95,
-            '载荷 key 命中率 ' + (ratio * 100).toFixed(1) + '%（' + found + '/' + checked + '）'
-            + (unknownSamples.length ? ' 未命中如: ' + unknownSamples.join(', ') : ''));
+        }
+        const ratio = checked ? found / checked : 1;
+        ok(ratio >= 0.95,
+          '载荷 key 命中率 ' + (ratio * 100).toFixed(1) + '%（' + found + '/' + checked + '）'
+          + (unknownSamples.length ? ' 未命中如: ' + unknownSamples.join(', ') : ''));
 
-          // 抽查截图里实际出现的条目
-          const probes = ['composerTips.sessionNav', 'composerTips.sidebar', 'sidebar.automations',
-            'sidebar.recent', 'nav.newSession', 'settings.highContrast', 'settings.uiFont'];
-          for (const p of probes) {
-            let hitv = null;
-            const parts = p.split('.');
-            for (let i = parts.length - 1; i > 0; i--) {
-              const ns = parts.slice(0, i).join('.');
-              if (!payload[ns]) continue;
-              let cur = payload[ns];
-              for (const q of parts.slice(i)) {
-                cur = cur && typeof cur === 'object' ? cur[q] : undefined;
-              }
-              if (typeof cur === 'string') { hitv = cur; break; }
+        const probes = ['composerTips.sessionNav', 'composerTips.sidebar', 'sidebar.automations',
+          'sidebar.recent', 'nav.newSession', 'settings.highContrast', 'settings.uiFont'];
+        for (const p of probes) {
+          let hitv = null;
+          const parts = p.split('.');
+          for (let i = parts.length - 1; i > 0; i--) {
+            const ns = parts.slice(0, i).join('.');
+            if (!payload[ns]) continue;
+            let cur = payload[ns];
+            for (const q of parts.slice(i)) {
+              cur = cur && typeof cur === 'object' ? cur[q] : undefined;
             }
-            ok(typeof hitv === 'string', '抽查 ' + p + ' → ' + (typeof hitv === 'string' ? hitv : '(未覆盖)'));
+            if (typeof cur === 'string') { hitv = cur; break; }
           }
+          ok(typeof hitv === 'string', '抽查 ' + p + ' → ' + (typeof hitv === 'string' ? hitv : '(未覆盖)'));
         }
       }
     }
@@ -340,4 +365,6 @@ setTimeout(() => {
   origLog('\n' + (bad ? '✗ ' + bad + ' 项失败' : '✓ 全部通过'));
   process.exit(bad ? 1 : 0);
 }, 400);
+
+
 

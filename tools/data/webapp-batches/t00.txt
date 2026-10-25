@@ -1,0 +1,313 @@
+(team)
+Invalid
+Magenta
+Windows
+credits
+By model
+No items
+Testing…
+Validate
+Devin Tab
+New model
+Responses
+Agent mode
+Agent type
+Item value
+Model runs
+SWE models
+Signed out
+Agent model
+Config file
+Test failed
+Free credits
+License file
+Make default
+Other models
+credits left
+← All models
+(not applied)
+Edit raw JSON
+Jira settings
+SAML/OIDC SSO
+Search agents
+Sign in again
+Stop subagent
+Board settings
+Current window
+Edit as models
+Model settings
+Single sign-on
+Slack settings
+Spend by model
+Switched agent
+View breakdown
+Agent (default)
+Agent-triggered
+Change settings
+Close breakdown
+Configure tags…
+Separate window
+Sign-in failed.
+View all models
+Agent diff zones
+Back to settings
+Chat completions
+Purchase credits
+Search agents...
+Set as preferred
+Share user edits
+in Devin credits
+wildcard warning
+Available credits
+Devin marketplace
+Free credits used
+Incident settings
+Launched subagent
+Rate limit window
+Reset to defaults
+Select agent mode
+Analytics settings
+Available with Pro
+Configuration file
+Configure settings
+Connect on startup
+Enable auto-refill
+Hide configuration
+Max context tokens
+No matching agents
+Open Jira settings
+Sync view settings
+Agent lines written
+Agent messages sent
+Agent notifications
+Connect in settings
+Credits to purchase
+Fallback agent mode
+Manage Git settings
+No agents available
+Remove as preferred
+Sign in to continue
+Subagents (Preview)
+View usage settings
+prompt credits left
+Agent lines accepted
+Consumption by model
+Docs & agent context
+Models file contents
+Open editor settings
+Configure auto-triage
+Dollar spend by model
+No skills configured.
+Notification settings
+Read subagent results
+Try lower-cost models
+Install a license file
+Display name (optional)
+Incident settings saved
+Loading current config…
+Loading model settings…
+Share terminal activity
+(from DEVIN_MODELS_FILE)
+ACU consumption by model
+Configure payment method
+No environment variables
+add-on credits available
+(from DEVIN_LICENSE_FILE)
+Back on the primary model
+Valid — no problems found
+— file does not exist yet
+Auto-reload settings saved
+Back on the primary model.
+Configure channel mappings
+Customize application icon
+Open config.json in editor
+Select fallback agent mode
+Validating and installing…
+Configuration sent to Devin
+API key environment variable
+Local agents are not enabled
+Max output tokens (optional)
+No notifications configured.
+Update network configuration
+Waiting for browser sign-in…
+Agent Command Center location
+Need more credits? Click here
+Scroll to next diff on accept
+Stop the agent's current work
+Configure auto-reload settings
+Failed to load network config.
+Loading authentication status…
+No on-demand credits available
+Couldn't send the configuration
+Open repository access settings
+Run save actions on agent edits
+Agent mode for Devin in threads.
+Couldn't load incident settings.
+Failed to save incident settings
+Temporarily using a backup model
+Upgrade for more premium credits
+Wildcard will match all commands
+Could not read the selected file.
+Describe what the agent should do
+MCP tool calls by the legacy agent
+The license file was not accepted.
+Which events should start the agent
+ACUs consumed each day, by agent mode
+Launch sessions using this agent mode
+Reported results back to parent agent
+Unable to save Jira routing settings.
+Agent-written lines kept by the member
+Keep workspace in Agent Command Center
+Request declined — using a backup model
+You have no available credits remaining
+Sessions created each day, by agent mode
+These settings only apply to Devin Local
+Agent mode for the initial investigation.
+Retired or hidden models grouped as Other
+Managed by your enterprise. Open settings.
+Post the agent response to a Slack channel
+Add a preflight check before the agent runs
+Agent type can't be changed after creation.
+Connect Slack in Settings to pick channels.
+Choose from a few preset Devin Desktop icons
+Devin can choose a model for child sessions.
+Map Jira projects to Devin orgs in settings.
+Top 10 models with the rest grouped as Other
+Agent mode for sessions this responder starts
+Connect a new server from the MCP marketplace
+Decide what the agent should do on new events
+Auto-reload settings for on-demand consumption
+Connect to agents on remote machines over SSH.
+Failed to stop the subagent. Please try again.
+https://marketplace.example.com/vscode/gallery
+Each connection's own Team sync settings apply.
+Focused tasks help agents make steady progress.
+Free access to SWE-2, our flagship coding model
+Connect to saved hosts automatically on startup.
+Environment config changed since this suggestion
+Loading the saved preflight check configuration…
+An automation can have only one New session agent
+Changes to your organization's security settings.
+Use premium models only when the task needs them.
+Could not find this message in the agent's history
+General editor preferences open in a separate page
+Configure repositories, scan type and profile below
+Maximum number of runs within a rolling time window
+Automatically add credits when your balance gets low
+Post the agent response to a Microsoft Teams channel
+Configure the local model endpoints available to Devin
+Couldn't load the saved preflight check configuration.
+Patterns for tools and commands that are always denied
+You don't have permission to manage environment config
+Patterns for tools and commands that are always allowed
+Agent conversations on Desktop or CLI during this period
+No models configured yet. Use "New model" to get started.
+Patterns for tools and commands that require confirmation
+Drop a .devin-onprem-license file here, or click to browse
+Configure automation triggers, actions, and limits yourself
+Purchased credits do not expire and roll over month-to-month
+Refer a friend to a paid plan to get 250 bonus add-on credits
+Asks each time because of an ask rule in your Devin CLI config:
+Shared scratchpad cannot be disabled for auto-triage agent type
+Let Devin see commands and output from your integrated terminal.
+Let Devin see which files you edit and create in your workspace.
+License and single sign-on status for the air-gapped Devin agent
+Use this agent mode when research preview is no longer available
+The raw JSON must parse as an object with a "models" array first.
+Upgrade to get access to more models and an increased usage quota.
+Starts a new Devin session using the automation’s configured prompt
+Automatically scroll to the next diff when accepting the current one
+Couldn't refresh incident settings. Showing the last loaded settings.
+Network config updated. Waking Devin up to retry with the new config.
+You ran out of free credits. Please subscribe to continue using Devin
+Show the window's own folders instead of the active session's folders.
+Starts a new code scan using the automation’s configured scan settings
+Copy context about Devin's work and this PR to handoff to another agent
+Reconnect Slack in settings to grant Devin permission to join channels.
+Session tags are required but none are configured for this organization
+These results predate your latest edit. Validate again to refresh them.
+You ran out of credits. Please purchase credits to continue using Devin
+Revert back to the old analytics layout in the settings menu above any time
+Sign in to Devin on this machine to approve here, or run the command below.
+This trigger is not available.
+Turn it on in the Pylon connection settings.
+You need to configure a default payment method before enabling auto-reload.
+Show interactive diff zones with accept/reject controls for agent file edits
+Devin for Startups gives eligible companies up to $65k in credits and grants.
+Devin can choose a model for child sessions. You can change it when approving.
+Context you add is included with the automation's configured prompt for this run
+Not sent: you have this notification type turned off in Settings → Notifications
+You can index it later from <settingsLink>repo indexing settings</settingsLink>.
+How would you like to continue? <settingsLink>Manage repo indexing</settingsLink>
+Notify when an agent session finishes or needs your input while in the background
+Powered by SWE-2 Preview — Cognition's next-generation software engineering model
+Run format-on-save and code actions on save (e.g. gofmt) when Devin edits a file.
+Agent type can't be changed after creation. Duplicate the automation to change it.
+Configure how DeepWiki indexes your repository source code for Wiki and Ask Devin.
+Select a repository above and run an assessment to see how ready it is for agents.
+Ultra — Our most powerful and hardest thinking agent, significantly more expensive
+You are now on the Free plan. Resubscribe to get your models and usage quota back.
+Your remaining credits from your subscription and any purchased or gifted credits.
+Allow the agent to delegate work to subagents. Organization policy takes precedence
+Organization created, but some setup steps failed. You can finish them in Settings.
+How ready each repository is for agents to work in, assessed criterion by criterion.
+Only changed settings are shown. Open the card in the sidebar to compare everything.
+Update the configuration, targeting, and credentials for this enterprise MCP server.
+Try it — assign a Jira work item to <agent>Devin</agent> and watch the session start.
+Can't switch to this agent type after creation. Duplicate the automation to change it.
+Configure ACU limits, security profiles, MCPs and network policies, and other controls
+In Jira: Settings → Apps → Manage apps → <app>Devin for Jira</app> → Connect to Devin.
+A browser window opens on this machine to complete sign-in with your identity provider.
+Can run Unified sessions on this outpost, configure it, and manage who has access to it
+People who turned on automatic review for their own pull requests in personal settings.
+The primary model declined this request — Devin switched to a backup model to continue.
+Control whether the curated Devin official plugin catalog is offered in the marketplace.
+The recipient still has to sign in, and the link expires 15 minutes after it was created.
+You can view custom checks but need the manage agent readiness permission to change them.
+No channels are mapped to this org. Update your enterprise Slack settings to map channels.
+PagerDuty isn't connected to this account yet. Connect it in Settings to triage incidents.
+This will hide the onboarding checklist. You can bring it back from your account settings.
+You're connecting a Jira site to Devin. Sign in first — we'll bring you straight back here.
+Times a skill was used during this period, whether the agent activated it or a user invoked it
+Tests the configuration the agent loaded at startup; save and restart the agent to test changes
+Agent Readiness uses a specialized swarm of parallel Devin sessions. Select the mode they run in
+Double-check the maintenance commands in your <settingsLink>environment settings</settingsLink>.
+Set up Devin Review. You can change these later in <settingsLink>Review settings</settingsLink>.
+Slack's Manage permissions dialog with the "Allow this app to install managed agent apps" option.
+You do not currently have an active Devin plan. Please subscribe or purchase credits to use Devin
+Could not load authentication status from the agent. Make sure the bundled Devin agent is running.
+Model providers may store data for up to 30 days for automated harm detection, never for training.
+Setting up and maintaining CI/CD pipelines, deployment configurations, and infrastructure-as-code.
+Agent notifications enabled. You'll be notified when an agent session finishes or needs your input.
+Powered by SWE-2 Max — Cognition's next-generation software engineering model, max reasoning effort
+This license expires soon. Fetch a renewed license from your enterprise portal and install it below.
+Powered by SWE-2 High — Cognition's next-generation software engineering model, high reasoning effort
+Couldn't load this automation's security profile settings, so network access can't be summarized here.
+Renamed. Slack still shows the old name: delete this bot's Slack app in Settings and connect it again.
+This automation is watching a Slack channel. To use this agent type, remove the Watch channel trigger.
+Add key-value pairs in an automation's <advanced>Advanced</advanced> settings, then filter by them here.
+Network config updated. Devin has been put to sleep — send a new message to wake up with the new config.
+Plain configuration values, visible after saving. Not encrypted — put sensitive values in Secrets below.
+i.e. describe what types of trigger events are routed to this automation and how the agent should behave
+Powered by SWE-2 Medium — Cognition's next-generation software engineering model, medium reasoning effort
+Limit what Devin can access. Create a profile and set it as the default, now or later in Settings > Devin.
+Can run Unified sessions on this outpost, change its settings, manage its worker credentials, and delete it
+How ready each repository across your enterprise is for agents to work in, assessed criterion by criterion.
+Check the workspace is clean and double-check the startup commands in <settingsLink>settings</settingsLink>.
+Your usage quota has been exceeded and you are out of on-demand usage. Check your usage settings for details.
+Devin's unit of work is an Agent Compute Unit, or ACU. It's a normalized measure of the resources used by Devin.
+These apply to this organization only. You can change them later in <settingsLink>Devin settings</settingsLink>.
+This repository isn't part of your environment yet. Add it in environment settings before saving secrets for it.
+Your weekly usage quota has been exceeded and you are out of on-demand usage. Check your usage settings for details.
+Efficiency improves when Devin completes valuable work while keeping the model and task size proportional to the job.
+Primary model unavailable — Devin switched to a backup model and is still working. Results may be slightly different.
+The bundled Devin agent is not reachable right now. Unsaved edits are kept and can be saved once it is running again.
+These apply to every org in your enterprise. You can change them later in <settingsLink>Devin settings</settingsLink>.
+This organization only runs sessions on Outposts and has no default Outpost. Choose an Outpost under Advanced settings.
+Limit what Devin can access. Create profiles and set one as the default for every org, now or later in Settings > Devin.
+Someone edited the environment config after this suggestion was created. Review the combined result below before saving.
+Each message sent with a premium model consumes a model-dependent number of credits. This number is visible in the model dropdown.
+The models file exists but could not be read, so it cannot be edited here. Fix the file on disk (check permissions and encoding), then reload.
+The models file changed on disk since it was loaded, so saving would overwrite those changes. Reload to pick them up, then re-apply your edits.
+Model settings apply to the air-gapped Devin agent — both Devin Local and the devin CLI on this machine. Changes take effect after the agent restarts.
+Let Devin see which files you edit and create in your workspace, and let a Devin Cloud session read unsaved edits when it reads a file on this machine.

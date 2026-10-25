@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.2.2
+
+修掉 1.2.1 引入的**浅合并**缺陷：设置页出现成片的原始 key
+（`localSettings.general.openEditorSettings.label`、`localSettings.agents.searchPlaceholder`）。
+
+- **根因：`Object.assign(mu, zh)` 是浅合并，会把整个命名空间替换掉。**
+  resources 的形状是 `{ ns: { "点号key": 文案 } }`，载荷只覆盖一部分 key
+  （`localSettings` 199 个里 57 个）。浅合并后 `mu.localSettings` 变成只含
+  57 个中文 key 的新对象，其余 142 个英文 key 直接消失 —— i18next 查不到就
+  回退成显示 key 本身。全量算下来会丢 **7,843** 个英文 key。
+- **改为逐命名空间合并**：`Object.assign(mu.settings||(mu.settings={}), {…}),`
+  每个命名空间各做一次合并，未翻译的英文原样保留。
+- **补设置页译文 313 条**（`tools/data/zh/webapp/t00.json`）：
+  `localSettings` 覆盖率 57/199 → **168/199**，截图里的「打开编辑器设置」
+  「搜索智能体...」「Devin 本地」等全部覆盖。webapp 载荷 11,413 → **11,730** 条。
+- **新增 `tools/inject_webapp.py`**：把第 3 层的注入固化成可重复执行、带语法自检的脚本
+  （`--check` / `--restore`）。之前手写拼接反复踩三个坑，现在一次性固化：
+  ① 载荷必须在锚点之前；② 必须逐命名空间合并；③ 不能留尾逗号
+  （`,}` 会让 chunk 语法错误、Devin 起不来）。注入前先在临时文件上跑
+  `node --check`，不通过就放弃写入。
+- **验证加强**：`verify_layers.js` 的载荷解析改为花括号配平（正则会被
+  `||(mu.x={})` 里的空对象误导），并新增三条断言：
+  `载荷逐命名空间合并`、`没有整体浅合并 mu 的旧形态`、`载荷位于锚点之前`。
+  `test_runtime_merge.js` 的「未覆盖 key 不能丢」用例改为真实未翻译的 key。
+
 ## 1.2.1
 
 修掉一个比 1.2.0 更致命的时序 bug：**webapp 的中文资源从来没真正进入 i18next**。

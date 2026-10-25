@@ -267,9 +267,15 @@ function applyExtensionManifests(ctx) {
 // 覆盖已有 bundle，后加的会被吃掉。这正是「载荷明明在文件里、界面却仍显示原始 key
 // （sidebar.automations）」的原因。
 //
-// 做法：在 `Mt.isInitialized||Eu()` 前插入 `Object.assign(mu||{}, <中文>),`。
+// 做法：在 `Mt.isInitialized||Eu()` 前插入深合并语句。
 // Devin 用 `var mu,hu,gu;` 先声明、再在 _u() 闭包里 `mu=yl` 赋值，此处 mu 已就绪；
-// `mu||{}` 兼容未就绪的时序。
+// `mu||(mu={})` 兼容未就绪的时序。
+//
+// ★ 必须**深合并**。载荷只覆盖一部分 key（localSettings 199 个里 57 个），
+//   若用 Object.assign(mu, zh) 做浅合并，`mu.localSettings` 会被整个替换成只含
+//   中文子集的新对象，未翻译的 142 个 key 随之消失，界面回退成显示 key 本身
+//   （`localSettings.general.openEditorSettings.label`）。全量算下来会丢 7,843 个
+//   英文 key。所以注入一个递归合并函数，把中文逐层写进现有英文对象。
 const WEBAPP_DIR = 'out/vs/workbench/devin-webapp-host';
 const HOST_ANCHOR = 'Mt.isInitialized||Eu()';
 const HOST_MARK = '/*devin-zh*/';
@@ -288,6 +294,34 @@ function findHostChunk(app) {
   return null;
 }
 
+/**
+ * 生成注入片段：把中文逐命名空间合并进 mu。
+ *
+ * resources 的形状是 `{ ns: { "点号key": 文案 } }` —— 只有**两层**，
+ * 第二层的 key 是带点号的扁平字符串（`"general.openEditorSettings.label"`），
+ * 不是嵌套对象。所以「深合并」等于「对每个命名空间各做一次 Object.assign」，
+ * 不需要递归函数：
+ *
+ *   Object.assign(mu["settings"]||(mu["settings"]={}), {…}),
+ *   Object.assign(mu["sidebar"]||(mu["sidebar"]={}), {…})
+ *
+ * 这样既覆盖中文，又保留该命名空间里未被翻译的英文 key。
+ * 用递归函数会踩两个坑：`function` 声明不能出现在逗号表达式里（语法错误），
+ * 以及把点号 key 当路径展开会破坏原有结构。
+ */
+function makePayload(zh) {
+  const parts = [];
+  for (const ns of Object.keys(zh)) {
+    // 命名空间名本身是安全标识符时用 .x，否则用 ["x"]
+    const ref = /^[A-Za-z_$][\w$]*$/.test(ns) ? 'mu.' + ns : 'mu[' + JSON.stringify(ns) + ']';
+    const init = /^[A-Za-z_$][\w$]*$/.test(ns)
+      ? 'mu.' + ns + '||(mu.' + ns + '={})'
+      : 'mu[' + JSON.stringify(ns) + ']||(mu[' + JSON.stringify(ns) + ']={})';
+    parts.push('Object.assign(' + init + ',' + JSON.stringify(zh[ns]) + ')');
+  }
+  return HOST_MARK + parts.join(',') + HOST_END;
+}
+
 function applyWebappI18n(ctx) {
   const inst = findDevinInstall();
   if (!inst) return { webapp: false, changed: false };
@@ -302,7 +336,7 @@ function applyWebappI18n(ctx) {
     return { webapp: false, changed: false };
   }
 
-  const payload = HOST_MARK + 'Object.assign(mu||{},' + JSON.stringify(zh) + ')' + HOST_END;
+  const payload = makePayload(zh);
 
   let s = fs.readFileSync(chunk, 'utf8');
 

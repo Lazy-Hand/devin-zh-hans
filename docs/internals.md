@@ -178,6 +178,34 @@ Mt.isInitialized || Eu()
   `…,Mt.isInitialized||Eu(),}`。整个 chunk 语法错误，Devin 直接起不来。
   `verify_layers.js` 为此加了专门断言。
 
+### 5.4.1 必须逐命名空间合并，不能用 Object.assign 整体覆盖
+
+resources 是**两层**结构：`{ ns: { "点号key": 文案 } }`，第二层的 key 是带点号的
+扁平字符串（`"general.openEditorSettings.label"`），不是嵌套对象。
+
+所以「深合并」的正确写法是**对每个命名空间各做一次 Object.assign**：
+
+```js
+Object.assign(mu.settings||(mu.settings={}), {中文}),
+Object.assign(mu.sidebar||(mu.sidebar={}), {中文}),
+…
+```
+
+若写成 `Object.assign(mu, {中文})`（整体浅合并），`mu.localSettings` 会被替换成
+只含中文子集的新对象，未翻译的英文 key 随之消失 —— i18next 查不到就回退成
+**显示 key 本身**：
+
+```
+localSettings.general.openEditorSettings.label
+localSettings.agents.searchPlaceholder
+```
+
+这正是 1.2.1 之后设置页成片原始 key 的原因。全量算下来会丢 7,843 个英文 key。
+
+另外不要用递归函数实现「深合并」：`function` 声明不能出现在逗号表达式里
+（`Object.assign(…),function __dz(){}` 是语法错误，整个 chunk 起不来）。
+两层结构下逐命名空间合并既正确又最简单。
+
 ### 5.5 资源有两种写法，第二种漏掉会丢掉设置页整页
 
 en 资源在 chunk 里以两种形式出现：

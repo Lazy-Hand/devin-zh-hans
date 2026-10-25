@@ -3,14 +3,14 @@ Devin 安装目录 : C:\Users\27837\AppData\Local\Programs\Devin\resources\app
 NLS 译文条数   : 956 （来自 8 个词表）
 
 [1] NLS 补充表: 162 条 / 28 个源文件
-[2b] 品牌名回正: 59 条
+[2b] 品牌名回正: 0 条
 [2] main.i18n.json: 剔除死条目 0 条, 新增 0 条, 总 21,161 条, 1.58 MB
 [3] DOM 通用词典: 9,775 条（由 21,210 条 NLS 原文反查）(0.59 MB)
 
-[4] webapp 词表: 10768 条
+[4] webapp 词表: 11078 条
     人工校订词表: 216 条
-    assets/ui-strings-zh.json: 10,849 条 (0.67 MB)
-    assets/webapp-i18n.json: 11,413 条 / 309 个命名空间 (0.55 MB)
+    assets/ui-strings-zh.json: 11,156 条 (0.70 MB)
+    assets/webapp-i18n.json: 11,730 条 / 309 个命名空间 (0.57 MB)
 
 [5] 扩展贡献点译文: 254 条 / 字段 254
 
@@ -22,8 +22,8 @@ NLS 译文条数   : 956 （来自 8 个词表）
  "nlsFiles": 28,
  "nlsTotal": 21161,
  "uiDict": 9775,
- "webappDict": 10768,
- "webappI18n": 11413,
+ "webappDict": 11078,
+ "webappI18n": 11730,
  "extFields": 254,
  "extZh": 254
 }
