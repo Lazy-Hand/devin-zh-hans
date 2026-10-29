@@ -52,15 +52,32 @@ function devinHome() {
 }
 
 function findDevinInstall() {
+  // Windows: inst 根下直接是 Devin.exe + resources/app
+  // macOS:   Devin.app/Contents 下是 MacOS/Devin + Resources/app
+  // 统一约定：inst 指向「resources/app 的父目录」（Win 即安装根，macOS 即 Contents）
   const cands = [
     process.env.DEVIN_INSTALL,
+    // Windows
     path.join(process.env.LOCALAPPDATA || '', 'Programs', 'Devin'),
     'C:\\Program Files\\Devin',
+    // macOS
+    '/Applications/Devin.app/Contents',
+    path.join(os.homedir(), 'Applications', 'Devin.app', 'Contents'),
   ];
   for (const c of cands) {
-    if (c && fs.existsSync(path.join(c, 'Devin.exe'))) return c;
+    if (!c) continue;
+    const win = path.join(c, 'Devin.exe');
+    const mac = path.join(c, 'MacOS', 'Devin');
+    if (fs.existsSync(win) || fs.existsSync(mac)) return c;
   }
   return null;
+}
+
+// inst 是「resources/app 的父目录」：Windows 是安装根，macOS 是 Devin.app/Contents
+function appResourcesRoot(inst) {
+  return fs.existsSync(path.join(inst, 'resources', 'app'))
+    ? path.join(inst, 'resources', 'app')
+    : path.join(inst, 'Resources', 'app');
 }
 
 function findLangpack() {
@@ -198,7 +215,7 @@ function applyExtensionManifests(ctx) {
   const zhMap = readJson(zhPath);
   if (!plan || !enMap) { log('缺少 ext-manifest 产物，跳过扩展贡献点层'); return { ext: false, changed: false }; }
 
-  const extRoot = path.join(inst, 'resources', 'app', 'extensions');
+  const extRoot = path.join(appResourcesRoot(inst), 'extensions');
   let changed = false;
 
   for (const name of EXT_FAMILY) {
@@ -352,7 +369,7 @@ function writeValidWebappChunk(chunk, source) {
 function applyWebappI18n(ctx) {
   const inst = findDevinInstall();
   if (!inst) return { webapp: false, changed: false };
-  const app = path.join(inst, 'resources', 'app');
+  const app = appResourcesRoot(inst);
 
   const zh = readJson(path.join(ctx.extensionPath, 'assets', 'webapp-i18n.json'));
   if (!zh) { log('缺少 webapp-i18n.json，跳过 webapp 层'); return { webapp: false, changed: false }; }
@@ -418,7 +435,7 @@ function applyWebappI18n(ctx) {
 function applyDomLayer(ctx) {
   const inst = findDevinInstall();
   if (!inst) { log('未找到 Devin 安装目录，跳过 DOM 层'); return { dom: false, changed: false }; }
-  const app = path.join(inst, 'resources', 'app');
+  const app = appResourcesRoot(inst);
   const runtimeSrc = path.join(ctx.extensionPath, 'dist', 'devin-zh-dom.js');
   const productPath = path.join(app, 'product.json');
   const product = readJson(productPath);
@@ -490,9 +507,11 @@ function collectStatus(ctx) {
   }
 
   if (inst) {
-    const app = path.join(inst, 'resources', 'app');
+    const app = appResourcesRoot(inst);
 
     // 扩展贡献点
+    // 判定标准：package.nls.zh-cn.json 存在 + package.json 里至少有一个 %key% 占位符
+    // （说明字符串已被换成占位符，且 zh 翻译表已写入）
     let extOk = 0, extTotal = 0;
     for (const name of EXT_FAMILY) {
       const dir = path.join(app, 'extensions', name);
@@ -500,9 +519,8 @@ function collectStatus(ctx) {
       if (!fs.existsSync(pkgPath)) continue;
       extTotal++;
       const zh = readJson(path.join(dir, 'package.nls.zh-cn.json'));
-      const pkg = readJson(pkgPath);
-      const s = JSON.stringify(pkg || {});
-      if (zh && s.includes('%"') === false && /%[\w.]{6,}%/.test(s)) extOk++;
+      const s = fs.readFileSync(pkgPath, 'utf8');
+      if (zh && /%[A-Za-z_][\w.-]*%/.test(s)) extOk++;
     }
     if (extTotal) out.push('扩展贡献点汉化 : ' + extOk + ' / ' + extTotal);
 
@@ -534,6 +552,58 @@ function collectStatus(ctx) {
   return out;
 }
 
+// ───────────────────────── argv.json locale ─────────────────────────
+// Devin 升级会把 argv.json 重写回默认（没有 "locale"），导致界面回英文。
+// 每次激活时确保 "locale": "zh-cn" 存在；没有就补进去。
+// argv.json 是 JSONC（带注释），不能用 JSON.parse 全量重写——会丢注释。
+// 这里用文本级插入：找最后一个 "key": value 行，在它后面追加 "locale" 行。
+function ensureLocale() {
+  const argvPath = path.join(devinHome(), 'argv.json');
+  if (!fs.existsSync(argvPath)) {
+    log('argv.json 不存在，跳过 locale 写入');
+    return { changed: false };
+  }
+  let s = '';
+  try { s = fs.readFileSync(argvPath, 'utf8'); } catch (e) {
+    log('读 argv.json 失败:', e.message);
+    return { changed: false };
+  }
+  // 已有 locale 设置则不动
+  if (/^\s*"locale"\s*:/m.test(s)) {
+    // 但若是其他值，改成 zh-cn
+    const m = s.match(/^\s*"locale"\s*:\s*"([^"]*)"/m);
+    if (m && m[1] === 'zh-cn') return { changed: false };
+    if (m) {
+      backup(argvPath, 'locale');
+      const next = s.replace(/^(\s*)"locale"\s*:\s*"[^"]*"/m, '$1"locale": "zh-cn"');
+      fs.writeFileSync(argvPath, next, 'utf8');
+      log('已将 argv.json locale 改为 zh-cn');
+      return { changed: true };
+    }
+    return { changed: false };
+  }
+  // 在最后一个 } 之前插入 "locale": "zh-cn"。
+  // 策略：把 head 末尾的多余空白/换行剥掉，按需补逗号，再写 locale 字段。
+  const lastBrace = s.lastIndexOf('}');
+  if (lastBrace < 0) return { changed: false };
+  const headRaw = s.slice(0, lastBrace);
+  const tail = s.slice(lastBrace);
+  const head = headRaw.replace(/\s+$/, '');
+  const needComma = !head.endsWith('{') && !head.endsWith(',');
+  const insertion =
+    (needComma ? ',' : '') +
+    '\n\n\t// Display language (Devin 简体中文)\n\t"locale": "zh-cn"\n';
+  backup(argvPath, 'locale');
+  try {
+    fs.writeFileSync(argvPath, head + insertion + tail, 'utf8');
+    log('已向 argv.json 写入 "locale": "zh-cn"');
+    return { changed: true };
+  } catch (e) {
+    log('写 argv.json 失败:', e.message);
+    return { changed: false };
+  }
+}
+
 // ───────────────────────── 激活 ─────────────────────────
 function activate(context) {
   const ctx = { extensionPath: context.extensionPath };
@@ -542,6 +612,7 @@ function activate(context) {
   const run = (silent) => {
     let changed = false;
     const steps = [
+      ['argv.locale', ensureLocale],
       ['语言包', applyLanguagePack],
       ['扩展贡献点', applyExtensionManifests],
       ['webapp i18next', applyWebappI18n],
@@ -600,7 +671,7 @@ function activate(context) {
         targets.push([path.join(src, 'package.json'), path.join(lp, 'package.json')]);
       }
       if (inst) {
-        const app = path.join(inst, 'resources', 'app');
+        const app = appResourcesRoot(inst);
         targets.push([path.join(src, 'workbench.html'), path.join(app, 'out/vs/code/electron-browser/workbench/workbench.html')]);
         targets.push([path.join(src, 'sessions.html'), path.join(app, 'out/vs/sessions/electron-browser/sessions.html')]);
         targets.push([path.join(src, 'product.json'), path.join(app, 'product.json')]);
